@@ -45,7 +45,7 @@ We are using topographic as examples in this set of lessons.
 2.  [Operating on arrays](01-numpy2.html)
 3.  [Data types](02-objects.html)
 4.  [Writing numerical models with Python](03-models.html)
-5.  [Creating modular code](04-func.html)
+<!-- 5.  [Creating modular code](04-func.html) -->
 
 
 ## Other Resources
