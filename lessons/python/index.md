@@ -27,7 +27,7 @@ We are using topographic as examples in this set of lessons.
 > ## Getting ready {.getready}
 >
 > You need to have Python 2.7 installed on your computer. For instructions on how to
-> install this software, visit [the CSDMS workshop page](http://mperignon.github.io/2016-05-16-csdms).
+> install this software, visit [the CSDMS workshop page](http://csdms.github.io/2017-05-22-csdms).
 >
 > You also need to download some files to follow this lesson:
 >
@@ -41,11 +41,11 @@ We are using topographic as examples in this set of lessons.
 
 ## Topics
 
-1.  [Analyzing Topographic Data](01-numpy.html)
-2.  [Writing stand-alone Python scripts](02-scripts.html)
-3.  [Storing Multiple Values in Lists](03-lists.html)
-4.  [Writing Numerical Models with Python](04-models.html)
-5.  [Creating Functions](05-func.html)
+0.  [Handling topographic data](00-numpy1.html)
+2.  [Operating on arrays](01-numpy2.html)
+3.  [Data types](02-objects.html)
+4.  [Writing numerical models with Python](03-models.html)
+5.  [Creating modular code](04-func.html)
 
 
 ## Other Resources
