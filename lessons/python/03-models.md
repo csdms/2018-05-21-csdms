@@ -269,12 +269,12 @@ after the loop, letter is c
 > 3
 > ~~~
 >
-> {.solution}
->
-> ~~~ {.python}
-> for i in range(1,4):
->   print i
-> ~~~
+>>## Solution{.solution}
+>>
+>> ~~~ {.python}
+>> for i in range(1,4):
+>>   print i
+>> ~~~
 
 
 > ## Computing powers with loops {.challenge}
@@ -289,14 +289,14 @@ after the loop, letter is c
 > Write a loop that calculates the same result as `5 ** 3` using just
 > multiplication (without exponentiation).
 >
-> {.solution}
->
-> ~~~ {.python}
-> result = 1
-> for i in range(0,3):
->   result = result * 5
-> print result
-> ~~~
+>>## Solution{.solution}
+>>
+>> ~~~ {.python}
+>> result = 1
+>> for i in range(0,3):
+>>   result = result * 5
+>> print result
+>> ~~~
 
 > ## Turn a string into a list {.challenge}
 >
@@ -314,14 +314,14 @@ after the loop, letter is c
 >
 >Bonus: Once you are done, try casting a string as a list and see what happens.
 >
-> {.solution}
->
-> ~~~ {.python}
-> my_list = []
-> for char in "hello":
->   newstring = char + newstring
-> print my_list
-> ~~~
+>>## Solution{.solution}
+>>
+>> ~~~ {.python}
+>> my_list = []
+>> for char in "hello":
+>>   newstring = char + newstring
+>> print my_list
+>> ~~~
 
 > ## Reverse a string {.challenge}
 >
@@ -329,15 +329,15 @@ after the loop, letter is c
 > and produces a new string with the characters in reverse order,
 > so `'Newton'` becomes `'notweN'`.
 >
-> {.solution}
->
-> ~~~ {.python}
-> newstring = ''
-> oldstring = 'Newton'
-> for char in oldstring:
->   newstring = char + newstring
-> print newstring
-> ~~~
+>>## Solution{.solution}
+>>
+>> ~~~ {.python}
+>> newstring = ''
+>> oldstring = 'Newton'
+>> for char in oldstring:
+>>   newstring = char + newstring
+>> print newstring
+>> ~~~
 
 > ## Computing the value of a polynomial (Advanced) {.challenge}
 >
@@ -360,13 +360,13 @@ after the loop, letter is c
 >
 >Write a loop using enumerate(cc) which computes the value `y` of any polynomial, given `x` and `cc`.
 >
-> {.solution}
->
-> ~~~ {.python}
-> y = 0
-> for i, c in enumerate(cc):
->   y = y + x**i * c
-> ~~~
+>>## Solution{.solution}
+>>
+>> ~~~ {.python}
+>> y = 0
+>> for i, c in enumerate(cc):
+>>   y = y + x**i * c
+>> ~~~
 
 ## Looping through the profile
 
@@ -499,9 +499,9 @@ for t in range(0,maxt,dt):
 >
 > - What will the profile look like after one timestep if the value of `dt` is very (very!) large? (Hint: Stop thinking of the real world and look at the equation. What does `dt` do to each term?)
 >
->{.solution}
->
-> The timestep `dt` is multiplied by the change in elevation per unit time. The change in elevation will be larger for larger timesteps. If the timestep is very large, the equation will calculate the total change over the timestep based only on the rate of change at the beginning of the timestep, even if, in real life, the rate of change would have decreased over the same period of time. As a result, the new elevations might "overshoot", changing the three cells from a valley to a hill. This can lead to a numerical instability.
+>>## Solution{.solution}
+>>
+>> The timestep `dt` is multiplied by the change in elevation per unit time. The change in elevation will be larger for larger timesteps. If the timestep is very large, the equation will calculate the total change over the timestep based only on the rate of change at the beginning of the timestep, even if, in real life, the rate of change would have decreased over the same period of time. As a result, the new elevations might "overshoot", changing the three cells from a valley to a hill. This can lead to a numerical instability.
 
 We had to zoom into a small section of the profile to see that the topography was evolving. Because we are plotting every time it goes around the time loop, though, there are too many lines and they are too close together to differentiate between the different profiles. 
 
@@ -658,9 +658,9 @@ for t in range(0,maxt,dt):
 >     print 'C'
 > ~~~
 >
->{.solution}
->
->C gets printed because the first two conditions, 4 > 5 and 4 == 5, are not true, but 4 < 5 is true.
+>>## Solution{.solution}
+>>
+>>C gets printed because the first two conditions, 4 > 5 and 4 == 5, are not true, but 4 < 5 is true.
 
 > ## What is truth? {.challenge}
 >
@@ -703,25 +703,25 @@ and false statements. However, they aren't the only values in Python that are tr
 > Compare your implementation with your partner's:
 > do you get the same answer for all possible values of `a` and `b`?
 >
->{.solution}
->
-> ~~~ {.python}
->a = 5
->b = 5.1
->
->if abs(a - b) < 0.1 * abs(b):
->    print 'True'
->else:
->    print 'False'
->~~~
->
->You could also just print the output of the conditional statement:
->
-> ~~~ {.python}
->print abs(a - b) < 0.1 * abs(b)
->~~~
->
-> This works because the Booleans `True` and `False` have string representations which can be printed.
+>>## Solution{.solution}
+>>
+>> ~~~ {.python}
+>>a = 5
+>>b = 5.1
+>>
+>>if abs(a - b) < 0.1 * abs(b):
+>>    print 'True'
+>>else:
+>>    print 'False'
+>>~~~
+>>
+>>You could also just print the output of the conditional statement:
+>>
+>> ~~~ {.python}
+>>print abs(a - b) < 0.1 * abs(b)
+>>~~~
+>>
+>> This works because the Booleans `True` and `False` have string representations which can be printed.
 
 > ## Sorting a List Into Buckets (Advanced) {.challenge}
 >
@@ -753,21 +753,21 @@ and false statements. However, they aren't the only values in Python that are tr
 > other_files = ['myscript.py', 'funny_field_photo.jpg']
 > ~~~
 >
->{.solution}
->
->~~~{.python}
->for filename in files:
->    if 'survey-' in filename:
->        large_files.append(filename)
->    elif 'small-' in filename:
->        small_files.append(filename)
->    else:
->        other_files.append(filename)
->        
->print large_files 
->print small_files
->print other_files
->~~~
+>>## Solution{.solution}
+>>
+>>~~~{.python}
+>>for filename in files:
+>>    if 'survey-' in filename:
+>>        large_files.append(filename)
+>>    elif 'small-' in filename:
+>>        small_files.append(filename)
+>>    else:
+>>        other_files.append(filename)
+>>        
+>>print large_files 
+>>print small_files
+>>print other_files
+>>~~~
 
 > ## Counting Vowels (Advanced) {.challenge}
 >
@@ -776,31 +776,31 @@ and false statements. However, they aren't the only values in Python that are tr
 > 3. Once you are done, compare your solution to your neighbor's.
 >    How did you handle capitalization?
 >
->{.solution}
->
->~~~{.python}
->vowels = 'aeiouAEIOU'
->sentence = 'Mary had a little lamb.'
->count = 0
->for char in sentence:
->    if char in vowels:
->        count += 1
->        
->print "The number of vowels in this string is " + str(count)
->~~~
->
->You could also use the string method `lower` to avoid dealing with uppercase letters:
->
->~~~{.python}
->vowels = 'aeiou'
->sentence = 'Mary had a little lamb.'
->count = 0
->for char in sentence.lower():
->    if char in vowels:
->        count += 1
->        
->print "The number of vowels in this string is " + str(count)
->~~~
+>>## Solution{.solution}
+>>
+>>~~~{.python}
+>>vowels = 'aeiouAEIOU'
+>>sentence = 'Mary had a little lamb.'
+>>count = 0
+>>for char in sentence:
+>>    if char in vowels:
+>>        count += 1
+>>        
+>>print "The number of vowels in this string is " + str(count)
+>>~~~
+>>
+>>You could also use the string method `lower` to avoid dealing with uppercase letters:
+>>
+>>~~~{.python}
+>>vowels = 'aeiou'
+>>sentence = 'Mary had a little lamb.'
+>>count = 0
+>>for char in sentence.lower():
+>>    if char in vowels:
+>>        count += 1
+>>        
+>>print "The number of vowels in this string is " + str(count)
+>>~~~
 
 
 > ## Vectorize your code (Advanced) {.challenge}

@@ -273,12 +273,12 @@ Try assigning an object of a different type to `input_from_user` to see how the 
 >- 22.
 >- 7.0000
 >
->{.solution}
->
->- float
->- int
->- float
->- float
+>>## Solution{.solution}
+>>
+>>- float
+>>- int
+>>- float
+>>- float
 
 >## Casting and integer division  {.challenge}
 >
@@ -291,18 +291,18 @@ Try assigning an object of a different type to `input_from_user` to see how the 
 >print 'd:', float(100/3)
 >~~~
 >
->{.solution}
->
->~~~ {.output}
->a: 33
->b: 33.3333333333
->c: 33.3333333333
->d: 33.0
->~~~
->
-> (a) Dividing two integers results in an integer
-> (b),(c) Casting either the dividend or divisor as a float will mean that it is no longer integer division
-> (d) The function `float()` is acting on the output of integer division. The remainder has already been discarded.
+>>## Solution{.solution}
+>>
+>>~~~ {.output}
+>>a: 33
+>>b: 33.3333333333
+>>c: 33.3333333333
+>>d: 33.0
+>>~~~
+>>
+>> (a) Dividing two integers results in an integer
+>> (b),(c) Casting either the dividend or divisor as a float will mean that it is no longer integer division
+>> (d) The function `float()` is acting on the output of integer division. The remainder has already been discarded.
 
 >## Lemonade sales {.challenge}
 >
@@ -320,16 +320,16 @@ Try assigning an object of a different type to `input_from_user` to see how the 
 >- Calculate the total sales for FY2017
 >~~~
 >
->{.solution}
->
->
->~~~ {.python}
->total_sales = float(sales_1q[0]) + sales_2q + sales_3q + float(sales_4q)
->print 'Total lemonade sales:', total_sales, 'thousand dollars'
->~~~
->~~~ {.output}
->Total lemonade sales: 319.82 thousand dollars
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>total_sales = float(sales_1q[0]) + sales_2q + sales_3q + float(sales_4q)
+>>print 'Total lemonade sales:', total_sales, 'thousand dollars'
+>>~~~
+>>~~~ {.output}
+>>Total lemonade sales: 319.82 thousand dollars
+>>~~~
 
 >## Casting bool  {.challenge}
 >
@@ -348,20 +348,20 @@ Try assigning an object of a different type to `input_from_user` to see how the 
 >- a list with one item
 >- an empty list
 >
->{.solution}
->
->- a negative float: True
->- None: False
->- the boolean object True: True
->- the integer 0: False
->- the float 0.0: False
->- the string 'string': True
->- an empty string: False
->- a string that contains only a space: True
->- 3e-324: True
->- 2e-324: False
->- a list with one item: True
->- an empty list: False
+>>## Solution{.solution}
+>>
+>>- a negative float: True
+>>- None: False
+>>- the boolean object True: True
+>>- the integer 0: False
+>>- the float 0.0: False
+>>- the string 'string': True
+>>- an empty string: False
+>>- a string that contains only a space: True
+>>- 3e-324: True
+>>- 2e-324: False
+>>- a list with one item: True
+>>- an empty list: False
 
 
 
@@ -770,34 +770,34 @@ print person
 >
 >- What happens if the substring appears more than once in the string? (ex. 'in')
 >
->{.solution}
->
->~~~{.python}
->loc = string.find('caps')
->print string[loc:]
->~~~
->~~~ {.output}
->caps i'm trying to YELL!
->~~~
->
->The method `find` returns the start index of the substring.
->
->~~~{.python}
-># change capitalization for testing
->string = "if it's in cAPs i'm trying to YELL!"
->
->print 'If substring not in string:', string.find('caps')
->
-># force string to lowercase
->print 'If find substring:', string.lower().find('caps')
->
->print "Returns only first occurrence of substring 'in':", string.lower().find('in')
->~~~
->~~~ {.output}
->If substring not in string: -1
->If find substring: 11
->Returns only first occurrence of substring 'in': 8
->~~~
+>>## Solution{.solution}
+>>
+>>~~~{.python}
+>>loc = string.find('caps')
+>>print string[loc:]
+>>~~~
+>>~~~ {.output}
+>>caps i'm trying to YELL!
+>>~~~
+>>
+>>The method `find` returns the start index of the substring.
+>>
+>>~~~{.python}
+>># change capitalization for testing
+>>string = "if it's in cAPs i'm trying to YELL!"
+>>
+>>print 'If substring not in string:', string.find('caps')
+>>
+>># force string to lowercase
+>>print 'If find substring:', string.lower().find('caps')
+>>
+>>print "Returns only first occurrence of substring 'in':", string.lower().find('in')
+>>~~~
+>>~~~ {.output}
+>>If substring not in string: -1
+>>If find substring: 11
+>>Returns only first occurrence of substring 'in': 8
+>>~~~
 
 >## Numbers in strings {.challenge}
 >
@@ -824,17 +824,17 @@ print person
 >
 >Fix your code so it prints the text in `sign` correctly. Don't change the first line!
 >
->{.solution}
->
->
->~~~ {.python}
->age = 21
->sign = 'You must be ' + str(age) + '-years-old to enter this bar'
->print sign
->~~~
->~~~ {.output}
->You must be 21-years-old to enter this bar
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>age = 21
+>>sign = 'You must be ' + str(age) + '-years-old to enter this bar'
+>>print sign
+>>~~~
+>>~~~ {.output}
+>>You must be 21-years-old to enter this bar
+>>~~~
 
 
 >## Cheeeeeeeeese  {.challenge}
@@ -846,21 +846,21 @@ print person
 >s2 = 3 * shopping_list[-1]
 >~~~
 >
->{.solution}
->
->
->~~~ {.python}
->print s1, type(s1)
->print s2, type(s2)
->~~~
->~~~ {.output}
->['cheese', 'cheese', 'cheese'] <type 'list'>
->cheesecheesecheese <type 'str'>
->~~~
->
->`shopping_list[-1]` is the last value in the list, which is a string. The second statement is therefore repeating a string three times.
->
->`shopping_list[-1:]` is a slice of a list, so it is also a list (even if it only has one value). The first statement is therefore repeating a list three times.
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>print s1, type(s1)
+>>print s2, type(s2)
+>>~~~
+>>~~~ {.output}
+>>['cheese', 'cheese', 'cheese'] <type 'list'>
+>>cheesecheesecheese <type 'str'>
+>>~~~
+>>
+>>`shopping_list[-1]` is the last value in the list, which is a string. The second statement is therefore repeating a string three times.
+>>
+>>`shopping_list[-1:]` is a slice of a list, so it is also a list (even if it only has one value). The first statement is therefore repeating a list three times.
 
 >## Human readable numbers  {.challenge}
 >
@@ -870,18 +870,18 @@ print person
 >my_account_balance = 15,752,000,000
 >~~~
 >
->{.solution}
->
->
->~~~ {.python}
->my_account_balance = 15,752,000,000
->type(my_account_balance)
->~~~
->~~~ {.output}
->tuple
->~~~
->
-> You don't actually need the parentheses to create a tuple. Python reads any sequence of objects separated by commas as a tuple.
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>my_account_balance = 15,752,000,000
+>>type(my_account_balance)
+>>~~~
+>>~~~ {.output}
+>>tuple
+>>~~~
+>>
+>> You don't actually need the parentheses to create a tuple. Python reads any sequence of objects separated by commas as a tuple.
 
 
 >## Tiny tuples  {.challenge}
@@ -890,16 +890,16 @@ print person
 >
 >Hint: Start with a tuple with two values and simplify it.
 >
->{.solution}
->
->
->~~~ {.python}
->lil_tuple = 1,
->type(lil_tuple)
->~~~
->~~~ {.output}
->tuple
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>lil_tuple = 1,
+>>type(lil_tuple)
+>>~~~
+>>~~~ {.output}
+>>tuple
+>>~~~
 
 >## Travel guide  {.challenge}
 >
@@ -908,41 +908,41 @@ print person
 >You can also use states from another country or look [here](http://www.50states.com/abbreviations.htm) for help.
 >
 >
->{.solution}
->
->
->~~~ {.python}
->states = {}
->
->states['Colorado'] = 'CO'
->states['California'] = 'CA'
->states['Florida'] = 'FL'
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>states = {}
+>>
+>>states['Colorado'] = 'CO'
+>>states['California'] = 'CA'
+>>states['Florida'] = 'FL'
+>>~~~
 >
 >- Use a variable in place of a key to access values in your `states` dictionary. For example, if I set the variable to "Wyoming", the value should be "WY".
 >
 >
->{.solution}
->
->
->~~~ {.python}
->selected_state = 'California'
->
->print states[selected_state]
->~~~
->~~~ {.output}
->CA
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>selected_state = 'California'
+>>
+>>print states[selected_state]
+>>~~~
+>>~~~ {.output}
+>>CA
+>>~~~
 >
 >
 >- Create a dictionary called "cities" that contains 3 key:value pairs. The keys should be the state abbreviation in your `states` dictionary and the values should be the names of one city in each of those states state (ex. 'WY':'Laramie'). Don't start with an empty dictionary and add values to it -- initialize the dictionary with the all of the key:value pairs already in it.
 >
->{.solution}
->
->
->~~~ {.python}
->cities = {'CO':'Denver', 'FL':'Miami', 'CA':'San Francisco'}
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>cities = {'CO':'Denver', 'FL':'Miami', 'CA':'San Francisco'}
+>>~~~
 
 >## Travel guide, part II (Advanced)  {.challenge}
 >
@@ -954,16 +954,16 @@ print person
 >
 >Hint: The values in one of your dictionaries are the keys for the other dictionary
 >
->{.solution}
->
->
->~~~ {.python}
->selected_state = 'Colorado'
->
->print selected_state + ' is abbreviated ' + states[selected_state] + ' and has cities like ' + cities[states[selected_state]]
->~~~
->~~~ {.output}
->Colorado is abbreviated CO and has cities like Denver
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>selected_state = 'Colorado'
+>>
+>>print selected_state + ' is abbreviated ' + states[selected_state] + ' and has cities like ' + cities[states[selected_state]]
+>>~~~
+>>~~~ {.output}
+>>Colorado is abbreviated CO and has cities like Denver
+>>~~~
 
 

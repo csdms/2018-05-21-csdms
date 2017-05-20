@@ -94,8 +94,10 @@
 age <span class="op">=</span> <span class="dv">122</span>
 mass <span class="op">=</span> mass <span class="op">*</span> <span class="fl">2.0</span>
 age <span class="op">=</span> age <span class="op">-</span> <span class="dv">20</span></code></pre></div>
-<p>{.solution}</p>
-<table>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<table style="width:300px;background-color:white;>
 <thead>
 <tr class="header">
 <th align="center">Line number</th>
@@ -128,6 +130,8 @@ age <span class="op">=</span> age <span class="op">-</span> <span class="dv">20<
 </table>
 </div>
 </section>
+</div>
+</section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="tracking-variables"><span class="glyphicon glyphicon-pencil"></span>Tracking variables</h2>
@@ -138,10 +142,14 @@ age <span class="op">=</span> age <span class="op">-</span> <span class="dv">20<
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">first, second <span class="op">=</span> <span class="st">&#39;Grace&#39;</span>, <span class="st">&#39;Hopper&#39;</span>
 third, fourth <span class="op">=</span> second, first
 <span class="bu">print</span> third, fourth</code></pre></div>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> third, fourth</code></pre></div>
 <pre class="output"><code>Hopper Grace</code></pre>
 <p><a href="https://en.wikipedia.org/wiki/Grace_Hopper" class="uri">https://en.wikipedia.org/wiki/Grace_Hopper</a> <BR></p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -151,11 +159,15 @@ third, fourth <span class="op">=</span> second, first
 <div class="panel-body">
 <p>Why doesn’t this work?</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="dv">17</span> <span class="op">=</span> n</code></pre></div>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <p>The assignment token, ‘=’, should not be confused with the equals sign, in the mathematical sense. The assignment statement binds a name, on the left-hand side of the operator, to a value, on the right-hand side. When reading or writing code, say to yourself “n is assigned 17” or “n gets the value 17”. Don’t say “n equals 17”.</p>
 <p>Also, variable names must start with a letter or an underscore so the number 17 could not be used as a variable name.</p>
 <p>The correct way to assign the value 17 to the variable name <code>n</code> is this:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">n <span class="op">=</span> <span class="dv">17</span></code></pre></div>
+</div>
+</section>
 </div>
 </section>
 <p>Using its variable name, we can see that <strong>type</strong> of object the variable name <code>topo</code> is assigned to. The function <code>type</code> tells us that the variable name <code>topo</code> points to an N-dimensional array created by the Numpy library:</p>
@@ -203,8 +215,8 @@ third, fourth <span class="op">=</span> second, first
 <p>We can use the function <strong>imshow</strong> (“image show”) within <code>matplotlib.pyplot</code> to display an array as a 2D image:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">matplotlib.pyplot.imshow(topo)</code></pre></div>
 <div class="figure">
-<img src="figs/f00_output_33_1.png" alt="png" />
-<p class="caption">png</p>
+<img src="figs/f00_output_33_1.png" />
+
 </div>
 <h2 id="indexing">Indexing</h2>
 <p>We can access an individual value in an array by referencing its position. We specify the location of the value using an <strong>integer index</strong> in square brackets:</p>
@@ -258,7 +270,9 @@ third, fourth <span class="op">=</span> second, first
 <li>What’s the elevation difference between the NE corner and the SE corner?</li>
 <li>What’s the elevation at the center of the region shown in the array? (Hint: You can use the function <code>len()</code>)</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;NW corner:&#39;</span>, topo[<span class="dv">0</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span>
 <span class="bu">print</span> <span class="st">&#39;SW corner:&#39;</span>, topo[<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span>
 <span class="bu">print</span> <span class="st">&#39;Difference between NW and SW corners:&#39;</span>, topo[<span class="dv">0</span>,<span class="dv">0</span>] <span class="op">-</span> topo[<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span>
@@ -276,6 +290,8 @@ Elevation at the center: 3372.386 meters</code></pre>
 <p><BR></p>
 </div>
 </section>
+</div>
+</section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="slicing-strings"><span class="glyphicon glyphicon-pencil"></span>Slicing strings</h2>
@@ -290,26 +306,38 @@ last three characters: gen</code></pre>
 <ul>
 <li>What is the value of <code>element[:4]</code>? What about <code>element[4:]</code>? Or <code>element[:]</code>?</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;element[:4]:&#39;</span>, element[:<span class="dv">4</span>]
 <span class="bu">print</span> <span class="st">&#39;element[4:]:&#39;</span>, element[<span class="dv">4</span>:]
 <span class="bu">print</span> <span class="st">&#39;element[:]:&#39;</span>, element[:]</code></pre></div>
 <pre class="output"><code>element[:4]: oxyg
 element[4:]: en
 element[:]: oxygen</code></pre>
+</div>
+</section>
 <ul>
 <li>What is <code>element[-1]</code>? What is <code>element[-2]</code>?</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;element[-1]:&#39;</span>, element[<span class="op">-</span><span class="dv">1</span>]
 <span class="bu">print</span> <span class="st">&#39;element[-2]:&#39;</span>, element[<span class="op">-</span><span class="dv">2</span>]</code></pre></div>
 <pre class="output"><code>element[-1]: n
 element[-2]: e</code></pre>
+</div>
+</section>
 <ul>
 <li>Given those answers, explain what <code>element[1:-1]</code> does.</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <p>Creates a substring from index 1 up to (but not including) the last value, effectively removing the first and last letters from ‘oxygen’. <BR></p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -318,11 +346,15 @@ element[-2]: e</code></pre>
 </div>
 <div class="panel-body">
 <p>The expression <code>element[3:3]</code> produces an <strong>empty string</strong>, i.e., a string that contains no characters. If <code>topo</code> holds our array of elevation data, what does <code>topo[3:3,4:4]</code> produce? What about <code>topo[3:3,:]</code>?</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;topo[3:3,4:4]:&#39;</span>, topo[<span class="dv">3</span>:<span class="dv">3</span>,<span class="dv">4</span>:<span class="dv">4</span>]
 <span class="bu">print</span> <span class="st">&#39;topo[3:3,:]:&#39;</span>, topo[<span class="dv">3</span>:<span class="dv">3</span>,:]</code></pre></div>
 <pre class="output"><code>topo[3:3,4:4]: []
 topo[3:3,:]: []</code></pre>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -343,7 +375,9 @@ topo[3:3,:]: []</code></pre>
 <li>Remember that you can use negative indices!</li>
 <li>It’s easiest to do this by trial and error. Guess at the bounds of the slice needed to extract the word you want and then adjust.</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">text <span class="op">=</span> <span class="st">&quot;The quick brown fox jumped over the lazy dog.&quot;</span>
 
 <span class="bu">print</span> text[<span class="op">-</span><span class="dv">13</span>:]
@@ -354,22 +388,28 @@ fox jumped over dog
 The lazy fox jumped over the quick brown dog.</code></pre>
 </div>
 </section>
+</div>
+</section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="displaying-slices"><span class="glyphicon glyphicon-pencil"></span>Displaying slices</h2>
 </div>
 <div class="panel-body">
 <p>Use the function <code>imshow</code> from <code>matplotlib.pyplot</code> to make one figure showing the elevations of the northern half of the region and another plot showing the elevations of the southern half. You’ll need to use separate cells in the Jupyter Notebook for each plot.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># northern half</span>
 matplotlib.pyplot.imshow(topo[:<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>,:])</code></pre></div>
 <div class="figure">
-<img src="figs/f00_output_61_1.png" alt="png" />
-<p class="caption">png</p>
+<img src="figs/f00_output_61_1.png" />
+
 </div>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># southern half</span>
 matplotlib.pyplot.imshow(topo[<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>:,:])</code></pre></div>
-<p><img src="figs/f00_output_62_1.png" alt="png" /> <BR></p>
+<p><img src="figs/f00_output_62_1.png" /> <BR></p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -383,7 +423,9 @@ matplotlib.pyplot.imshow(topo[<span class="bu">len</span>(topo)<span class="op">
 <li><p>Use indexing to extract the value of the centerpoint of the new array <code>t</code>. Write the indices using variables, not numbers (ie. don’t write <code>t[3,2]</code>)</p></li>
 </ul>
 <p>Hint: The method <code>topo.shape</code> gives the number of rows and columns in <code>topo</code>. Knowing this, get the shape of <code>t</code> and assign it to a variable. Use indexing on that variable to get the number of rows (index 0) and the number of columns (index 1) in <code>t</code>.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">t <span class="op">=</span> topo[:<span class="dv">6</span>,:<span class="dv">4</span>]
 
 height_width <span class="op">=</span> t.shape
@@ -395,15 +437,21 @@ num_cols <span class="op">=</span> height_width[<span class="dv">1</span>]
 <span class="bu">print</span> <span class="st">&#39;Value at centerpoint:&#39;</span>, t[num_rows<span class="op">/</span><span class="dv">2</span>, num_cols<span class="op">/</span><span class="dv">2</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
 <pre class="output"><code>Shape of t: (6, 4)
 Value at centerpoint: 3194.9573 meters</code></pre>
+</div>
+</section>
 <ul>
 <li>Make a rough sketch of array <code>t</code>. Identify the cell that you identified as the centerpoint using <code>t.shape</code>. Are you <em>really</em> pointing to the center of your array? How far off is it?</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="figure">
-<img src="figs/f00_table6x4.png" alt="png" />
-<p class="caption">png</p>
+<img src="figs/f00_table6x4.png" />
+
 </div>
 <p>The centerpoint of an array with an even number of rows and columns should fall at the intersection of four cells. Using half the height and width as indices places us half a cell off.</p>
+</div>
+</section>
 </div>
 </section>
 <h2 id="non-continuous-slices">Non-continuous slices</h2>
@@ -427,12 +475,18 @@ subset <span class="op">=</span> primes[<span class="dv">2</span>:<span class="d
 </div>
 <div class="panel-body">
 <p>Use the step size argument to create a new string that contains only every other character in the string “Your Mother was a Hamster, and your Father smelt of Elderberries!”.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">text <span class="op">=</span> <span class="st">&quot;Your Mother was a Hamster, and your Father smelt of Elderberries!&quot;</span>
 <span class="bu">print</span> text[::<span class="dv">2</span>]</code></pre></div>
 <pre class="output"><code>Yu ohrwsaHmtr n orFte ml fEdrere!</code></pre>
 </div>
 </section>
+</div>
+</section>
+
+
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="garbled-quotes-part-2-advanced"><span class="glyphicon glyphicon-pencil"></span>Garbled quotes, part 2 (Advanced)</h2>
@@ -440,10 +494,14 @@ subset <span class="op">=</span> primes[<span class="dv">2</span>:<span class="d
 <div class="panel-body">
 <p>Repeat the challenge above but, this time, create a new string that contains only every other character, starting from the end of the string and moving left.</p>
 <p>Hint: Remember negative indices.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">text <span class="op">=</span> <span class="st">&quot;Your Mother was a Hamster, and your Father smelt of Elderberries!&quot;</span>
 <span class="bu">print</span> text[<span class="op">-</span><span class="dv">1</span>:<span class="op">-</span><span class="bu">len</span>(text)<span class="op">-</span><span class="dv">1</span>:<span class="op">-</span><span class="dv">2</span>]</code></pre></div>
 <pre class="output"><code>!ererdEf lm etFro n rtmHaswrho uY</code></pre>
+</div>
+</section>
 </div>
 </section>
         </div>
@@ -459,5 +517,8 @@ subset <span class="op">=</span> primes[<span class="dv">2</span>:<span class="d
     <!-- Javascript placed at the end of the document so the pages load faster -->
     <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/lesson.js"></script>
   </body>
 </html>

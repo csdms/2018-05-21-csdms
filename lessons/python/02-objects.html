@@ -206,13 +206,17 @@ x                  int         5</code></pre>
 </ol></li>
 <li>7.0000</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <ul>
 <li>float</li>
 <li>int</li>
 <li>float</li>
 <li>float</li>
 </ul>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -225,7 +229,9 @@ x                  int         5</code></pre>
 <span class="bu">print</span> <span class="st">&#39;b:&#39;</span>, <span class="bu">float</span>(<span class="dv">100</span>)<span class="op">/</span><span class="dv">3</span>
 <span class="bu">print</span> <span class="st">&#39;c:&#39;</span>, <span class="dv">100</span><span class="op">/</span><span class="bu">float</span>(<span class="dv">3</span>)
 <span class="bu">print</span> <span class="st">&#39;d:&#39;</span>, <span class="bu">float</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>)</code></pre></div>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <pre class="output"><code>a: 33
 b: 33.3333333333
 c: 33.3333333333
@@ -234,6 +240,8 @@ d: 33.0</code></pre>
 <li>Dividing two integers results in an integer (b),(c) Casting either the dividend or divisor as a float will mean that it is no longer integer division</li>
 <li>The function <code>float()</code> is acting on the output of integer division. The remainder has already been discarded.</li>
 </ol>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -248,10 +256,14 @@ sales_3q <span class="op">=</span> <span class="dv">79</span>
 sales_4q <span class="op">=</span> <span class="st">&quot;82&quot;</span></code></pre></div>
 <pre class="output"><code>
 - Calculate the total sales for FY2017</code></pre>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">total_sales <span class="op">=</span> <span class="bu">float</span>(sales_1q[<span class="dv">0</span>]) <span class="op">+</span> sales_2q <span class="op">+</span> sales_3q <span class="op">+</span> <span class="bu">float</span>(sales_4q)
 <span class="bu">print</span> <span class="st">&#39;Total lemonade sales:&#39;</span>, total_sales, <span class="st">&#39;thousand dollars&#39;</span></code></pre></div>
 <pre class="output"><code>Total lemonade sales: 319.82 thousand dollars</code></pre>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -274,7 +286,9 @@ sales_4q <span class="op">=</span> <span class="st">&quot;82&quot;</span></code>
 <li>a list with one item</li>
 <li>an empty list</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <ul>
 <li>a negative float: True</li>
 <li>None: False</li>
@@ -289,6 +303,8 @@ sales_4q <span class="op">=</span> <span class="st">&quot;82&quot;</span></code>
 <li>a list with one item: True</li>
 <li>an empty list: False</li>
 </ul>
+</div>
+</section>
 </div>
 </section>
 <h2 id="non-scalar-or-structured-objects">Non-scalar (or structured) objects</h2>
@@ -459,7 +475,9 @@ Copied mutable obj: 4551753672</code></pre>
      [<span class="st">&#39;cabbage&#39;</span>, <span class="st">&#39;lettuce&#39;</span>, <span class="st">&#39;garlic&#39;</span>],
      [<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;pear&#39;</span>, <span class="st">&#39;banana&#39;</span>]]</code></pre></div>
 <p>Here is a visual example of how indexing a list of lists <code>x</code> works:</p>
-<p><a href='https://twitter.com/hadleywickham/status/643381054758363136'> <img src="figs/indexing_lists_python.png" alt="The first element of a list. Adapted from @hadleywickham’s tweet about R lists." /></a></p>
+<p><a href='https://twitter.com/hadleywickham/status/643381054758363136'>
+<img src="figs/pepper.png" width="500" />
+</a></p>
 <p>Using the previously declared list <code>x</code>, these would be the results of the index operations shown in the image:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> [x[<span class="dv">0</span>]]
 <span class="bu">print</span> x[<span class="dv">0</span>]
@@ -518,7 +536,9 @@ TypeError: &#39;tuple&#39; object does not support item assignment</code></pre>
 <li><p>What is the output of <code>find</code> if the substring is not in the string?</p></li>
 <li><p>What happens if the substring appears more than once in the string? (ex. ‘in’)</p></li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">loc <span class="op">=</span> string.find(<span class="st">&#39;caps&#39;</span>)
 <span class="bu">print</span> string[loc:]</code></pre></div>
 <pre class="output"><code>caps i&#39;m trying to YELL!</code></pre>
@@ -535,6 +555,8 @@ string <span class="op">=</span> <span class="st">&quot;if it&#39;s in cAPs i&#3
 <pre class="output"><code>If substring not in string: -1
 If find substring: 11
 Returns only first occurrence of substring &#39;in&#39;: 8</code></pre>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -558,11 +580,15 @@ TypeError                                 Traceback (most recent call last)
 
 TypeError: cannot concatenate &#39;str&#39; and &#39;int&#39; objects</code></pre>
 <p>Fix your code so it prints the text in <code>sign</code> correctly. Don’t change the first line!</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">age <span class="op">=</span> <span class="dv">21</span>
 sign <span class="op">=</span> <span class="st">&#39;You must be &#39;</span> <span class="op">+</span> <span class="bu">str</span>(age) <span class="op">+</span> <span class="st">&#39;-years-old to enter this bar&#39;</span>
 <span class="bu">print</span> sign</code></pre></div>
 <pre class="output"><code>You must be 21-years-old to enter this bar</code></pre>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -573,13 +599,17 @@ sign <span class="op">=</span> <span class="st">&#39;You must be &#39;</span> <s
 <p>What is the difference between these two statements? Why are their outputs different?</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">s1 <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> shopping_list[<span class="op">-</span><span class="dv">1</span>:]
 s2 <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> shopping_list[<span class="op">-</span><span class="dv">1</span>]</code></pre></div>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> s1, <span class="bu">type</span>(s1)
 <span class="bu">print</span> s2, <span class="bu">type</span>(s2)</code></pre></div>
 <pre class="output"><code>[&#39;cheese&#39;, &#39;cheese&#39;, &#39;cheese&#39;] &lt;type &#39;list&#39;&gt;
 cheesecheesecheese &lt;type &#39;str&#39;&gt;</code></pre>
 <p><code>shopping_list[-1]</code> is the last value in the list, which is a string. The second statement is therefore repeating a string three times.</p>
 <p><code>shopping_list[-1:]</code> is a slice of a list, so it is also a list (even if it only has one value). The first statement is therefore repeating a list three times.</p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -589,11 +619,15 @@ cheesecheesecheese &lt;type &#39;str&#39;&gt;</code></pre>
 <div class="panel-body">
 <p>When we write down a large integer, it’s customary to use commas (or periods, depending on the country) to separate the number into groups of three digits. It’s easier for humans to read a large number with separators but Python sees them as something else. What type of object is this? Why does Python read it as this object type?</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_account_balance <span class="op">=</span> <span class="dv">15</span>,<span class="dv">752</span>,<span class="dv">000</span>,<span class="dv">000</span></code></pre></div>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_account_balance <span class="op">=</span> <span class="dv">15</span>,<span class="dv">752</span>,<span class="dv">000</span>,<span class="dv">000</span>
 <span class="bu">type</span>(my_account_balance)</code></pre></div>
 <pre class="output"><code>tuple</code></pre>
 <p>You don’t actually need the parentheses to create a tuple. Python reads any sequence of objects separated by commas as a tuple.</p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -603,10 +637,14 @@ cheesecheesecheese &lt;type &#39;str&#39;&gt;</code></pre>
 <div class="panel-body">
 <p>Create a tuple that contains only one value. Confirm that it’s really a tuple. You might have to experiment!</p>
 <p>Hint: Start with a tuple with two values and simplify it.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">lil_tuple <span class="op">=</span> <span class="dv">1</span>,
 <span class="bu">type</span>(lil_tuple)</code></pre></div>
 <pre class="output"><code>tuple</code></pre>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -618,25 +656,37 @@ cheesecheesecheese &lt;type &#39;str&#39;&gt;</code></pre>
 <li>Create an empty dictionary called “states”</li>
 <li>Add 3 items to the dictionary. Map state names (the keys) to their abbreviations (the values) (ex. ‘Wyoming’:‘WY’). Pick easy ones! You can also use states from another country or look <a href="http://www.50states.com/abbreviations.htm">here</a> for help.</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">states <span class="op">=</span> {}
 
 states[<span class="st">&#39;Colorado&#39;</span>] <span class="op">=</span> <span class="st">&#39;CO&#39;</span>
 states[<span class="st">&#39;California&#39;</span>] <span class="op">=</span> <span class="st">&#39;CA&#39;</span>
 states[<span class="st">&#39;Florida&#39;</span>] <span class="op">=</span> <span class="st">&#39;FL&#39;</span></code></pre></div>
+</div>
+</section>
 <ul>
 <li>Use a variable in place of a key to access values in your <code>states</code> dictionary. For example, if I set the variable to “Wyoming”, the value should be “WY”.</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">selected_state <span class="op">=</span> <span class="st">&#39;California&#39;</span>
 
 <span class="bu">print</span> states[selected_state]</code></pre></div>
 <pre class="output"><code>CA</code></pre>
+</div>
+</section>
 <ul>
 <li>Create a dictionary called “cities” that contains 3 key:value pairs. The keys should be the state abbreviation in your <code>states</code> dictionary and the values should be the names of one city in each of those states state (ex. ‘WY’:‘Laramie’). Don’t start with an empty dictionary and add values to it – initialize the dictionary with the all of the key:value pairs already in it.</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">cities <span class="op">=</span> {<span class="st">&#39;CO&#39;</span>:<span class="st">&#39;Denver&#39;</span>, <span class="st">&#39;FL&#39;</span>:<span class="st">&#39;Miami&#39;</span>, <span class="st">&#39;CA&#39;</span>:<span class="st">&#39;San Francisco&#39;</span>}</code></pre></div>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -650,11 +700,15 @@ states[<span class="st">&#39;Florida&#39;</span>] <span class="op">=</span> <spa
 <li><p>Refactor (rewrite, improve) your code so you only have to change one word in your script to change states.</p></li>
 </ul>
 <p>Hint: The values in one of your dictionaries are the keys for the other dictionary</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">selected_state <span class="op">=</span> <span class="st">&#39;Colorado&#39;</span>
 
 <span class="bu">print</span> selected_state <span class="op">+</span> <span class="st">&#39; is abbreviated &#39;</span> <span class="op">+</span> states[selected_state] <span class="op">+</span> <span class="st">&#39; and has cities like &#39;</span> <span class="op">+</span> cities[states[selected_state]]</code></pre></div>
 <pre class="output"><code>Colorado is abbreviated CO and has cities like Denver</code></pre>
+</div>
+</section>
 </div>
 </section>
         </div>
@@ -670,5 +724,8 @@ states[<span class="st">&#39;Florida&#39;</span>] <span class="op">=</span> <spa
     <!-- Javascript placed at the end of the document so the pages load faster -->
     <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/lesson.js"></script>
   </body>
 </html>

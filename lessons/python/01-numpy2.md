@@ -173,28 +173,29 @@ print numpy.mean(topo, axis=1) # this is the same as topo.mean(axis=1)
 >                 [7,8,9]])
 >~~~
 >
->{.solution}
->
->
->~~~ {.python}
->B = numpy.hstack([A,A])
->print A.shape, B.shape
->~~~
->~~~ {.output}
->(3, 3) (3, 6)
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>B = numpy.hstack([A,A])
+>>print A.shape, B.shape
+>>~~~
+>>~~~ {.output}
+>>(3, 3) (3, 6)
+>>~~~
 >
 >- Given the array `A`, create an array `C` that is the twice the height and the same width of `A`.
->{.solution}
 >
->
->~~~ {.python}
->C = numpy.vstack([A,A])
->print A.shape, C.shape
->~~~
->~~~ {.output}
->(3, 3) (6, 3)
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>C = numpy.vstack([A,A])
+>>print A.shape, C.shape
+>>~~~
+>>~~~ {.output}
+>>(3, 3) (6, 3)
+>>~~~
 
 >## Slopes  {.challenge}
 >
@@ -202,19 +203,19 @@ print numpy.mean(topo, axis=1) # this is the same as topo.mean(axis=1)
 >
 >- Use `np.diff()` to calculate the elevation gradient in x and y (Hint: remember that the resolution of the elevation dataset is 2 meters).
 >
->{.solution}
->
->
->~~~ {.python}
->grid_resolution = 2 # meters
->
->dzdx = np.diff(topo) / grid_resolution
->dzdy = np.diff(topo, axis=0) / grid_resolution
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>grid_resolution = 2 # meters
+>>
+>>dzdx = np.diff(topo) / grid_resolution
+>>dzdy = np.diff(topo, axis=0) / grid_resolution
+>>~~~
 >
 >- If the shape of an array is (60, 40) (60 rows and 40 columns), what would the shape of the array produced by the function `np.diff()` and why?
 >
->{.solution}
+>## Solution{.solution}
 >
 >The default output of `np.diff()` for a (60, 40) array would be size (60, 39)
 >
@@ -224,20 +225,20 @@ print numpy.mean(topo, axis=1) # this is the same as topo.mean(axis=1)
 >
 >Hint: Use `np.abs()` to get the absolute values of entries in an array. You can get the maximum of two values with `np.max([value1, value2])`.
 >
->{.solution}
->
->
->~~~ {.python}
->abs_dzdx = np.abs(dzdx)
->abs_dzdy = np.abs(dzdy)
->
->print 'Max slope:', np.max([np.max(abs_dzdx), np.max(abs_dzdy)])
->print 'Min slope:', np.min([np.min(abs_dzdx), np.min(abs_dzdy)])
->~~~
->~~~ {.output}
->Max slope: 26.09635
->Min slope: 0.0
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>abs_dzdx = np.abs(dzdx)
+>>abs_dzdy = np.abs(dzdy)
+>>
+>>print 'Max slope:', np.max([np.max(abs_dzdx), np.max(abs_dzdy)])
+>>print 'Min slope:', np.min([np.min(abs_dzdx), np.min(abs_dzdy)])
+>>~~~
+>>~~~ {.output}
+>>Max slope: 26.09635
+>>Min slope: 0.0
+>>~~~
 
 >## Plotting slopes (Advanced)  {.challenge}
 >
@@ -247,24 +248,24 @@ print numpy.mean(topo, axis=1) # this is the same as topo.mean(axis=1)
 >- Add a colorbar with the function `matplotlib.pyplot.colorbar()`.
 >- Set the color range with the arguments `vmin` and `vmax`. Use the range 0 to 5.
 >
->{.solution}
->
->
->~~~ {.python}
->import matplotlib.pyplot
->%matplotlib inline
->
->matplotlib.pyplot.imshow(abs_dzdx, vmin=0, vmax=5, cmap='inferno')
->matplotlib.pyplot.colorbar()
->~~~
->![png](figs/f01_output_34_1.png)
->
->
->~~~ {.python}
->matplotlib.pyplot.imshow(abs_dzdy, vmin=0, vmax=5, cmap='inferno')
->matplotlib.pyplot.colorbar()
->~~~
->![png](figs/f01_output_35_1.png)
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>import matplotlib.pyplot
+>>%matplotlib inline
+>>
+>>matplotlib.pyplot.imshow(abs_dzdx, vmin=0, vmax=5, cmap='inferno')
+>>matplotlib.pyplot.colorbar()
+>>~~~
+>>![png](figs/f01_output_34_1.png)
+>>
+>>
+>>~~~ {.python}
+>>matplotlib.pyplot.imshow(abs_dzdy, vmin=0, vmax=5, cmap='inferno')
+>>matplotlib.pyplot.colorbar()
+>>~~~
+>>![png](figs/f01_output_35_1.png)
 
 ## Plotting, take 2
 
@@ -335,22 +336,22 @@ plt.show()
 >
 >- Create one figure showing how the maximum (`np.max()`), minimum (`np.min()`), and mean (`np.mean()`) elevation changes with latitude (North - South). Label the axes and include a title for the plot (Hint: use axis=1). Create a legend.
 >
->{.solution}
->
->
->~~~ {.python}
->plt.plot(np.max(topo, axis=1), label='Max')
->plt.plot(np.mean(topo, axis=1), label='Mean')
->plt.plot(np.min(topo, axis=1), label='Min')
->
->plt.title('Topographic profiles')
->plt.ylabel('Elevation (m)')
->plt.xlabel('<-- North    South -->')
->plt.legend(loc = 'upper left')
->
->plt.show() 
->~~~
-![png](figs/f01_output_43_0.png)
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>plt.plot(np.max(topo, axis=1), label='Max')
+>>plt.plot(np.mean(topo, axis=1), label='Mean')
+>>plt.plot(np.min(topo, axis=1), label='Min')
+>>
+>>plt.title('Topographic profiles')
+>>plt.ylabel('Elevation (m)')
+>>plt.xlabel('<-- North    South -->')
+>>plt.legend(loc = 'upper left')
+>>
+>>plt.show() 
+>>~~~
+>>![png](figs/f01_output_43_0.png)
 <BR>
 
 >## Subplots  {.challenge}
@@ -394,8 +395,10 @@ plt.show()
 >
 >plt.show() 
 >~~~
->{.solution}
->![png](figs/f01_output_45_0.png)
+>
+>>## Solution{.solution}
+>>
+>>![png](figs/f01_output_45_0.png)
 <BR>
 
 >## Customize the subplots  {.challenge}
@@ -406,44 +409,44 @@ plt.show()
 >
 >Hint: you can use the numpy functions `np.min()` and `np.max()`) to do this.
 >
->{.solution}
->
->
->~~~ {.python}
->import numpy as np
->import matplotlib.pyplot as plt
->%matplotlib inline
->
->topo = np.loadtxt('data/topo.asc')
->
->fig = plt.figure(figsize=(16.0, 3.0))
->
->ax1 = fig.add_subplot(1,3,1)
->ax2 = fig.add_subplot(1,3,2)
->ax3 = fig.add_subplot(1,3,3)
->
->max_elev = np.max(topo) + 100 # adds some padding around the profiles
->min_elev = np.min(topo) - 100
->
->ax1.plot(topo[:,0])
->ax1.set_ylim(min_elev, max_elev)
->ax1.set_ylabel('Elevation (m)')
->ax1.set_xlabel('<-- N   S -->')
->ax1.set_title('West')
->
->ax2.plot(topo[:,len(topo)/2])
->ax2.set_ylim(min_elev, max_elev)
->ax2.set_xlabel('<-- N   S -->')
->ax2.set_title('Center')
->
->ax3.plot(topo[:,-1])
->ax3.set_ylim(min_elev, max_elev)
->ax3.set_xlabel('<--N   S -->')
->ax3.set_title('East')
->
->plt.show() 
->~~~
->![png](figs/f01_output_47_0.png)
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>import numpy as np
+>>import matplotlib.pyplot as plt
+>>%matplotlib inline
+>>
+>>topo = np.loadtxt('data/topo.asc')
+>>
+>>fig = plt.figure(figsize=(16.0, 3.0))
+>>
+>>ax1 = fig.add_subplot(1,3,1)
+>>ax2 = fig.add_subplot(1,3,2)
+>>ax3 = fig.add_subplot(1,3,3)
+>>
+>>max_elev = np.max(topo) + 100 # adds some padding around the profiles
+>>min_elev = np.min(topo) - 100
+>>
+>>ax1.plot(topo[:,0])
+>>ax1.set_ylim(min_elev, max_elev)
+>>ax1.set_ylabel('Elevation (m)')
+>>ax1.set_xlabel('<-- N   S -->')
+>>ax1.set_title('West')
+>>
+>>ax2.plot(topo[:,len(topo)/2])
+>>ax2.set_ylim(min_elev, max_elev)
+>>ax2.set_xlabel('<-- N   S -->')
+>>ax2.set_title('Center')
+>>
+>>ax3.plot(topo[:,-1])
+>>ax3.set_ylim(min_elev, max_elev)
+>>ax3.set_xlabel('<--N   S -->')
+>>ax3.set_title('East')
+>>
+>>plt.show() 
+>>~~~
+>>![png](figs/f01_output_47_0.png)
 <BR>
 
 >## Re-arrange subplots  {.challenge}
@@ -454,42 +457,42 @@ plt.show()
 >
 >- Use different line style for each of the three plots and set their label attributes. Create a legend for each of the axes (ex. `ax3.legend()`).
 >
->{.solution}
->
->
->~~~ {.python}
->import numpy as np
->import matplotlib.pyplot as plt
->%matplotlib inline
->
->topo = np.loadtxt('data/topo.asc')
->
->fig = plt.figure(figsize=(5.0, 10.0))
->
->ax1 = fig.add_subplot(3,1,1)
->ax2 = fig.add_subplot(3,1,2)
->ax3 = fig.add_subplot(3,1,3)
->
->max_elev = np.max(topo) + 100 # adds some padding around the profiles
->min_elev = np.min(topo) - 100
->
->ax1.plot(topo[:,0], label='West')
->ax1.set_ylim(min_elev, max_elev)
->ax1.legend(loc = 'upper left')
->
->ax2.plot(topo[:,len(topo)/2], 'm:',label='Center')
->ax2.set_ylim(min_elev, max_elev)
->ax2.set_ylabel('Elevation (m)')
->ax2.legend(loc = 'upper left')
->
->ax3.plot(topo[:,-1], 'g-.', label='East')
->ax3.set_ylim(min_elev, max_elev)
->ax3.set_xlabel('<--N   S -->')
->ax3.legend(loc = 'upper left')
->
->plt.show() 
->~~~
->![png](figs/f01_output_49_0.png)
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>import numpy as np
+>>import matplotlib.pyplot as plt
+>>%matplotlib inline
+>>
+>>topo = np.loadtxt('data/topo.asc')
+>>
+>>fig = plt.figure(figsize=(5.0, 10.0))
+>>
+>>ax1 = fig.add_subplot(3,1,1)
+>>ax2 = fig.add_subplot(3,1,2)
+>>ax3 = fig.add_subplot(3,1,3)
+>>
+>>max_elev = np.max(topo) + 100 # adds some padding around the profiles
+>>min_elev = np.min(topo) - 100
+>>
+>>ax1.plot(topo[:,0], label='West')
+>>ax1.set_ylim(min_elev, max_elev)
+>>ax1.legend(loc = 'upper left')
+>>
+>>ax2.plot(topo[:,len(topo)/2], 'm:',label='Center')
+>>ax2.set_ylim(min_elev, max_elev)
+>>ax2.set_ylabel('Elevation (m)')
+>>ax2.legend(loc = 'upper left')
+>>
+>>ax3.plot(topo[:,-1], 'g-.', label='East')
+>>ax3.set_ylim(min_elev, max_elev)
+>>ax3.set_xlabel('<--N   S -->')
+>>ax3.legend(loc = 'upper left')
+>>
+>>plt.show() 
+>>~~~
+>>![png](figs/f01_output_49_0.png)
 <BR>
 
 >## Displaying quadrants  {.challenge}
@@ -500,31 +503,31 @@ plt.show()
 >
 >`plt.imshow(topo, vmin = min_value, vmax = max_value)`
 >
->{.solution}
->
->
->~~~ {.python}
->import numpy as np
->import matplotlib.pyplot as plt
->%matplotlib inline
->
->topo = np.loadtxt('data/topo.asc')
->
->fig = plt.figure(figsize=(10.0, 10.0))
->
->min_elev = topo.min()
->max_elev = topo.max()
->
->ax1 = fig.add_subplot(2,2,1)
->ax2 = fig.add_subplot(2,2,2)
->ax3 = fig.add_subplot(2,2,3)
->ax4 = fig.add_subplot(2,2,4)
->
->ax1.imshow(topo[:len(topo)/2, :len(topo)/2], vmin=min_elev, vmax=max_elev)
->ax2.imshow(topo[:len(topo)/2, len(topo)/2:], vmin=min_elev, vmax=max_elev)
->ax3.imshow(topo[len(topo)/2:, :len(topo)/2], vmin=min_elev, vmax=max_elev)
->ax4.imshow(topo[len(topo)/2:, len(topo)/2:], vmin=min_elev, vmax=max_elev)
->
->plt.show()
->~~~
->![png](figs/f01_output_51_0.png)
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>import numpy as np
+>>import matplotlib.pyplot as plt
+>>%matplotlib inline
+>>
+>>topo = np.loadtxt('data/topo.asc')
+>>
+>>fig = plt.figure(figsize=(10.0, 10.0))
+>>
+>>min_elev = topo.min()
+>>max_elev = topo.max()
+>>
+>>ax1 = fig.add_subplot(2,2,1)
+>>ax2 = fig.add_subplot(2,2,2)
+>>ax3 = fig.add_subplot(2,2,3)
+>>ax4 = fig.add_subplot(2,2,4)
+>>
+>>ax1.imshow(topo[:len(topo)/2, :len(topo)/2], vmin=min_elev, vmax=max_elev)
+>>ax2.imshow(topo[:len(topo)/2, len(topo)/2:], vmin=min_elev, vmax=max_elev)
+>>ax3.imshow(topo[len(topo)/2:, :len(topo)/2], vmin=min_elev, vmax=max_elev)
+>>ax4.imshow(topo[len(topo)/2:, len(topo)/2:], vmin=min_elev, vmax=max_elev)
+>>
+>>plt.show()
+>>~~~
+>>![png](figs/f01_output_51_0.png)

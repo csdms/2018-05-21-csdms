@@ -17,3 +17,12 @@ $(".solution").each(function() {
     var h2 = $("h2:first", this);
     h2.append("<span class='fold-unfold glyphicon glyphicon-collapse-down'></span>");
 });
+
+
+// Handle searches.
+// Relies on document having 'meta' element with name 'search-domain'.
+function google_search() {
+  var query = document.getElementById("google-search").value;
+  var domain = $("meta[name=search-domain]").attr("value");
+  window.open("https://www.google.com/search?q=" + query + "+site:" + domain);
+}

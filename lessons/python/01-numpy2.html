@@ -146,16 +146,25 @@ Highest elevation of SE quarter: 3575.3262 meters</code></pre>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">A <span class="op">=</span> numpy.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],
                 [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],
                 [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</code></pre></div>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">B <span class="op">=</span> numpy.hstack([A,A])
 <span class="bu">print</span> A.shape, B.shape</code></pre></div>
 <pre class="output"><code>(3, 3) (3, 6)</code></pre>
+</div>
+</section>
 <ul>
-<li>Given the array <code>A</code>, create an array <code>C</code> that is the twice the height and the same width of <code>A</code>. {.solution}</li>
+<li>Given the array <code>A</code>, create an array <code>C</code> that is the twice the height and the same width of <code>A</code>.</li>
 </ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">C <span class="op">=</span> numpy.vstack([A,A])
 <span class="bu">print</span> A.shape, C.shape</code></pre></div>
 <pre class="output"><code>(3, 3) (6, 3)</code></pre>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -167,22 +176,32 @@ Highest elevation of SE quarter: 3575.3262 meters</code></pre>
 <ul>
 <li>Use <code>np.diff()</code> to calculate the elevation gradient in x and y (Hint: remember that the resolution of the elevation dataset is 2 meters).</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">grid_resolution <span class="op">=</span> <span class="dv">2</span> <span class="co"># meters</span>
 
 dzdx <span class="op">=</span> np.diff(topo) <span class="op">/</span> grid_resolution
 dzdy <span class="op">=</span> np.diff(topo, axis<span class="op">=</span><span class="dv">0</span>) <span class="op">/</span> grid_resolution</code></pre></div>
+</div>
+</section>
 <ul>
 <li>If the shape of an array is (60, 40) (60 rows and 40 columns), what would the shape of the array produced by the function <code>np.diff()</code> and why?</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <p>The default output of <code>np.diff()</code> for a (60, 40) array would be size (60, 39)</p>
 <p>The function <code>np.diff()</code> will output an array that is one cell shorter in the axis along which the difference is calculated.</p>
+</div>
+</section>
 <ul>
 <li>What are the highest and lowest values of slope in the array <code>topo</code>?</li>
 </ul>
 <p>Hint: Use <code>np.abs()</code> to get the absolute values of entries in an array. You can get the maximum of two values with <code>np.max([value1, value2])</code>.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">abs_dzdx <span class="op">=</span> np.<span class="bu">abs</span>(dzdx)
 abs_dzdy <span class="op">=</span> np.<span class="bu">abs</span>(dzdy)
 
@@ -190,6 +209,8 @@ abs_dzdy <span class="op">=</span> np.<span class="bu">abs</span>(dzdy)
 <span class="bu">print</span> <span class="st">&#39;Min slope:&#39;</span>, np.<span class="bu">min</span>([np.<span class="bu">min</span>(abs_dzdx), np.<span class="bu">min</span>(abs_dzdy)])</code></pre></div>
 <pre class="output"><code>Max slope: 26.09635
 Min slope: 0.0</code></pre>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -203,22 +224,26 @@ Min slope: 0.0</code></pre>
 <li>Add a colorbar with the function <code>matplotlib.pyplot.colorbar()</code>.</li>
 <li>Set the color range with the arguments <code>vmin</code> and <code>vmax</code>. Use the range 0 to 5.</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot
 <span class="op">%</span>matplotlib inline
 
 matplotlib.pyplot.imshow(abs_dzdx, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">5</span>, cmap<span class="op">=</span><span class="st">&#39;inferno&#39;</span>)
 matplotlib.pyplot.colorbar()</code></pre></div>
 <div class="figure">
-<img src="figs/f01_output_34_1.png" alt="png" />
-<p class="caption">png</p>
+<img src="figs/f01_output_34_1.png" />
+
 </div>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">matplotlib.pyplot.imshow(abs_dzdy, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">5</span>, cmap<span class="op">=</span><span class="st">&#39;inferno&#39;</span>)
 matplotlib.pyplot.colorbar()</code></pre></div>
 <div class="figure">
-<img src="figs/f01_output_35_1.png" alt="png" />
-<p class="caption">png</p>
+<img src="figs/f01_output_35_1.png" />
+
 </div>
+</div>
+</section>
 </div>
 </section>
 <h2 id="plotting-take-2">Plotting, take 2</h2>
@@ -233,11 +258,11 @@ topo <span class="op">=</span> np.loadtxt(<span class="st">&#39;data/topo.asc&#3
 
 plt.plot(topo[<span class="dv">0</span>,:]) <span class="co"># the first row</span></code></pre></div>
 <div class="figure">
-<img src="figs/f01_output_37_1.png" alt="png" />
-<p class="caption">png</p>
+<img src="figs/f01_output_37_1.png" />
+
 </div>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.plot(topo[<span class="op">-</span><span class="dv">1</span>,:], <span class="st">&#39;r--&#39;</span>) <span class="co"># the last row</span></code></pre></div>
-<p><img src="figs/f01_output_38_1.png" alt="png" /> <BR></p>
+<p><img src="figs/f01_output_38_1.png" /> <BR></p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="scientists-dislike-typing"><span class="glyphicon glyphicon-pushpin"></span>Scientists dislike typing</h2>
@@ -268,7 +293,7 @@ plt.legend(loc <span class="op">=</span> <span class="st">&#39;lower left&#39;</
 
 plt.savefig(<span class="st">&#39;topo_profiles.png&#39;</span>, dpi <span class="op">=</span> <span class="dv">300</span>)
 plt.show() </code></pre></div>
-<p><img src="figs/f01_output_41_0.png" alt="png" /> <BR></p>
+<p><img src="figs/f01_output_41_0.png" /> <BR></p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="changes-with-latitude"><span class="glyphicon glyphicon-pencil"></span>Changes with latitude</h2>
@@ -277,7 +302,9 @@ plt.show() </code></pre></div>
 <ul>
 <li>Create one figure showing how the maximum (<code>np.max()</code>), minimum (<code>np.min()</code>), and mean (<code>np.mean()</code>) elevation changes with latitude (North - South). Label the axes and include a title for the plot (Hint: use axis=1). Create a legend.</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.plot(np.<span class="bu">max</span>(topo, axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">&#39;Max&#39;</span>)
 plt.plot(np.mean(topo, axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">&#39;Mean&#39;</span>)
 plt.plot(np.<span class="bu">min</span>(topo, axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">&#39;Min&#39;</span>)
@@ -288,7 +315,9 @@ plt.xlabel(<span class="st">&#39;&lt;-- North    South --&gt;&#39;</span>)
 plt.legend(loc <span class="op">=</span> <span class="st">&#39;upper left&#39;</span>)
 
 plt.show() </code></pre></div>
-<p><img src="figs/f01_output_43_0.png" alt="png" /> <BR></p>
+<p><img src="figs/f01_output_43_0.png" /> <BR></p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -331,7 +360,12 @@ ax3.set_xlabel(<span class="st">&#39;&lt;--N   S --&gt;&#39;</span>)
 ax3.set_title(<span class="st">&#39;East&#39;</span>)
 
 plt.show() </code></pre></div>
-<p>{.solution} <img src="figs/f01_output_45_0.png" alt="png" /> <BR></p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<p><img src="figs/f01_output_45_0.png" /> <BR></p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -344,7 +378,9 @@ plt.show() </code></pre></div>
 <li><p>Refactor (modify, improve) your subplot script to automatically set a more appropriate range for the y axis instead of setting the minimum and maximum values by hand</p></li>
 </ul>
 <p>Hint: you can use the numpy functions <code>np.min()</code> and <code>np.max()</code>) to do this.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
 <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
 <span class="op">%</span>matplotlib inline
@@ -377,7 +413,9 @@ ax3.set_xlabel(<span class="st">&#39;&lt;--N   S --&gt;&#39;</span>)
 ax3.set_title(<span class="st">&#39;East&#39;</span>)
 
 plt.show() </code></pre></div>
-<p><img src="figs/f01_output_47_0.png" alt="png" /> <BR></p>
+<p><img src="figs/f01_output_47_0.png" /> <BR></p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -390,7 +428,9 @@ plt.show() </code></pre></div>
 <li><p>Change the figure size, titles and axis labels to fit the new layout.</p></li>
 <li><p>Use different line style for each of the three plots and set their label attributes. Create a legend for each of the axes (ex. <code>ax3.legend()</code>).</p></li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
 <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
 <span class="op">%</span>matplotlib inline
@@ -421,7 +461,9 @@ ax3.set_xlabel(<span class="st">&#39;&lt;--N   S --&gt;&#39;</span>)
 ax3.legend(loc <span class="op">=</span> <span class="st">&#39;upper left&#39;</span>)
 
 plt.show() </code></pre></div>
-<p><img src="figs/f01_output_49_0.png" alt="png" /> <BR></p>
+<p><img src="figs/f01_output_49_0.png" /> <BR></p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -432,7 +474,9 @@ plt.show() </code></pre></div>
 <p>Make a 2x2 grid of subplots that use <code>imshow</code> to display each quarter of the <code>topo</code> array. Make sure that the four quarters are in the correct positions. Don’t worry about adding axis labels or a colorbar.</p>
 <p>You can set the color range for <code>imshow</code> with the arguments <code>vmin</code> and <code>vmax</code>:</p>
 <p><code>plt.imshow(topo, vmin = min_value, vmax = max_value)</code></p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
 <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
 <span class="op">%</span>matplotlib inline
@@ -456,9 +500,11 @@ ax4.imshow(topo[<span class="bu">len</span>(topo)<span class="op">/</span><span 
 
 plt.show()</code></pre></div>
 <div class="figure">
-<img src="figs/f01_output_51_0.png" alt="png" />
-<p class="caption">png</p>
+<img src="figs/f01_output_51_0.png" />
+
 </div>
+</div>
+</section>
 </div>
 </section>
         </div>
@@ -474,5 +520,8 @@ plt.show()</code></pre></div>
     <!-- Javascript placed at the end of the document so the pages load faster -->
     <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/lesson.js"></script>
   </body>
 </html>

@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
     <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
     <meta charset="UTF-8" />
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -19,8 +18,8 @@
   <body class="lesson">
     <div class="container card">
       <div class="banner">
-        <a href="http://software-carpentry.org" title="Software Carpentry">
-          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        <a href="http://csdms.colorado.edu" title="Community Surface Dynamics Modeling System">
+          <img alt="CSDMS banner" src="img/CSDMS_banner.png" />
         </a>
       </div>
       <article>
@@ -79,7 +78,7 @@
 <div class="panel-body">
 <p>Write a loop that calculates the same result as <code>5 ** 3</code> using multiplication (and without exponentiation).</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">result <span class="op">=</span> <span class="dv">1</span>
-<span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">3</span>):
+<span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">3</span>):
    result <span class="op">=</span> result <span class="op">*</span> <span class="dv">5</span>
 <span class="bu">print</span>(result)</code></pre></div>
 <pre class="output"><code>125</code></pre>
@@ -228,7 +227,7 @@ array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ])
 k <span class="op">=</span> <span class="dv">0</span>
 
 <span class="kw">def</span> f2k(f):
-  k <span class="op">=</span> ((f<span class="dv">-32</span>)<span class="op">*</span>(<span class="fl">5.0</span><span class="op">/</span><span class="fl">9.0</span>)) <span class="op">+</span> <span class="fl">273.15</span>
+  k <span class="op">=</span> ((f<span class="op">-</span><span class="dv">32</span>)<span class="op">*</span>(<span class="fl">5.0</span><span class="op">/</span><span class="fl">9.0</span>)) <span class="op">+</span> <span class="fl">273.15</span>
   <span class="cf">return</span> k
 
 <span class="bu">print</span>(f2k(<span class="dv">8</span>))
@@ -278,7 +277,7 @@ def another_function():
 <li>Fix the error.</li>
 <li>Repeat steps 2 and 3, until you have fixed all the errors.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> number <span class="op">in</span> <span class="bu">range</span>(<span class="dv">10</span>):
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> number <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):
     <span class="co"># use a if the number is a multiple of 3, otherwise use b</span>
     <span class="cf">if</span> (Number <span class="op">%</span> <span class="dv">3</span>) <span class="op">==</span> <span class="dv">0</span>:
         message <span class="op">=</span> message <span class="op">+</span> a
@@ -333,7 +332,7 @@ print(&#39;My favorite season is &#39;, seasons[-1])</code></pre>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> running(values):
     <span class="cf">assert</span> <span class="bu">len</span>(values) <span class="op">&gt;</span> <span class="dv">0</span>
     result <span class="op">=</span> [values[<span class="dv">0</span>]]
-    <span class="cf">for</span> v <span class="op">in</span> values[<span class="dv">1</span>:]:
+    <span class="cf">for</span> v <span class="kw">in</span> values[<span class="dv">1</span>:]:
         <span class="cf">assert</span> result[<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;=</span> <span class="dv">0</span>
         result.append(result[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> v)
         <span class="cf">assert</span> result[<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;=</span> result[<span class="dv">0</span>]
@@ -665,14 +664,17 @@ main()
       </div>
       </article>
       <div class="footer">
-        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
-        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/python-novice-inflammation">Source</a>
-        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="http://csdms.colorado.edu">CSDMS</a>
+        <a class="label swc-blue-bg" href="https://github.com/mperignon/2016-05-16-csdms/">Source</a>
+        <a class="label swc-blue-bg" href="mailto:perignon@colorado.edu">Contact</a>
         <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
     <!-- Javascript placed at the end of the document so the pages load faster -->
     <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/lesson.js"></script>
   </body>
 </html>

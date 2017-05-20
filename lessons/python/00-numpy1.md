@@ -109,14 +109,14 @@ print topo
 >age = age - 20
 >~~~
 >
->{.solution}
->
->| Line number 	| `mass` 	|      `age`      	|
->|:-----------:	|:----:	|:-------------:	|
->|      1      	| 47.5 	| doesn't exist 	|
->|      2      	| 47.5 	|      122      	|
->|      3      	| 95.0 	|      122      	|
->|      4      	| 95.0 	|      102      	|
+>>## Solution {.solution}
+>>
+>>| Line number 	| `mass` 	|      `age`      	|
+>>|:-----------:	|:----:	|:-------------:	|
+>>|      1      	| 47.5 	| doesn't exist 	|
+>>|      2      	| 47.5 	|      122      	|
+>>|      3      	| 95.0 	|      122      	|
+>>|      4      	| 95.0 	|      102      	|
 
 >## Tracking variables {.challenge}
 >
@@ -130,17 +130,16 @@ print topo
 >print third, fourth
 >~~~
 >
->{.solution}
->
->
->~~~ {.python}
->print third, fourth
->~~~
->~~~ {.output}
->Hopper Grace
->~~~
->
->[https://en.wikipedia.org/wiki/Grace_Hopper](https://en.wikipedia.org/wiki/Grace_Hopper)
+>>## Solution {.solution}
+>>
+>>~~~ {.python}
+>>print third, fourth
+>>~~~
+>>~~~ {.output}
+>>Hopper Grace
+>>~~~
+>>
+>>[https://en.wikipedia.org/wiki/Grace_Hopper](https://en.wikipedia.org/wiki/Grace_Hopper)
 <BR>
 
 >## Assignment statement {.challenge}
@@ -151,18 +150,18 @@ print topo
 >17 = n
 >~~~
 >
->{.solution}
->
->The assignment token, '=', should not be confused with the equals sign, in the mathematical sense. The assignment statement binds a name, on the left-hand side of the operator, to a value, on the right-hand side. When reading or writing code, say to yourself “n is assigned 17” or “n gets the value 17”. Don’t say “n equals 17”.
->
->Also, variable names must start with a letter or an underscore so the number 17 could not be used as a variable name.
->
->The correct way to assign the value 17 to the variable name `n` is this:
->
->
->~~~ {.python}
->n = 17
->~~~
+>>## Solution{.solution}
+>>
+>>The assignment token, '=', should not be confused with the equals sign, in the mathematical sense. The assignment statement binds a name, on the left-hand side of the operator, to a value, on the right-hand side. When reading or writing code, say to yourself “n is assigned 17” or “n gets the value 17”. Don’t say “n equals 17”.
+>>
+>>Also, variable names must start with a letter or an underscore so the number 17 could not be used as a variable name.
+>>
+>>The correct way to assign the value 17 to the variable name `n` is this:
+>>
+>>
+>>~~~ {.python}
+>>n = 17
+>>~~~
 
 Using its variable name, we can see that **type** of object the variable name `topo` is assigned to. The function `type` tells us that the variable name `topo` points to an N-dimensional array created by the Numpy library:
 
@@ -325,27 +324,27 @@ print topo[0:2,:].shape
 >- What’s the elevation difference between the NE corner and the SE corner?
 >- What’s the elevation at the center of the region shown in the array? (Hint: You can use the function `len()`)
 >
->{.solution}
->
->
->~~~ {.python}
->print 'NW corner:', topo[0,0], 'meters'
->print 'SW corner:', topo[-1,0], 'meters'
->print 'Difference between NW and SW corners:', topo[0,0] - topo[-1,0], 'meters'
->print '-' * 60
->print 'Difference between NE and SE corners:', topo[0,-1] - topo[-1,-1], 'meters'
->print '-' * 60
->print 'Elevation at the center:', topo[len(topo)/2, len(topo)/2], 'meters'
->~~~
->~~~ {.output}
->NW corner: 3198.8391 meters
->SW corner: 3326.6824 meters
->Difference between NW and SW corners: -127.8433 meters
->------------------------------------------------------------
->Difference between NE and SE corners: -167.5798 meters
->------------------------------------------------------------
->Elevation at the center: 3372.386 meters
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>print 'NW corner:', topo[0,0], 'meters'
+>>print 'SW corner:', topo[-1,0], 'meters'
+>>print 'Difference between NW and SW corners:', topo[0,0] - topo[-1,0], 'meters'
+>>print '-' * 60
+>>print 'Difference between NE and SE corners:', topo[0,-1] - topo[-1,-1], 'meters'
+>>print '-' * 60
+>>print 'Elevation at the center:', topo[len(topo)/2, len(topo)/2], 'meters'
+>>~~~
+>>~~~ {.output}
+>>NW corner: 3198.8391 meters
+>>SW corner: 3326.6824 meters
+>>Difference between NW and SW corners: -127.8433 meters
+>>------------------------------------------------------------
+>>Difference between NE and SE corners: -167.5798 meters
+>>------------------------------------------------------------
+>>Elevation at the center: 3372.386 meters
+>>~~~
 <BR>
 
 >## Slicing strings  {.challenge}
@@ -365,55 +364,55 @@ print topo[0:2,:].shape
 >
 >- What is the value of `element[:4]`? What about `element[4:]`? Or `element[:]`?
 >
->{.solution}
->
->
->~~~ {.python}
->print 'element[:4]:', element[:4]
->print 'element[4:]:', element[4:]
->print 'element[:]:', element[:]
->~~~
->~~~ {.output}
->element[:4]: oxyg
->element[4:]: en
->element[:]: oxygen
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>print 'element[:4]:', element[:4]
+>>print 'element[4:]:', element[4:]
+>>print 'element[:]:', element[:]
+>>~~~
+>>~~~ {.output}
+>>element[:4]: oxyg
+>>element[4:]: en
+>>element[:]: oxygen
+>>~~~
 >
 >- What is `element[-1]`? What is `element[-2]`?
 >
->{.solution}
->
->
->~~~ {.python}
->print 'element[-1]:', element[-1]
->print 'element[-2]:', element[-2]
->~~~
->~~~ {.output}
->element[-1]: n
->element[-2]: e
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>print 'element[-1]:', element[-1]
+>>print 'element[-2]:', element[-2]
+>>~~~
+>>~~~ {.output}
+>>element[-1]: n
+>>element[-2]: e
+>>~~~
 >
 >- Given those answers, explain what `element[1:-1]` does.
 >
->{.solution}
->
->Creates a substring from index 1 up to (but not including) the last value, effectively removing the first and last letters from ‘oxygen’.
+>>## Solution{.solution}
+>>
+>>Creates a substring from index 1 up to (but not including) the last value, effectively removing the first and last letters from ‘oxygen’.
 <BR>
 
 >## Empty slices  {.challenge}
 >The expression `element[3:3]` produces an **empty string**, i.e., a string that contains no characters. If `topo` holds our array of elevation data, what does `topo[3:3,4:4]` produce? What about `topo[3:3,:]`?
 >
->{.solution}
->
->
->~~~ {.python}
->print 'topo[3:3,4:4]:', topo[3:3,4:4]
->print 'topo[3:3,:]:', topo[3:3,:]
->~~~
->~~~ {.output}
->topo[3:3,4:4]: []
->topo[3:3,:]: []
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>print 'topo[3:3,4:4]:', topo[3:3,4:4]
+>>print 'topo[3:3,:]:', topo[3:3,:]
+>>~~~
+>>~~~ {.output}
+>>topo[3:3,4:4]: []
+>>topo[3:3,:]: []
+>>~~~
 
 >## Concatenating strings  {.challenge}
 >
@@ -431,42 +430,42 @@ print topo[0:2,:].shape
 >- Remember that you can use negative indices!
 >- It's easiest to do this by trial and error. Guess at the bounds of the slice needed to extract the word you want and then adjust.
 >
->{.solution}
->
->
->~~~ {.python}
->text = "The quick brown fox jumped over the lazy dog."
->
->print text[-13:]
->print text[16:32] + text[-4:-1]
->print text[:3] + text[-10:-4] + text[16:36] + text[4:16] + text[-4:]
->~~~
->~~~ {.output}
->the lazy dog.
->fox jumped over dog
->The lazy fox jumped over the quick brown dog.
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>text = "The quick brown fox jumped over the lazy dog."
+>>
+>>print text[-13:]
+>>print text[16:32] + text[-4:-1]
+>>print text[:3] + text[-10:-4] + text[16:36] + text[4:16] + text[-4:]
+>>~~~
+>>~~~ {.output}
+>>the lazy dog.
+>>fox jumped over dog
+>>The lazy fox jumped over the quick brown dog.
+>>~~~
 
 >## Displaying slices  {.challenge}
 >
 >Use the function `imshow` from `matplotlib.pyplot` to make one figure showing the elevations of the northern half of the region and another plot showing the elevations of the southern half. You'll need to use separate cells in the Jupyter Notebook for each plot.
 >
->{.solution}
->
->
->~~~ {.python}
-># northern half
->matplotlib.pyplot.imshow(topo[:len(topo)/2,:])
->~~~
->
->![png](figs/f00_output_61_1.png)
->
->
->~~~ {.python}
-># southern half
->matplotlib.pyplot.imshow(topo[len(topo)/2:,:])
->~~~
->![png](figs/f00_output_62_1.png)
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>># northern half
+>>matplotlib.pyplot.imshow(topo[:len(topo)/2,:])
+>>~~~
+>>
+>>![png](figs/f00_output_61_1.png)
+>>
+>>
+>>~~~ {.python}
+>># southern half
+>>matplotlib.pyplot.imshow(topo[len(topo)/2:,:])
+>>~~~
+>>![png](figs/f00_output_62_1.png)
 <BR>
 
 >## Finding the center (Advanced)  {.challenge}
@@ -479,32 +478,32 @@ print topo[0:2,:].shape
 >
 >Hint: The method `topo.shape` gives the number of rows and columns in `topo`. Knowing this, get the shape of `t` and assign it to a variable. Use indexing on that variable to get the number of rows (index 0) and the number of columns (index 1) in `t`.
 >
->{.solution}
->
->
->~~~ {.python}
->t = topo[:6,:4]
->
->height_width = t.shape
->print 'Shape of t:', height_width
->
->num_rows = height_width[0]
->num_cols = height_width[1]
->
->print 'Value at centerpoint:', t[num_rows/2, num_cols/2], 'meters'
->~~~
->~~~ {.output}
->Shape of t: (6, 4)
->Value at centerpoint: 3194.9573 meters
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>t = topo[:6,:4]
+>>
+>>height_width = t.shape
+>>print 'Shape of t:', height_width
+>>
+>>num_rows = height_width[0]
+>>num_cols = height_width[1]
+>>
+>>print 'Value at centerpoint:', t[num_rows/2, num_cols/2], 'meters'
+>>~~~
+>>~~~ {.output}
+>>Shape of t: (6, 4)
+>>Value at centerpoint: 3194.9573 meters
+>>~~~
 >
 >- Make a rough sketch of array `t`. Identify the cell that you identified as the centerpoint using `t.shape`. Are you *really* pointing to the center of your array? How far off is it?
 >
->{.solution}
->
->![png](figs/f00_table6x4.png)
->
->The centerpoint of an array with an even number of rows and columns should fall at the intersection of four cells. Using half the height and width as indices places us half a cell off.
+>>## Solution{.solution}
+>>
+>>![png](figs/f00_table6x4.png)
+>>
+>>The centerpoint of an array with an even number of rows and columns should fall at the intersection of four cells. Using half the height and width as indices places us half a cell off.
 
 ## Non-continuous slices
 
@@ -539,16 +538,16 @@ Every third prime: [5, 13, 23, 37]
 >
 >Use the step size argument to create a new string that contains only every other character in the string "Your Mother was a Hamster, and your Father smelt of Elderberries!".
 >
->{.solution}
->
->
->~~~ {.python}
->text = "Your Mother was a Hamster, and your Father smelt of Elderberries!"
->print text[::2]
->~~~
->~~~ {.output}
->Yu ohrwsaHmtr n orFte ml fEdrere!
->~~~
+>>## Solution{.solution}
+>>
+>>
+>>~~~ {.python}
+>>text = "Your Mother was a Hamster, and your Father smelt of Elderberries!"
+>>print text[::2]
+>>~~~
+>>~~~ {.output}
+>>Yu ohrwsaHmtr n orFte ml fEdrere!
+>>~~~
 
 >## Garbled quotes, part 2 (Advanced)  {.challenge}
 >
@@ -556,13 +555,13 @@ Every third prime: [5, 13, 23, 37]
 >
 > Hint: Remember negative indices.
 >
->{.solution}
->
->~~~ {.python}
->text = "Your Mother was a Hamster, and your Father smelt of Elderberries!"
->print text[-1:-len(text)-1:-2]
->~~~
->~~~ {.output}
->!ererdEf lm etFro n rtmHaswrho uY
->~~~
+>>## Solution{.solution}
+>>
+>>~~~ {.python}
+>>text = "Your Mother was a Hamster, and your Father smelt of Elderberries!"
+>>print text[-1:-len(text)-1:-2]
+>>~~~
+>>~~~ {.output}
+>>!ererdEf lm etFro n rtmHaswrho uY
+>>~~~
 

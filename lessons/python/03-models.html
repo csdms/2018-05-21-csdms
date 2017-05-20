@@ -199,9 +199,13 @@ after the loop, letter is c</code></pre>
 <pre class="output"><code>1
 2
 3</code></pre>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">4</span>):
   <span class="bu">print</span> i</code></pre></div>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -213,11 +217,15 @@ after the loop, letter is c</code></pre>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="dv">5</span><span class="op">**</span><span class="dv">3</span>
 <span class="dv">125</span></code></pre></div>
 <p>Write a loop that calculates the same result as <code>5 ** 3</code> using just multiplication (without exponentiation).</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">result <span class="op">=</span> <span class="dv">1</span>
 <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">3</span>):
   result <span class="op">=</span> result <span class="op">*</span> <span class="dv">5</span>
 <span class="bu">print</span> result</code></pre></div>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -230,11 +238,15 @@ after the loop, letter is c</code></pre>
 <p>Hint: You can create an empty list like this:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_list <span class="op">=</span> []</code></pre></div>
 <p>Bonus: Once you are done, try casting a string as a list and see what happens.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_list <span class="op">=</span> []
 <span class="cf">for</span> char <span class="kw">in</span> <span class="st">&quot;hello&quot;</span>:
   newstring <span class="op">=</span> char <span class="op">+</span> newstring
 <span class="bu">print</span> my_list</code></pre></div>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -243,12 +255,16 @@ after the loop, letter is c</code></pre>
 </div>
 <div class="panel-body">
 <p>Knowing that two strings can be concatenated using the <code>+</code> operator, write a loop that takes a string, and produces a new string with the characters in reverse order, so <code>'Newton'</code> becomes <code>'notweN'</code>.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">newstring <span class="op">=</span> <span class="st">&#39;&#39;</span>
 oldstring <span class="op">=</span> <span class="st">&#39;Newton&#39;</span>
 <span class="cf">for</span> char <span class="kw">in</span> oldstring:
   newstring <span class="op">=</span> char <span class="op">+</span> newstring
 <span class="bu">print</span> newstring</code></pre></div>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -265,10 +281,14 @@ oldstring <span class="op">=</span> <span class="st">&#39;Newton&#39;</span>
 cc <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>]
 y <span class="op">=</span> cc[<span class="dv">0</span>] <span class="op">*</span> x<span class="op">**</span><span class="dv">0</span> <span class="op">+</span> cc[<span class="dv">1</span>] <span class="op">*</span> x<span class="op">**</span><span class="dv">1</span> <span class="op">+</span> cc[<span class="dv">2</span>] <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span></code></pre></div>
 <p>Write a loop using enumerate(cc) which computes the value <code>y</code> of any polynomial, given <code>x</code> and <code>cc</code>.</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">y <span class="op">=</span> <span class="dv">0</span>
 <span class="cf">for</span> i, c <span class="kw">in</span> <span class="bu">enumerate</span>(cc):
   y <span class="op">=</span> y <span class="op">+</span> x<span class="op">**</span>i <span class="op">*</span> c</code></pre></div>
+</div>
+</section>
 </div>
 </section>
 <h2 id="looping-through-the-profile">Looping through the profile</h2>
@@ -388,8 +408,12 @@ plt.plot(profile)
 <ul>
 <li>What will the profile look like after one timestep if the value of <code>dt</code> is very (very!) large? (Hint: Stop thinking of the real world and look at the equation. What does <code>dt</code> do to each term?)</li>
 </ul>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <p>The timestep <code>dt</code> is multiplied by the change in elevation per unit time. The change in elevation will be larger for larger timesteps. If the timestep is very large, the equation will calculate the total change over the timestep based only on the rate of change at the beginning of the timestep, even if, in real life, the rate of change would have decreased over the same period of time. As a result, the new elevations might “overshoot”, changing the three cells from a valley to a hill. This can lead to a numerical instability.</p>
+</div>
+</section>
 </div>
 </section>
 <p>We had to zoom into a small section of the profile to see that the topography was evolving. Because we are plotting every time it goes around the time loop, though, there are too many lines and they are too close together to differentiate between the different profiles.</p>
@@ -508,8 +532,12 @@ plt.plot(profile)
     <span class="bu">print</span> <span class="st">&#39;B&#39;</span> 
 <span class="cf">elif</span> <span class="dv">4</span> <span class="op">&lt;</span> <span class="dv">5</span>:
     <span class="bu">print</span> <span class="st">&#39;C&#39;</span></code></pre></div>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <p>C gets printed because the first two conditions, 4 &gt; 5 and 4 == 5, are not true, but 4 &lt; 5 is true.</p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -550,7 +578,9 @@ plt.plot(profile)
 </div>
 <div class="panel-body">
 <p>Write some conditions that print <code>True</code> if the variable <code>a</code> is within 10% of the variable <code>b</code> and <code>False</code> otherwise. Compare your implementation with your partner’s: do you get the same answer for all possible values of <code>a</code> and <code>b</code>?</p>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">5</span>
 b <span class="op">=</span> <span class="fl">5.1</span>
 
@@ -561,6 +591,8 @@ b <span class="op">=</span> <span class="fl">5.1</span>
 <p>You could also just print the output of the conditional statement:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="bu">abs</span>(a <span class="op">-</span> b) <span class="op">&lt;</span> <span class="fl">0.1</span> <span class="op">*</span> <span class="bu">abs</span>(b)</code></pre></div>
 <p>This works because the Booleans <code>True</code> and <code>False</code> have string representations which can be printed.</p>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -584,7 +616,9 @@ other_files <span class="op">=</span> []</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">large_files <span class="op">=</span> [<span class="st">&#39;survey-summer2017.csv&#39;</span>, <span class="st">&#39;survey-summer2016.csv&#39;</span>]
 small_files <span class="op">=</span> [<span class="st">&#39;small-01.csv&#39;</span>, <span class="st">&#39;small-02.csv&#39;</span>]
 other_files <span class="op">=</span> [<span class="st">&#39;myscript.py&#39;</span>, <span class="st">&#39;funny_field_photo.jpg&#39;</span>]</code></pre></div>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> filename <span class="kw">in</span> files:
    <span class="cf">if</span> <span class="st">&#39;survey-&#39;</span> <span class="kw">in</span> filename:
        large_files.append(filename)
@@ -598,6 +632,8 @@ other_files <span class="op">=</span> [<span class="st">&#39;myscript.py&#39;</s
 <span class="bu">print</span> other_files</code></pre></div>
 </div>
 </section>
+</div>
+</section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="counting-vowels-advanced"><span class="glyphicon glyphicon-pencil"></span>Counting Vowels (Advanced)</h2>
@@ -608,7 +644,9 @@ other_files <span class="op">=</span> [<span class="st">&#39;myscript.py&#39;</s
 <li>Test it on a few individual words and full sentences.</li>
 <li>Once you are done, compare your solution to your neighbor’s. How did you handle capitalization?</li>
 </ol>
-<p>{.solution}</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">vowels <span class="op">=</span> <span class="st">&#39;aeiouAEIOU&#39;</span>
 sentence <span class="op">=</span> <span class="st">&#39;Mary had a little lamb.&#39;</span>
 count <span class="op">=</span> <span class="dv">0</span>
@@ -626,6 +664,8 @@ count <span class="op">=</span> <span class="dv">0</span>
        count <span class="op">+=</span> <span class="dv">1</span>
        
 <span class="bu">print</span> <span class="st">&quot;The number of vowels in this string is &quot;</span> <span class="op">+</span> <span class="bu">str</span>(count)</code></pre></div>
+</div>
+</section>
 </div>
 </section>
 <section class="challenge panel panel-success">
@@ -665,5 +705,8 @@ elapsed <span class="op">=</span> time.time() <span class="op">-</span> t</code>
     <!-- Javascript placed at the end of the document so the pages load faster -->
     <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/lesson.js"></script>
   </body>
 </html>
