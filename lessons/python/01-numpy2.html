@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Programming with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://csdms.colorado.edu" title="Community Surface Dynamics Modeling System">
+          <img alt="CSDMS banner" src="img/CSDMS_banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Programming with Python</h1></a>
+          <h2 class="subtitle">Operating on arrays</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Perform operations on data arrays</li>
+<li>Use numpy functions and methods to calculate array statistics</li>
+<li>Create and customize simple graphs</li>
+</ul>
+</div>
+</section>
+<p>In the previous lesson, we discussed how to import elevation data into Numpy arrays and how access and visualize that data.</p>
+<p>If you are working in a new Jupyter Notebook, you’ll need to import the Numpy library and use it to load the data file:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy
+topo <span class="op">=</span> numpy.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)</code></pre></div>
+<p><BR></p>
+<p>We can perform basic mathematical operations on the individual values of a Numpy array to create new arrays:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">topo_in_feet <span class="op">=</span> topo <span class="op">*</span> <span class="fl">3.2808</span>
+<span class="bu">print</span> <span class="st">&#39;Elevation in meters:&#39;</span>, topo[<span class="dv">0</span>,<span class="dv">0</span>]
+<span class="bu">print</span> <span class="st">&#39;Elevation in feet:&#39;</span>, topo_in_feet[<span class="dv">0</span>,<span class="dv">0</span>]</code></pre></div>
+<pre class="output"><code>Elevation in meters: 3198.8391
+Elevation in feet: 10494.7513193</code></pre>
+<p><BR></p>
+<p>Arrays of the same size can be used together in arithmatic operations:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">double_topo <span class="op">=</span> topo <span class="op">+</span> topo
+<span class="bu">print</span> <span class="st">&#39;Double topo:&#39;</span>, double_topo[<span class="dv">0</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
+<pre class="output"><code>Double topo: 6397.6782 meters</code></pre>
+<p><BR></p>
+<p>We can also perform statistical operations on arrays:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;Mean elevation:&#39;</span>, numpy.mean(topo), <span class="st">&#39;meters&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;Highest elevation:&#39;</span>, numpy.<span class="bu">max</span>(topo), <span class="st">&#39;meters&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;Lowest elevation:&#39;</span>, numpy.<span class="bu">min</span>(topo), <span class="st">&#39;meters&#39;</span> </code></pre></div>
+<pre class="output"><code>Mean elevation: 3153.62166407 meters
+Highest elevation: 3831.2617 meters
+Lowest elevation: 2565.0293 meters</code></pre>
+<p><BR></p>
+<p>The commands <code>numpy.mean()</code>, <code>numpy.mean()</code>, and <code>numpy.min()</code> call <strong>functions</strong> of the library <em>numpy</em> that act on the numpy array <em>topo</em>. A subset of numpy functions have an equivalent <strong>method</strong> - a function belonging to the numpy array. You might find examples of code using either of them:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;Mean elevation:&#39;</span>, topo.mean(), <span class="st">&#39;meters&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;Highest elevation:&#39;</span>, topo.<span class="bu">max</span>(), <span class="st">&#39;meters&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;Lowest elevation:&#39;</span>, topo.<span class="bu">min</span>(), <span class="st">&#39;meters&#39;</span> </code></pre></div>
+<pre class="output"><code>Mean elevation: 3153.62166407 meters
+Highest elevation: 3831.2617 meters
+Lowest elevation: 2565.0293 meters</code></pre>
+<p><BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="not-all-functions-have-input"><span class="glyphicon glyphicon-pushpin"></span>Not all functions have input</h2>
+</div>
+<div class="panel-body">
+<p>Generally, a function receives inputs to produce outputs. However, some functions produce outputs without needing any input. For example, checking the current time doesn’t require any input:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> time
+<span class="bu">print</span> time.ctime()</code></pre></div>
+<pre class="output"><code>Thu May 18 23:14:06 2017</code></pre>
+<p>Even functions that don’t take input need parentheses. <BR></p>
+</div>
+</aside>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="methods-and-attributes"><span class="glyphicon glyphicon-pushpin"></span>Methods and attributes</h2>
+</div>
+<div class="panel-body">
+<p><code>mean</code> is a <em>method</em> of the numpy array <code>topo</code>, i.e., it is a something that the object <code>topo</code> can do just because it is a numpy array. Methods, like functions, require parentheses.</p>
+<p>A numpy array like <code>topo</code> also has <em>attributes</em> like <code>shape</code>. Attributes are not functions so they don’t need parentheses.</p>
+<p>Python will <em>kindly</em> tell us if we mix this up:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> topo.mean
+<span class="bu">print</span> topo.shape()</code></pre></div>
+<pre class="output"><code>&lt;built-in method mean of numpy.ndarray object at 0x10fa1f4e0&gt;
+
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-13-d66962518ca4&gt; in &lt;module&gt;()
+     1 print topo.mean
+----&gt; 2 print topo.shape()
+
+TypeError: &#39;tuple&#39; object is not callable</code></pre>
+</div>
+</aside>
+<p>We can use numpy functions or methods on slices of an array:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">half_len <span class="op">=</span> <span class="bu">int</span>(<span class="bu">len</span>(topo) <span class="op">/</span> <span class="dv">2</span>)
+
+<span class="bu">print</span> <span class="st">&#39;Highest elevation of NW quarter:&#39;</span>, topo[:half_len,
+:half_len].<span class="bu">max</span>(), <span class="st">&#39;meters&#39;</span>
+
+<span class="bu">print</span> <span class="st">&#39;Highest elevation of SE quarter:&#39;</span>, topo[half_len:,
+half_len:].<span class="bu">max</span>(), <span class="st">&#39;meters&#39;</span> </code></pre></div>
+<pre class="output"><code>Highest elevation of NW quarter: 3600.709 meters
+Highest elevation of SE quarter: 3575.3262 meters</code></pre>
+<p><BR></p>
+<p>Functions and methods can also be used along individual axes (rows or columns) of an array. If we want to see how the mean elevation changes with longitude (E-W), we can use the method along axis=0:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> topo.mean(axis<span class="op">=</span><span class="dv">0</span>) <span class="co"># this is the same as numpy.mean(topo, axis=0)</span></code></pre></div>
+<pre class="output"><code>[ 3428.2054708  3427.6972338  3427.2261988  3426.584768   3426.0234734
+  3425.8775458  3425.8402916  3425.8877396  3426.0181264  3426.367201
+  ...
+  2673.2222786  2670.2175292  2667.2640282  2664.4045236  2661.4727784
+  2658.2491352  2654.994714   2651.9884342  2649.4527134  2647.065285 ]</code></pre>
+<p><BR></p>
+<p>To see how the mean elevation changes with latitude (N-S), we can use axis=1:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> numpy.mean(topo, axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># this is the same as topo.mean(axis=1)</span></code></pre></div>
+<pre class="output"><code>[ 2942.8326116  2943.959394   2945.045799   2945.9719808  2946.8093426
+  2947.596404   2948.420486   2949.274708   2949.997857   2950.5324138
+  ...
+  3274.9299236  3276.043744   3277.5482738  3279.666109   3282.5904884
+  3285.8577394  3289.345506   3293.4776206  3298.0340262  3302.6172956]</code></pre>
+<p><BR></p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="stacking-arrays"><span class="glyphicon glyphicon-pencil"></span>Stacking arrays</h2>
+</div>
+<div class="panel-body">
+<p>Arrays can be concatenated and stacked on top of one another using Numpy’s <code>vstack</code> and <code>hstack</code> functions (ex. <code>numpy.hstack([array1, array2])</code>).</p>
+<ul>
+<li>Given the array <code>A</code>, create an array <code>B</code> that is the same height and twice the width of <code>A</code>.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">A <span class="op">=</span> numpy.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],
+                [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],
+                [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</code></pre></div>
+<p>{.solution}</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">B <span class="op">=</span> numpy.hstack([A,A])
+<span class="bu">print</span> A.shape, B.shape</code></pre></div>
+<pre class="output"><code>(3, 3) (3, 6)</code></pre>
+<ul>
+<li>Given the array <code>A</code>, create an array <code>C</code> that is the twice the height and the same width of <code>A</code>. {.solution}</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">C <span class="op">=</span> numpy.vstack([A,A])
+<span class="bu">print</span> A.shape, C.shape</code></pre></div>
+<pre class="output"><code>(3, 3) (6, 3)</code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="slopes"><span class="glyphicon glyphicon-pencil"></span>Slopes</h2>
+</div>
+<div class="panel-body">
+<p>The gradient of the surface is an important parameter in many landscape evolution models. The function <strong><code>np.diff()</code></strong> takes a Numpy array and returns the difference between adjacent elements along a specified axis. By default, this function acts along rows.</p>
+<ul>
+<li>Use <code>np.diff()</code> to calculate the elevation gradient in x and y (Hint: remember that the resolution of the elevation dataset is 2 meters).</li>
+</ul>
+<p>{.solution}</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">grid_resolution <span class="op">=</span> <span class="dv">2</span> <span class="co"># meters</span>
+
+dzdx <span class="op">=</span> np.diff(topo) <span class="op">/</span> grid_resolution
+dzdy <span class="op">=</span> np.diff(topo, axis<span class="op">=</span><span class="dv">0</span>) <span class="op">/</span> grid_resolution</code></pre></div>
+<ul>
+<li>If the shape of an array is (60, 40) (60 rows and 40 columns), what would the shape of the array produced by the function <code>np.diff()</code> and why?</li>
+</ul>
+<p>{.solution}</p>
+<p>The default output of <code>np.diff()</code> for a (60, 40) array would be size (60, 39)</p>
+<p>The function <code>np.diff()</code> will output an array that is one cell shorter in the axis along which the difference is calculated.</p>
+<ul>
+<li>What are the highest and lowest values of slope in the array <code>topo</code>?</li>
+</ul>
+<p>Hint: Use <code>np.abs()</code> to get the absolute values of entries in an array. You can get the maximum of two values with <code>np.max([value1, value2])</code>.</p>
+<p>{.solution}</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">abs_dzdx <span class="op">=</span> np.<span class="bu">abs</span>(dzdx)
+abs_dzdy <span class="op">=</span> np.<span class="bu">abs</span>(dzdy)
+
+<span class="bu">print</span> <span class="st">&#39;Max slope:&#39;</span>, np.<span class="bu">max</span>([np.<span class="bu">max</span>(abs_dzdx), np.<span class="bu">max</span>(abs_dzdy)])
+<span class="bu">print</span> <span class="st">&#39;Min slope:&#39;</span>, np.<span class="bu">min</span>([np.<span class="bu">min</span>(abs_dzdx), np.<span class="bu">min</span>(abs_dzdy)])</code></pre></div>
+<pre class="output"><code>Max slope: 26.09635
+Min slope: 0.0</code></pre>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="plotting-slopes-advanced"><span class="glyphicon glyphicon-pencil"></span>Plotting slopes (Advanced)</h2>
+</div>
+<div class="panel-body">
+<p>Make figures showing the two arrays of the absolute magnitude of surface gradient using the <code>matplotlib.pyplot</code> function <code>imshow</code>. Remember to import the correct libraries and use the iPython magic function! (Hint: look at the previous lesson for an example).</p>
+<ul>
+<li>Change the colormap with the argument <code>cmap</code>. Look at the available colormaps here: <a href="http://matplotlib.org/users/colormaps.html" class="uri">http://matplotlib.org/users/colormaps.html</a></li>
+<li>Add a colorbar with the function <code>matplotlib.pyplot.colorbar()</code>.</li>
+<li>Set the color range with the arguments <code>vmin</code> and <code>vmax</code>. Use the range 0 to 5.</li>
+</ul>
+<p>{.solution}</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot
+<span class="op">%</span>matplotlib inline
+
+matplotlib.pyplot.imshow(abs_dzdx, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">5</span>, cmap<span class="op">=</span><span class="st">&#39;inferno&#39;</span>)
+matplotlib.pyplot.colorbar()</code></pre></div>
+<div class="figure">
+<img src="figs/f01_output_34_1.png" alt="png" />
+<p class="caption">png</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">matplotlib.pyplot.imshow(abs_dzdy, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span><span class="dv">5</span>, cmap<span class="op">=</span><span class="st">&#39;inferno&#39;</span>)
+matplotlib.pyplot.colorbar()</code></pre></div>
+<div class="figure">
+<img src="figs/f01_output_35_1.png" alt="png" />
+<p class="caption">png</p>
+</div>
+</div>
+</section>
+<h2 id="plotting-take-2">Plotting, take 2</h2>
+<p>It’s hard to get a sense of how the topography changes across the landscape from big tables of numbers. A simpler way to display this information is with line plots.</p>
+<p>We are again going to use the <em>matplotlib</em> package for data visualization. If you are using the same Notebook that you used for the previous lesson, the <em>matplotlib.pyplot</em> library is still available. As a review, though, we are going to write every step that’s needed to load and plot the data.</p>
+<p>We use the function <code>plot</code> to create a basic line plot of elevation across the array:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="op">%</span>matplotlib inline
+
+topo <span class="op">=</span> np.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)
+
+plt.plot(topo[<span class="dv">0</span>,:]) <span class="co"># the first row</span></code></pre></div>
+<div class="figure">
+<img src="figs/f01_output_37_1.png" alt="png" />
+<p class="caption">png</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.plot(topo[<span class="op">-</span><span class="dv">1</span>,:], <span class="st">&#39;r--&#39;</span>) <span class="co"># the last row</span></code></pre></div>
+<p><img src="figs/f01_output_38_1.png" alt="png" /> <BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="scientists-dislike-typing"><span class="glyphicon glyphicon-pushpin"></span>Scientists dislike typing</h2>
+</div>
+<div class="panel-body">
+<p>We will always use the syntax <code>import numpy</code> to import the library Numpy. However, in order to save typing and minimize errors, it is often suggested to make a shortcut like so: <code>import numpy as np</code>.</p>
+<p>It doesn’t matter what you use as a shortcut, but it’s common to use <em>np</em> for Numpy and <em>plt</em> for matplotlib.pyplot. If you ever see Python code using a Numpy function with np (for example, <code>np.loadtxt(...)</code>), it’s because they’ve used this shortcut.</p>
+</div>
+</aside>
+<p>It’s difficult to compare profiles on separate plots. Let’s plot three separate profiles in the same figues. <BR></p>
+<p>In a Python script, all plots will be stored in the memory buffer for one figure until the function <code>plt.show()</code> is called. The function <code>plt.show()</code> empties that buffer and creates one figure with the output of all plotting functions.</p>
+<p>The function <code>plt.savefig()</code> can be used to save the figure to a file. You need to save the figure <em>before</em> calling <code>plt.show()</code>!</p>
+<p>You can add the argument <code>label</code> to <code>plt.plot()</code> to set the text that will appear in the legend.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="op">%</span>matplotlib inline
+
+topo <span class="op">=</span> np.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)
+
+plt.plot(topo[<span class="dv">0</span>,:], label<span class="op">=</span><span class="st">&#39;North&#39;</span>)
+plt.plot(topo[<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>,:], <span class="st">&#39;g:&#39;</span>, linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">&#39;Center&#39;</span>)
+plt.plot(topo[<span class="op">-</span><span class="dv">1</span>,:], <span class="st">&#39;r--&#39;</span>, label<span class="op">=</span><span class="st">&#39;South&#39;</span>)
+
+plt.title(<span class="st">&#39;Topographic profiles&#39;</span>)
+plt.ylabel(<span class="st">&#39;Elevation (m)&#39;</span>)
+plt.xlabel(<span class="st">&#39;&lt;-- West    East --&gt;&#39;</span>)
+plt.legend(loc <span class="op">=</span> <span class="st">&#39;lower left&#39;</span>)
+
+plt.savefig(<span class="st">&#39;topo_profiles.png&#39;</span>, dpi <span class="op">=</span> <span class="dv">300</span>)
+plt.show() </code></pre></div>
+<p><img src="figs/f01_output_41_0.png" alt="png" /> <BR></p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="changes-with-latitude"><span class="glyphicon glyphicon-pencil"></span>Changes with latitude</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Create one figure showing how the maximum (<code>np.max()</code>), minimum (<code>np.min()</code>), and mean (<code>np.mean()</code>) elevation changes with latitude (North - South). Label the axes and include a title for the plot (Hint: use axis=1). Create a legend.</li>
+</ul>
+<p>{.solution}</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.plot(np.<span class="bu">max</span>(topo, axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">&#39;Max&#39;</span>)
+plt.plot(np.mean(topo, axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">&#39;Mean&#39;</span>)
+plt.plot(np.<span class="bu">min</span>(topo, axis<span class="op">=</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">&#39;Min&#39;</span>)
+
+plt.title(<span class="st">&#39;Topographic profiles&#39;</span>)
+plt.ylabel(<span class="st">&#39;Elevation (m)&#39;</span>)
+plt.xlabel(<span class="st">&#39;&lt;-- North    South --&gt;&#39;</span>)
+plt.legend(loc <span class="op">=</span> <span class="st">&#39;upper left&#39;</span>)
+
+plt.show() </code></pre></div>
+<p><img src="figs/f01_output_43_0.png" alt="png" /> <BR></p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="subplots"><span class="glyphicon glyphicon-pencil"></span>Subplots</h2>
+</div>
+<div class="panel-body">
+<p>The script below uses <strong>subplots</strong> to create a figure of elevation profiles at the western edge, the center and the eastern edge of the region. Subplots can be a little tricky because they require the axes to be defined before plotting. Type (don’t copy-paste!) the code below to get a sense for how it works.</p>
+<p>This script uses a number of new commands:</p>
+<ul>
+<li>The function <code>plt.figure()</code> creates a space into which we will place the three plots.</li>
+<li>The argument <code>figsize</code> tells Python how big to make this space.</li>
+<li>Each subplot is placed into the figure using the <code>subplot</code> command. The subplot command takes 3 parameters: the total number of rows of subplots in the figure, the total number of columns of subplots in the figure, and the final parameters identifies the position of the subplot in the grid.</li>
+<li>The axes of the subplots are assigned to variable names (here, ax1, ax2, ax3, ax4).</li>
+<li>Once a subplot is created, its axes can be labeled using the <code>set_xlabel()</code> and <code>set_ylabel()</code> methods.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="op">%</span>matplotlib inline
+
+topo <span class="op">=</span> np.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)
+
+fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="fl">16.0</span>, <span class="fl">3.0</span>))
+
+ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>)
+ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>)
+ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)
+
+ax1.plot(topo[:,<span class="dv">0</span>])
+ax1.set_ylabel(<span class="st">&#39;Elevation (m)&#39;</span>)
+ax1.set_xlabel(<span class="st">&#39;&lt;-- N   S --&gt;&#39;</span>)
+ax1.set_title(<span class="st">&#39;West&#39;</span>)
+
+ax2.plot(topo[:,<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>])
+ax2.set_xlabel(<span class="st">&#39;&lt;-- N   S --&gt;&#39;</span>)
+ax2.set_title(<span class="st">&#39;Mid&#39;</span>)
+
+ax3.plot(topo[:,<span class="op">-</span><span class="dv">1</span>])
+ax3.set_xlabel(<span class="st">&#39;&lt;--N   S --&gt;&#39;</span>)
+ax3.set_title(<span class="st">&#39;East&#39;</span>)
+
+plt.show() </code></pre></div>
+<p>{.solution} <img src="figs/f01_output_45_0.png" alt="png" /> <BR></p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="customize-the-subplots"><span class="glyphicon glyphicon-pencil"></span>Customize the subplots</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li><p>The y axes of the three subplots have different ranges. This makes it hard to compare the elevation profiles. Use the method <code>set_ylim(min_val, max_val)</code> on each of each subplot axes to set the y range.</p></li>
+<li><p>Refactor (modify, improve) your subplot script to automatically set a more appropriate range for the y axis instead of setting the minimum and maximum values by hand</p></li>
+</ul>
+<p>Hint: you can use the numpy functions <code>np.min()</code> and <code>np.max()</code>) to do this.</p>
+<p>{.solution}</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="op">%</span>matplotlib inline
+
+topo <span class="op">=</span> np.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)
+
+fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="fl">16.0</span>, <span class="fl">3.0</span>))
+
+ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>)
+ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>)
+ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>)
+
+max_elev <span class="op">=</span> np.<span class="bu">max</span>(topo) <span class="op">+</span> <span class="dv">100</span> <span class="co"># adds some padding around the profiles</span>
+min_elev <span class="op">=</span> np.<span class="bu">min</span>(topo) <span class="op">-</span> <span class="dv">100</span>
+
+ax1.plot(topo[:,<span class="dv">0</span>])
+ax1.set_ylim(min_elev, max_elev)
+ax1.set_ylabel(<span class="st">&#39;Elevation (m)&#39;</span>)
+ax1.set_xlabel(<span class="st">&#39;&lt;-- N   S --&gt;&#39;</span>)
+ax1.set_title(<span class="st">&#39;West&#39;</span>)
+
+ax2.plot(topo[:,<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>])
+ax2.set_ylim(min_elev, max_elev)
+ax2.set_xlabel(<span class="st">&#39;&lt;-- N   S --&gt;&#39;</span>)
+ax2.set_title(<span class="st">&#39;Center&#39;</span>)
+
+ax3.plot(topo[:,<span class="op">-</span><span class="dv">1</span>])
+ax3.set_ylim(min_elev, max_elev)
+ax3.set_xlabel(<span class="st">&#39;&lt;--N   S --&gt;&#39;</span>)
+ax3.set_title(<span class="st">&#39;East&#39;</span>)
+
+plt.show() </code></pre></div>
+<p><img src="figs/f01_output_47_0.png" alt="png" /> <BR></p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="re-arrange-subplots"><span class="glyphicon glyphicon-pencil"></span>Re-arrange subplots</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li><p>Modify the subplot script to display the three plots on top of one another instead of side by side.</p></li>
+<li><p>Change the figure size, titles and axis labels to fit the new layout.</p></li>
+<li><p>Use different line style for each of the three plots and set their label attributes. Create a legend for each of the axes (ex. <code>ax3.legend()</code>).</p></li>
+</ul>
+<p>{.solution}</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="op">%</span>matplotlib inline
+
+topo <span class="op">=</span> np.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)
+
+fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="fl">5.0</span>, <span class="fl">10.0</span>))
+
+ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>)
+ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)
+ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>)
+
+max_elev <span class="op">=</span> np.<span class="bu">max</span>(topo) <span class="op">+</span> <span class="dv">100</span> <span class="co"># adds some padding around the profiles</span>
+min_elev <span class="op">=</span> np.<span class="bu">min</span>(topo) <span class="op">-</span> <span class="dv">100</span>
+
+ax1.plot(topo[:,<span class="dv">0</span>], label<span class="op">=</span><span class="st">&#39;West&#39;</span>)
+ax1.set_ylim(min_elev, max_elev)
+ax1.legend(loc <span class="op">=</span> <span class="st">&#39;upper left&#39;</span>)
+
+ax2.plot(topo[:,<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>], <span class="st">&#39;m:&#39;</span>,label<span class="op">=</span><span class="st">&#39;Center&#39;</span>)
+ax2.set_ylim(min_elev, max_elev)
+ax2.set_ylabel(<span class="st">&#39;Elevation (m)&#39;</span>)
+ax2.legend(loc <span class="op">=</span> <span class="st">&#39;upper left&#39;</span>)
+
+ax3.plot(topo[:,<span class="op">-</span><span class="dv">1</span>], <span class="st">&#39;g-.&#39;</span>, label<span class="op">=</span><span class="st">&#39;East&#39;</span>)
+ax3.set_ylim(min_elev, max_elev)
+ax3.set_xlabel(<span class="st">&#39;&lt;--N   S --&gt;&#39;</span>)
+ax3.legend(loc <span class="op">=</span> <span class="st">&#39;upper left&#39;</span>)
+
+plt.show() </code></pre></div>
+<p><img src="figs/f01_output_49_0.png" alt="png" /> <BR></p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="displaying-quadrants"><span class="glyphicon glyphicon-pencil"></span>Displaying quadrants</h2>
+</div>
+<div class="panel-body">
+<p>Make a 2x2 grid of subplots that use <code>imshow</code> to display each quarter of the <code>topo</code> array. Make sure that the four quarters are in the correct positions. Don’t worry about adding axis labels or a colorbar.</p>
+<p>You can set the color range for <code>imshow</code> with the arguments <code>vmin</code> and <code>vmax</code>:</p>
+<p><code>plt.imshow(topo, vmin = min_value, vmax = max_value)</code></p>
+<p>{.solution}</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="op">%</span>matplotlib inline
+
+topo <span class="op">=</span> np.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)
+
+fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="fl">10.0</span>, <span class="fl">10.0</span>))
+
+min_elev <span class="op">=</span> topo.<span class="bu">min</span>()
+max_elev <span class="op">=</span> topo.<span class="bu">max</span>()
+
+ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>)
+ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)
+ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+ax4 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>)
+
+ax1.imshow(topo[:<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>, :<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>], vmin<span class="op">=</span>min_elev, vmax<span class="op">=</span>max_elev)
+ax2.imshow(topo[:<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>, <span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>:], vmin<span class="op">=</span>min_elev, vmax<span class="op">=</span>max_elev)
+ax3.imshow(topo[<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>:, :<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>], vmin<span class="op">=</span>min_elev, vmax<span class="op">=</span>max_elev)
+ax4.imshow(topo[<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>:, <span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>:], vmin<span class="op">=</span>min_elev, vmax<span class="op">=</span>max_elev)
+
+plt.show()</code></pre></div>
+<div class="figure">
+<img src="figs/f01_output_51_0.png" alt="png" />
+<p class="caption">png</p>
+</div>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://csdms.colorado.edu">CSDMS</a>
+        <a class="label swc-blue-bg" href="https://github.com/mperignon/2016-05-16-csdms/">Source</a>
+        <a class="label swc-blue-bg" href="mailto:perignon@colorado.edu">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
