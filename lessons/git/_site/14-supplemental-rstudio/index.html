@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2018-05-17 13:38:45 -0600">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-swc.ico" />
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+    <title>Version Control with Git: Supplemental: Using Git from RStudio</title>
+  </head>
+  <body>
+    <div class="container">
+      
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+
+      
+      <a class="navbar-brand" href="../">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="../conduct/">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="../setup/">Setup</a></li>
+
+        
+        <li class="dropdown">
+          <a href="../" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="../01-basics/index.html">Automated Version Control</a></li>
+            
+            <li><a href="../02-setup/index.html">Setting Up Git</a></li>
+            
+            <li><a href="../03-create/index.html">Creating a Repository</a></li>
+            
+            <li><a href="../04-changes/index.html">Tracking Changes</a></li>
+            
+            <li><a href="../05-history/index.html">Exploring History</a></li>
+            
+            <li><a href="../06-ignore/index.html">Ignoring Things</a></li>
+            
+            <li><a href="../07-github/index.html">Remotes in GitHub</a></li>
+            
+            <li><a href="../08-collab/index.html">Collaborating</a></li>
+            
+            <li><a href="../09-conflict/index.html">Conflicts</a></li>
+            
+            <li><a href="../10-open/index.html">Open Science</a></li>
+            
+            <li><a href="../11-licensing/index.html">Licensing</a></li>
+            
+            <li><a href="../12-citation/index.html">Citation</a></li>
+            
+            <li><a href="../13-hosting/index.html">Hosting</a></li>
+            
+            <li><a href="../14-supplemental-rstudio/index.html">Supplemental: Using Git from RStudio</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="../aio/">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="../" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../reference/">Reference</a></li>
+            
+            <li><a href="../about/">About</a></li>
+            
+            <li><a href="../discuss/">Discussion</a></li>
+            
+            <li><a href="../figures/">Figures</a></li>
+            
+            <li><a href="../guide/">Instructor Notes</a></li>
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="../LICENSE.html">License</a></li>
+	
+	<li><a href="/edit/gh-pages/_episodes/14-supplemental-rstudio.md">Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../13-hosting/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">Version Control with Git</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Supplemental: Using Git from RStudio</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 10 min
+      <br/>
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I use Git with RStudio?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Understand how to use Git from RStudio.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>Version control can be very useful when developing data analysis scripts. For
+that reason, the popular development environment
+<a href="https://www.rstudio.com/">RStudio</a> for the R programming language has built-in
+integration with Git. While some advanced Git features still require the
+command-line, RStudio has a nice interface for many common Git operations.</p>
+
+<p>RStudio allows us to create a <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">project</a> associated with a
+given directory to keep track of various related files. To be able to track the
+development of the project over time, to be able to revert to previous
+versions, and to collaborate with others, we version control the Rstudio
+project with Git. To get started using Git in RStudio, we create a new project:</p>
+
+<p><img src="../fig/RStudio_screenshot_newproject.png" alt="" /></p>
+
+<p>This will open a dialog asking us how we want to create the project. We have
+some options here. Let’s say that we want to use RStudio with the planets
+repository that we already made. Since that repository lives in a directory on
+our computer, we choose the option “Existing Directory”:</p>
+
+<p><img src="../fig/RStudio_screenshot_existingdirectory.png" alt="" /></p>
+
+<blockquote class="callout">
+  <h2 id="do-you-see-a-version-control-option">Do You See a “Version Control” Option?</h2>
+
+  <p>Although we’re not going to use it here, there should be a “version control”
+option on this menu. That is what you would click on if you wanted to
+create a project on your computer by cloning a repository from GitHub.
+If that option is not present, it probably means that RStudio doesn’t know
+where your Git executable is. See
+<a href="https://stat545-ubc.github.io/git03_rstudio-meet-git.html">this page</a>
+for some debugging advice. Even if you have Git installed, you may need
+to accept the XCode license if you are using macOS.</p>
+</blockquote>
+
+<p>Next, RStudio will ask which existing directory we want to use. Click
+“Browse…” and navigate to the correct directory, then click “Create Project”:</p>
+
+<p><img src="../fig/RStudio_screenshot_navigateexisting.png" alt="" /></p>
+
+<p>Ta-da! We have created a new project in RStudio within the existing planets
+repository. Notice the vertical “Git” menu in the menu bar. RStudio has
+recognized that the current directory is a Git repository, and gives us a
+number of tools to use Git:</p>
+
+<p><img src="../fig/RStudio_screenshot_afterclone.png" alt="" /></p>
+
+<p>To edit the existing files in the repository, we can click on them in the
+“Files” panel on the lower right. Now let’s add some additional information
+about Pluto:</p>
+
+<p><img src="../fig/RStudio_screenshot_editfiles.png" alt="" /></p>
+
+<p>Once we have saved our edited files, we can use RStudio to commit the changes
+by clicking on “Commit…” in the Git menu:</p>
+
+<p><img src="../fig/RStudio_screenshot_commit.png" alt="" /></p>
+
+<p>This will open a dialogue where we can select which files to commit (by
+checking the appropriate boxes in the “Staged” column), and enter a commit
+message (in the upper right panel). The icons in the “Status” column indicate
+the current status of each file. Clicking on a file shows information about
+changes in the lower panel (using output of <code class="highlighter-rouge">git diff</code>). Once everything is the
+way we want it, we click “Commit”:</p>
+
+<p><img src="../fig/RStudio_screenshot_review.png" alt="" /></p>
+
+<p>The changes can be pushed by selecting “Push Branch” from the Git menu. There
+are also options to pull from the remote repository, and to view the commit
+history:</p>
+
+<p><img src="../fig/RStudio_screenshot_history.png" alt="" /></p>
+
+<blockquote class="callout">
+  <h2 id="are-the-pushpull-commands-grayed-out">Are the Push/Pull Commands Grayed Out?</h2>
+
+  <p>Grayed out Push/Pull commands generally mean that RStudio doesn’t know the
+location of your remote repository (e.g. on GitHub). To fix this, open a
+terminal to the repository and enter the command: <code class="highlighter-rouge">git push -u origin
+master</code>. Then restart RStudio.</p>
+</blockquote>
+
+<p>If we click on “History”, we can see a graphical version of what <code class="highlighter-rouge">git log</code>
+would tell us:</p>
+
+<p><img src="../fig/RStudio_screenshot_viewhistory.png" alt="" /></p>
+
+<p>RStudio creates a number of files that it uses to keep track of a project. We
+often don’t want to track these, in which case we add them to our <code class="highlighter-rouge">.gitignore</code>
+file:</p>
+
+<p><img src="../fig/RStudio_screenshot_gitignore.png" alt="" /></p>
+
+<blockquote class="callout">
+  <h2 id="tip-versioning-disposable-output">Tip: versioning disposable output</h2>
+
+  <p>Generally you do not want to version control disposable output (or read-only
+data). You should modify the <code class="highlighter-rouge">.gitignore</code> file to tell Git to ignore these
+files and directories.</p>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="challenge">Challenge</h2>
+
+  <ol>
+    <li>Create a new directory within your project called <code class="highlighter-rouge">graphs</code>.</li>
+    <li>Modify the <code class="highlighter-rouge">.gitignore</code> so that the <code class="highlighter-rouge">graphs</code> directory is not version controlled.</li>
+  </ol>
+
+  <p>Add the newly created folders to version control using
+the Git interface.</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-to-challenge">Solution to Challenge</h2>
+
+    <p>This can be done with the command line:</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir graphs
+$ echo "graphs/" &gt;&gt; .gitignore
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>There are many more features in the RStudio Git menu, but these should be
+enough to get you started!</p>
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>Create an RStudio project</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../13-hosting/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+      
+      
+<footer>
+  <div class="row">
+    <div class="col-md-6" align="left">
+      <h4>
+	Copyright &copy; 2016–2018
+	
+	<a href="https://software-carpentry.org">Software Carpentry Foundation</a>
+	
+      </h4>
+    </div>
+    <div class="col-md-6" align="right">
+      <h4>
+	
+	<a href="/edit/gh-pages/_episodes/14-supplemental-rstudio.md">Edit on GitHub</a>
+	
+	/
+	<a href="/blob/gh-pages/CONTRIBUTING.md">Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob/gh-pages/CITATION">Cite</a>
+	/
+	<a href="mailto:lessons@software-carpentry.org">Contact</a>
+      </h4>
+    </div>
+  </div>
+</footer>
+
+      
+    </div>
+    
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/lesson.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-37305346-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Programming with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://csdms.colorado.edu" title="Community Surface Dynamics Modeling System">
+          <img alt="CSDMS banner" src="img/CSDMS_banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Programming with Python</h1></a>
+          <h2 class="subtitle">Data types</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Identify built-in data types in Python</li>
+<li>Differentiate between scalar and structured objects</li>
+<li>Recognize mutable and immutable objects</li>
+<li>Convert between data types in Python</li>
+</ul>
+</div>
+</section>
+<p>Before we go much further into numerical modeling, we should stop and discuss some of the inner workings of Python. Recognizing the way values can be handled by Python will give you flexibility in programming and help you avoid common errors.</p>
+<p>Early in the previous lesson, we saw that we could assign a value to a variable using the symbol <code>=</code>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">elevation_ft <span class="op">=</span> <span class="dv">5430</span>    <span class="co"># elevation of Boulder, CO in feet </span></code></pre></div>
+<p><BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="documentation-is-important"><span class="glyphicon glyphicon-pushpin"></span>Documentation is important!</h2>
+</div>
+<div class="panel-body">
+<p>One way to include documentation in your programs is with comments. Comments are text within the code that the computer ignores. In Python, comments start with the symbol <code>#</code>.</p>
+</div>
+</aside>
+<p>The variable name <code>elevation_ft</code> is not itself the value 5430. It is simply a label that points to a place in the memory where the <strong>object</strong> with the value <code>5430</code> is stored.</p>
+<p>This is different from the way the symbol = is used in algebra. An equation like this one represents different things in Python and in algebra:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x <span class="op">=</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">1</span></code></pre></div>
+<p>In both cases, the letter ‘x’ corresponds to the value 5. In algebra, ‘x’ is equivalent to 5; the symbol is simply taking the place of the number. In Python, ‘x’ is not itself 5; it is a name that points to an object with a value of 5. The variable name ‘x’ is short-hand for the address where the object is stored in the memory. <BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="what-is-an-object"><span class="glyphicon glyphicon-pushpin"></span>What is an object?</h2>
+</div>
+<div class="panel-body">
+<p>We can think of objects as the things that Python programs manipulate.</p>
+<p>Different programming languages define “object” in different ways. <em>Everything in Python is an object</em> and almost everything has attributes and methods. Strings are objects. Lists are objects. Functions are objects. Even modules are objects.</p>
+</div>
+</aside>
+<p>Objects are classified into different <strong>classes</strong> or <strong>data types</strong> that define the kinds of things that a program can do with those objects. An integer (like <code>5430</code> above) is one type of object, the string “Hello, World!” is also an object, and the numpy array of elevation values in the previous lesson was another type of object.</p>
+<h2 id="scalar-objects">Scalar objects</h2>
+<p>Objects are either <strong>scalar</strong> or <strong>non-scalar</strong>. Scalar objects are the building blocks of data. They hold a single value and cannot be divided. <em>Non-scalar</em> objects hold sets of elements within some internal structure. Computers operate directly on scalar objects but have to iterate through the elements of a non-scalar object in order to process it.</p>
+<p>The term <em>scalar</em> comes from linear algebra, where it is used to differentiate a single number from a vector or matrix.</p>
+<h3 id="integers">- Integers</h3>
+<p>We can use the built-in function <code>type</code> to see what type a particular object is:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">type</span>(<span class="dv">5430</span>)</code></pre></div>
+<pre class="output"><code>int</code></pre>
+<p>The number <code>5430</code> is an object of type <strong>int</strong>, or integer. We can also use <code>type</code> see the type of object that the variable is assigned to:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">type</span>(elevation_ft)</code></pre></div>
+<pre class="output"><code>int</code></pre>
+<p>The variable name <code>elevation_ft</code> is assigned to an object with the value <code>5430</code>, which is of type int. Integer is one of several built-in data types in Python. Because they are built in, we don’t need to load a library to use them.</p>
+<h3 id="floats">- Floats</h3>
+<p>Real numbers (<em>potentially</em> with decimals) are floating point numbers or <strong>floats</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">elevation_m <span class="op">=</span> <span class="fl">1655.064</span> <span class="co"># elevation of Boulder, CO in meters</span>
+
+<span class="bu">type</span>(elevation_m)</code></pre></div>
+<pre class="output"><code>float</code></pre>
+<p>A number doesn’t need to have meaningful fractional part to be a float. Just adding a decimal point to a whole number makes it a float:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;7 is&#39;</span>, <span class="bu">type</span>(<span class="dv">7</span>)
+<span class="bu">print</span> <span class="st">&#39;-&#39;</span> <span class="op">*</span> <span class="dv">20</span>
+<span class="bu">print</span> <span class="st">&#39;7. is&#39;</span>, <span class="bu">type</span>(<span class="dv">7</span>.)
+<span class="bu">print</span> <span class="st">&#39;7.0 is&#39;</span>, <span class="bu">type</span>(<span class="fl">7.0</span>)</code></pre></div>
+<pre class="output"><code>7 is &lt;type &#39;int&#39;&gt;
+--------------------
+7. is &lt;type &#39;float&#39;&gt;
+7.0 is &lt;type &#39;float&#39;&gt;</code></pre>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="math-with-integers-and-floats"><span class="glyphicon glyphicon-pushpin"></span>Math with integers and floats</h2>
+</div>
+<div class="panel-body">
+<p>One would expect that a programming language would follow the same rules of arithmatic that we learned as kids. Confusingly, that’s not always the case:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;7/2 =&#39;</span>, <span class="dv">7</span><span class="op">/</span><span class="dv">2</span></code></pre></div>
+<pre class="output"><code>7/2 = 3</code></pre>
+<p>In the real world, half of 7 is 3.5! Why is it behaving this way?</p>
+<p>In Python 2 (but not Python 3!), dividing an integer (the number 7) by another integer (the number 2) always results in an integer. This is known as <strong>integer division</strong>. If either number is a float, though, division behaves as expected and returns a float:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;7.0000000001/2 =&#39;</span>, <span class="fl">7.0000000001</span><span class="op">/</span><span class="dv">2</span></code></pre></div>
+<pre class="output"><code>7.0000000001/2 = 3.50000000005</code></pre>
+<p>While this might seem strange and unnecessarily annoying, some programming languages use integer division for historical reasons: integers take up less memory space and integer operations were much faster on early machines.</p>
+<p>Read more about it on <a href="http://python-history.blogspot.com/2010/08/why-pythons-integer-division-floors.html">Guido van Rossum’s blog on the history of Python</a> (Guido is the inventor of Python!).</p>
+</div>
+</aside>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="converting-between-types"><span class="glyphicon glyphicon-pushpin"></span>Converting between types</h2>
+</div>
+<div class="panel-body">
+<p>Division is not the only operation where we have to worry about the data type of the objects we are using. Many other Python functions are also sensitive to the type of object they receive.</p>
+<p>You will often find yourself needing to convert variables from one data type to another. This is called <strong>casting</strong>. Luckily, conversion functions are easy to remember: the type names double up as a conversion function!</p>
+<p>To convert an integer to a float, use the function <strong>float()</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">num_int <span class="op">=</span> <span class="dv">7</span>
+
+<span class="bu">print</span> <span class="st">&#39;integer division:&#39;</span>, num_int <span class="op">/</span> <span class="dv">2</span>
+<span class="bu">print</span> <span class="st">&#39;after casting:&#39;</span>, <span class="bu">float</span>(num_int) <span class="op">/</span> <span class="dv">2</span></code></pre></div>
+<pre class="output"><code>integer division: 3
+after casting: 3.5</code></pre>
+<p>To convert a float into an integer, use the function <strong>int()</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">num_float <span class="op">=</span> <span class="fl">7.0</span>
+
+<span class="bu">print</span> <span class="st">&quot;&#39;normal&#39; division:&quot;</span>, num_float <span class="op">/</span> <span class="dv">2</span>
+<span class="bu">print</span> <span class="st">&#39;after casting:&#39;</span>, <span class="bu">int</span>(num_float) <span class="op">/</span> <span class="dv">2</span></code></pre></div>
+<pre class="output"><code>&#39;normal&#39; division: 3.5
+after casting: 3</code></pre>
+</div>
+</aside>
+<h3 id="booleans">- Booleans</h3>
+<p>Other types of objects in Python are a bit more unusual. <strong>Boolean</strong> objects can take one of two values: True or Falls. We will see in a later lesson that boolean objects are produced by operations that compare values against one another and by conditional statements.</p>
+<p>You’ll notice that the words True and False change color when you type them into a Jupyter Notebook. They look different because they are recognized as special keywords. This only works when True and False are capitalized, though! Python does not treat lower case true and false as boolean objects.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">i_like_chocolate <span class="op">=</span> <span class="va">True</span>
+<span class="bu">type</span>(i_like_chocolate)</code></pre></div>
+<pre class="output"><code>bool</code></pre>
+<p><BR></p>
+<p>When used in an arithmetic operation, a boolean object acts like an integer. True takes a value of 1 and False a value of 0:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;3 * True:&#39;</span>, <span class="dv">3</span> <span class="op">*</span> <span class="va">True</span>
+<span class="bu">print</span> <span class="st">&#39;3.0 * True:&#39;</span>, <span class="fl">3.0</span> <span class="op">*</span> <span class="va">True</span>
+<span class="bu">print</span> <span class="st">&#39;3.0 * False:&#39;</span>, <span class="fl">3.0</span> <span class="op">*</span> <span class="va">False</span></code></pre></div>
+<pre class="output"><code>3 * True: 3
+3.0 * True: 3.0
+3.0 * False: 0.0</code></pre>
+<p><BR></p>
+<p>We can cast objects of any type into a boolean using the function <strong>bool()</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="bu">bool</span>(<span class="fl">127.3</span>)</code></pre></div>
+<pre class="output"><code>True</code></pre>
+<h3 id="nonetype">- NoneType</h3>
+<p>The most abstract of data types in Python is the <strong>NoneType</strong>. NoneType objects can only contain the special constant <strong>None</strong>. <code>None</code> is the value that an object takes when no value is set or in the absence of a value. <code>None</code> is a null or NoData value. It is not the same as False, it is not 0 and it is not an empty string. <code>None</code> is nothing.</p>
+<p>If you compare <code>None</code> to anything other than <code>None</code>, <code>None</code> will always be less than the other value (In Python 3, comparing <code>None</code> to another object will instead produce an error):</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">nothing <span class="op">=</span> <span class="va">None</span>
+<span class="bu">print</span> <span class="bu">type</span>(nothing)
+
+<span class="bu">print</span> nothing <span class="op">&gt;</span> <span class="op">-</span><span class="dv">4</span>
+<span class="bu">print</span> nothing <span class="op">==</span> nothing   <span class="co"># double == compares for equivalency</span></code></pre></div>
+<pre class="output"><code>&lt;type &#39;NoneType&#39;&gt;
+False
+True</code></pre>
+<p>Why would you ever want to create an object that contains nothing at all? As you build more complex programs, you’ll find many situations where you might want to set a variable but don’t want to assign a value to it quite yet. For example, you might want your code to perform one action if the user sets a certain variable but perform a different action if the user does nothing:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">input_from_user <span class="op">=</span> <span class="va">None</span>
+
+<span class="co"># The user might or might not provide input here.</span>
+<span class="co"># If the user provides input, the value would be</span>
+<span class="co"># assigned to the variable input_from_user</span>
+
+<span class="cf">if</span> input_from_user <span class="kw">is</span> <span class="va">None</span>:
+    <span class="bu">print</span> <span class="st">&quot;The user hasn&#39;t said anything!&quot;</span>
+    
+<span class="cf">if</span> input_from_user <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:
+    <span class="bu">print</span> <span class="st">&quot;The user said:&quot;</span>, input_from_user</code></pre></div>
+<pre class="output"><code>The user hasn&#39;t said anything!</code></pre>
+<p><BR></p>
+<p>Try assigning an object of a different type to <code>input_from_user</code> to see how the script behaves.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="whos-who-in-memory"><span class="glyphicon glyphicon-pushpin"></span>Who’s who in memory</h2>
+</div>
+<div class="panel-body">
+<p>You can use the <code>whos</code> command to see what variables you have created and what modules you have loaded into the memory. This is an iPython command, so it will only work if you are in an iPython terminal or a Jupyter Notebook.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">whos</code></pre></div>
+<pre class="output"><code>Variable           Type        Data/Info
+----------------------------------------
+elevation_ft       int         5430
+elevation_m        float       1655.064
+i_like_chocolate   bool        True
+input_from_user    NoneType    None
+nothing            NoneType    None
+x                  int         5</code></pre>
+</div>
+</aside>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="numeric-data-types"><span class="glyphicon glyphicon-pencil"></span>Numeric data types</h2>
+</div>
+<div class="panel-body">
+<p>What type of object are these values?</p>
+<ul>
+<li>5.6</li>
+<li>1932</li>
+<li><ol start="22" style="list-style-type: decimal">
+<li></li>
+</ol></li>
+<li>7.0000</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<ul>
+<li>float</li>
+<li>int</li>
+<li>float</li>
+<li>float</li>
+</ul>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="casting-and-integer-division"><span class="glyphicon glyphicon-pencil"></span>Casting and integer division</h2>
+</div>
+<div class="panel-body">
+<p>Think about the operations that occur when running the following statements. Why are their outputs different?</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;a:&#39;</span>, <span class="dv">100</span><span class="op">/</span><span class="dv">3</span>
+<span class="bu">print</span> <span class="st">&#39;b:&#39;</span>, <span class="bu">float</span>(<span class="dv">100</span>)<span class="op">/</span><span class="dv">3</span>
+<span class="bu">print</span> <span class="st">&#39;c:&#39;</span>, <span class="dv">100</span><span class="op">/</span><span class="bu">float</span>(<span class="dv">3</span>)
+<span class="bu">print</span> <span class="st">&#39;d:&#39;</span>, <span class="bu">float</span>(<span class="dv">100</span><span class="op">/</span><span class="dv">3</span>)</code></pre></div>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<pre class="output"><code>a: 33
+b: 33.3333333333
+c: 33.3333333333
+d: 33.0</code></pre>
+<ol style="list-style-type: lower-alpha">
+<li>Dividing two integers results in an integer (b),(c) Casting either the dividend or divisor as a float will mean that it is no longer integer division</li>
+<li>The function <code>float()</code> is acting on the output of integer division. The remainder has already been discarded.</li>
+</ol>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="lemonade-sales"><span class="glyphicon glyphicon-pencil"></span>Lemonade sales</h2>
+</div>
+<div class="panel-body">
+<p>You get hired to work for a highly successful lemonade stand. Their database is managed by a 7-year-old, though, so their data is a mess. These are their sales reports for FY2017:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">sales_1q <span class="op">=</span> [<span class="st">&quot;50.3&quot;</span>] <span class="co"># thousand dollars</span>
+sales_2q <span class="op">=</span> <span class="fl">108.52</span>
+sales_3q <span class="op">=</span> <span class="dv">79</span>
+sales_4q <span class="op">=</span> <span class="st">&quot;82&quot;</span></code></pre></div>
+<pre class="output"><code>
+- Calculate the total sales for FY2017</code></pre>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">total_sales <span class="op">=</span> <span class="bu">float</span>(sales_1q[<span class="dv">0</span>]) <span class="op">+</span> sales_2q <span class="op">+</span> sales_3q <span class="op">+</span> <span class="bu">float</span>(sales_4q)
+<span class="bu">print</span> <span class="st">&#39;Total lemonade sales:&#39;</span>, total_sales, <span class="st">&#39;thousand dollars&#39;</span></code></pre></div>
+<pre class="output"><code>Total lemonade sales: 319.82 thousand dollars</code></pre>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="casting-bool"><span class="glyphicon glyphicon-pencil"></span>Casting bool</h2>
+</div>
+<div class="panel-body">
+<p>Any type of object can be cast to a boolean with the function <em>bool()</em>. Which of these objects converts to True and which to False?</p>
+<ul>
+<li>a negative float</li>
+<li>None</li>
+<li>the boolean object True</li>
+<li>the integer 0</li>
+<li>the float 0</li>
+<li>the string ‘string’</li>
+<li>an empty string</li>
+<li>a string that contains only a space</li>
+<li>3e-324</li>
+<li>2e-324</li>
+<li>a list with one item</li>
+<li>an empty list</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<ul>
+<li>a negative float: True</li>
+<li>None: False</li>
+<li>the boolean object True: True</li>
+<li>the integer 0: False</li>
+<li>the float 0.0: False</li>
+<li>the string ‘string’: True</li>
+<li>an empty string: False</li>
+<li>a string that contains only a space: True</li>
+<li>3e-324: True</li>
+<li>2e-324: False</li>
+<li>a list with one item: True</li>
+<li>an empty list: False</li>
+</ul>
+</div>
+</section>
+</div>
+</section>
+<h2 id="non-scalar-or-structured-objects">Non-scalar (or structured) objects</h2>
+<p><em>Non-scalar</em> objects contain multiple elements that can be separated into parts. Since they have an internal structure, we can use <strong>indexing</strong> to access the individual parts of a non-scalar object.</p>
+<p>There are several built-in types of non-scalar objects in Python. They can be grouped according to their internal structure:</p>
+<ul>
+<li><p><strong>Sequences</strong> are structured objects where elements are kept in a known order. We use <strong>integer indexing</strong> and <strong>slicing</strong> to access elements based on their position.</p></li>
+<li><p><strong>Mapping</strong> objects map keys to values. Because the elements of a mapping object are not stored in order, we cannot select them based on their position. Instead, the keys serve as indices.</p></li>
+</ul>
+<p>The differences between the two groups will make more sense after looking at some examples. <BR></p>
+<h3 id="sequences">Sequences</h3>
+<h3 id="strings">- Strings</h3>
+<p>Objects of type <strong>string</strong> are simply sequences of characters with a defined order. Strings have to be enclosed in sigle quotes (‘’), double quotes (&quot; “), triple single or double quotes (‘’’ ‘’’,”“” “”“), or single quotes within double quotes (”‘’“):</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="bu">type</span>(<span class="st">&quot;The judge said &#39;Nobody expects the Spanish Inquisition!&#39;&quot;</span>)</code></pre></div>
+<pre class="output"><code>&lt;type &#39;str&#39;&gt;</code></pre>
+<p>We can cast objects of any type into strings with the function <strong>str()</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">str</span>(<span class="bu">bool</span>(<span class="dv">6</span> <span class="op">&lt;</span> <span class="dv">2</span>))</code></pre></div>
+<pre class="output"><code>&#39;False&#39;</code></pre>
+<p>We can test if a sub string exists within a string or not using the keyword <strong>in</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;a&#39;</span> <span class="kw">in</span> <span class="st">&#39;program&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;at&#39;</span> <span class="kw">not</span> <span class="kw">in</span> <span class="st">&#39;battle&#39;</span></code></pre></div>
+<pre class="output"><code>True
+False</code></pre>
+<p>There are many methods available for objects of type string:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">string <span class="op">=</span> <span class="st">&quot;if it&#39;s in caps i&#39;m trying to YELL!&quot;</span>
+
+<span class="bu">print</span> string.lower()
+<span class="bu">print</span> string.upper()
+<span class="bu">print</span> string.capitalize()
+<span class="bu">print</span> string.split()
+<span class="bu">print</span> string.replace(<span class="st">&#39;YELL&#39;</span>, <span class="st">&#39;fix my keyboard&#39;</span>)</code></pre></div>
+<pre class="output"><code>if it&#39;s in caps i&#39;m trying to yell!
+IF IT&#39;S IN CAPS I&#39;M TRYING TO YELL!
+If it&#39;s in caps i&#39;m trying to yell!
+[&#39;if&#39;, &quot;it&#39;s&quot;, &#39;in&#39;, &#39;caps&#39;, &quot;i&#39;m&quot;, &#39;trying&#39;, &#39;to&#39;, &#39;YELL!&#39;]
+if it&#39;s in caps i&#39;m trying to fix my keyboard!</code></pre>
+<h3 id="lists">- Lists</h3>
+<p>A <strong>list</strong> is exactly what it sounds like – a sequence of things. The objects contained in a list don’t have to be of the same type: one list can simultaneously contain numbers, strings, other lists, numpy arrays, and even commands to run. Like other sequences, lists are ordered. We can access the individual items in a list through an integer index.</p>
+<p>Lists are created by putting values, separated by commas, inside square brackets:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">shopping_list <span class="op">=</span> [<span class="st">&#39;funions&#39;</span>, <span class="st">&#39;ice cream&#39;</span>, <span class="st">&#39;guacamole&#39;</span>]</code></pre></div>
+<p>We can change the individual values in a list using indexing:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">shopping_list[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;funyuns&#39;</span> <span class="co"># oops</span>
+<span class="bu">print</span> shopping_list</code></pre></div>
+<pre class="output"><code>[&#39;funyuns&#39;, &#39;ice cream&#39;, &#39;guacamole&#39;]</code></pre>
+<p><BR></p>
+<p>There are many ways to change the contents of lists besides assigning new values to individual elements:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">shopping_list.append(<span class="st">&#39;tortilla chips&#39;</span>)   <span class="co"># add one item</span>
+<span class="bu">print</span> shopping_list</code></pre></div>
+<pre class="output"><code>[&#39;funyuns&#39;, &#39;ice cream&#39;, &#39;guacamole&#39;, &#39;tortilla chips&#39;]</code></pre>
+<p><BR></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">del</span> shopping_list[<span class="dv">0</span>]   <span class="co"># delete the first item</span>
+<span class="bu">print</span> shopping_list</code></pre></div>
+<pre class="output"><code>[&#39;ice cream&#39;, &#39;guacamole&#39;, &#39;tortilla chips&#39;]</code></pre>
+<p><BR></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">shopping_list.reverse()   <span class="co"># reverse the order of the list (in place)</span>
+<span class="bu">print</span> shopping_list</code></pre></div>
+<pre class="output"><code>[&#39;tortilla chips&#39;, &#39;guacamole&#39;, &#39;ice cream&#39;]</code></pre>
+<p><BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="overloading"><span class="glyphicon glyphicon-pushpin"></span>Overloading</h2>
+</div>
+<div class="panel-body">
+<p><code>+</code> usually means addition, but when used on strings or lists, it means “concatenate”. The multiplication operator <code>*</code> used on a list replicates elements of the list and concatenates them together:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">counts <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>]
+repeats <span class="op">=</span> counts <span class="op">*</span> <span class="dv">2</span>
+<span class="bu">print</span> repeats</code></pre></div>
+<pre class="output"><code>[2, 4, 6, 8, 10, 2, 4, 6, 8, 10]</code></pre>
+<p>This is equivalent to:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">counts <span class="op">+</span> counts</code></pre></div>
+<p>The technical term for this is operator overloading: a single operator, like <code>+</code> or <code>*</code>, can do different things depending on what type of object it’s applied to. <BR></p>
+</div>
+</aside>
+<p>We can use operators to concatenate lists or build lists with repeated elements:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">shopping_list <span class="op">=</span> shopping_list <span class="op">+</span> [<span class="st">&#39;coffee&#39;</span>, <span class="st">&#39;cheese&#39;</span>]
+<span class="bu">print</span> shopping_list</code></pre></div>
+<pre class="output"><code>[&#39;tortilla chips&#39;, &#39;guacamole&#39;, &#39;ice cream&#39;, &#39;coffee&#39;, &#39;cheese&#39;]</code></pre>
+<p><BR></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="dv">3</span> <span class="op">*</span> shopping_list[<span class="op">-</span><span class="dv">1</span>:]</code></pre></div>
+<pre class="output"><code>[&#39;cheese&#39;, &#39;cheese&#39;, &#39;cheese&#39;]</code></pre>
+<p><BR></p>
+<p>There is one very important difference between lists and strings: <strong>lists can be modified in place while strings cannot</strong>. <BR> <BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="ch-ch-changes"><span class="glyphicon glyphicon-pushpin"></span>Ch-ch-changes</h2>
+</div>
+<div class="panel-body">
+<p>Data which can be modified in place is called <strong>mutable</strong>, while data which cannot be modified is called <strong>immutable</strong>. Strings, numbers and tuples are immutable. This does not mean that variable names assigned to these objects will forever be assigned to those objects! While we can use indexing to access individual values in an immutable object, we can’t use indexing to modify them:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">fav_animal <span class="op">=</span> <span class="st">&#39;capibara&#39;</span> <span class="co"># misspelled!</span>
+<span class="bu">print</span> fav_animal[<span class="dv">3</span>]
+
+fav_animal[<span class="dv">3</span>] <span class="op">=</span> <span class="st">&#39;y&#39;</span> <span class="co"># change to capybara</span></code></pre></div>
+<pre class="output"><code>i
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-133-936dce908564&gt; in &lt;module&gt;()
+     2 print fav_animal[3]
+     3 
+----&gt; 4 fav_animal[3] = &#39;y&#39; # change to capybara
+
+TypeError: &#39;str&#39; object does not support item assignment</code></pre>
+<p>If we want to change the value of a string, number, or tuple, we do it by re-assigning the variable name to a completely new object:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">fav_animal2 <span class="op">=</span> fav_animal <span class="co"># both variable names point to same object</span>
+
+fav_animal2 <span class="op">=</span> <span class="st">&#39;capybara&#39;</span> <span class="co"># re-assign variable name to new object</span>
+
+<span class="bu">print</span> <span class="st">&#39;Old object:&#39;</span>, fav_animal
+<span class="bu">print</span> <span class="st">&#39;New object:&#39;</span>, fav_animal2</code></pre></div>
+<pre class="output"><code>Old object: capibara
+New object: capybara</code></pre>
+<p>Lists and numpy arrays are <em>mutable</em> objects: we can modify them in place after they have been written to memory. We can change individual elements, append new elements, or reorder the whole list. For operations like sorting, we can choose whether to use a function that modifies the data in place or a function that leaves the original object unchanged and creates a new, modified object with a new variable name. <BR><BR></p>
+<p>Be careful when modifying data in place. <strong>If two variables refer to the same list and you modify a value in the list, it will change the contents of the list for both variables.</strong> If you want to have two variables refer to independent versions of the same mutable object, you must make a copy of the object when you assign it to the new variable name. <BR><BR></p>
+<p>Consider the relationship between variable names and objects in this script:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mildSalsa <span class="op">=</span> [<span class="st">&#39;peppers&#39;</span>, <span class="st">&#39;onions&#39;</span>, <span class="st">&#39;cilantro&#39;</span>, <span class="st">&#39;tomatoes&#39;</span>]
+
+hotSalsa <span class="op">=</span> mildSalsa           <span class="co"># both salsas point to the same object</span>
+hotSalsa[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;jalapenos&#39;</span>      <span class="co"># change the recipe for hot salsa</span>
+
+<span class="bu">print</span> <span class="st">&#39;Mild salsa:&#39;</span>, mildSalsa
+<span class="bu">print</span> <span class="st">&#39;Hot salsa:&#39;</span>, hotSalsa</code></pre></div>
+<pre class="output"><code>Mild salsa: [&#39;jalapenos&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
+Hot salsa: [&#39;jalapenos&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</code></pre>
+<p>Because both variable names <code>mildSalsa</code> and <code>hotSalsa</code> point to the same mutable object, changing the recipe for one also changed the recipe for the other. <BR> <BR></p>
+<p>If we want variables with mutable values to be independent, we must make a copy of the object:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mildSalsa <span class="op">=</span> [<span class="st">&#39;peppers&#39;</span>, <span class="st">&#39;onions&#39;</span>, <span class="st">&#39;cilantro&#39;</span>, <span class="st">&#39;tomatoes&#39;</span>]
+
+hotSalsa <span class="op">=</span> <span class="bu">list</span>(mildSalsa)      <span class="co"># make a copy of the list</span>
+hotSalsa[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;jalapenos&#39;</span>       <span class="co"># change the recipe for hot salsa</span>
+
+<span class="bu">print</span> <span class="st">&#39;Mild salsa:&#39;</span>, mildSalsa
+<span class="bu">print</span> <span class="st">&#39;Hot salsa:&#39;</span>, hotSalsa</code></pre></div>
+<pre class="output"><code>Mild salsa: [&#39;peppers&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]
+Hot salsa: [&#39;jalapenos&#39;, &#39;onions&#39;, &#39;cilantro&#39;, &#39;tomatoes&#39;]</code></pre>
+<p>Code that modifies data in place can be more difficult to understand (and therefore to debug). However, it is often far more efficient to modify a large data structure in place than to create a modified copy for every small change. You should consider both of these aspects when writing your code.</p>
+</div>
+</aside>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="object-addresses"><span class="glyphicon glyphicon-pushpin"></span>Object addresses</h2>
+</div>
+<div class="panel-body">
+<p>We can find the address of an object in memory with the function <code>id()</code>. This function returns the “identity” of an object: an integer which is guaranteed to be unique and constant for this object during its lifetime.</p>
+<p>Two variables names that point to the same mutable object will show the same ID.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mildSalsa <span class="op">=</span> [<span class="st">&#39;peppers&#39;</span>, <span class="st">&#39;onions&#39;</span>, <span class="st">&#39;cilantro&#39;</span>, <span class="st">&#39;tomatoes&#39;</span>]
+hotSalsa <span class="op">=</span> mildSalsa
+
+<span class="bu">print</span> <span class="st">&#39;Variable 1 to mutable obj:&#39;</span>, <span class="bu">id</span>(mildSalsa)
+<span class="bu">print</span> <span class="st">&#39;Variable 2 to mutable obj:&#39;</span>, <span class="bu">id</span>(hotSalsa)</code></pre></div>
+<pre class="output"><code>Variable 1 to mutable obj: 4548266248
+Variable 2 to mutable obj: 4548266248</code></pre>
+<p>When the second variable name is tied to an independing copy of the mutable object, the two variable names will have different IDs:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">hotSalsa <span class="op">=</span> <span class="bu">list</span>(mildSalsa) <span class="co"># copies the object</span>
+
+<span class="bu">print</span> <span class="st">&#39;Original mutable obj:&#39;</span>, <span class="bu">id</span>(mildSalsa)
+<span class="bu">print</span> <span class="st">&#39;Copied mutable obj:&#39;</span>, <span class="bu">id</span>(hotSalsa)</code></pre></div>
+<pre class="output"><code>Original mutable obj: 4548266248
+Copied mutable obj: 4551753672</code></pre>
+</div>
+</aside>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="nested-lists"><span class="glyphicon glyphicon-pushpin"></span>Nested Lists</h2>
+</div>
+<div class="panel-body">
+<p>Since lists can contain any Python variable, it can even contain other lists.</p>
+<p>For example, we could represent the products in the shelves of a small grocery shop:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x <span class="op">=</span> [[<span class="st">&#39;pepper&#39;</span>, <span class="st">&#39;zucchini&#39;</span>, <span class="st">&#39;onion&#39;</span>],
+     [<span class="st">&#39;cabbage&#39;</span>, <span class="st">&#39;lettuce&#39;</span>, <span class="st">&#39;garlic&#39;</span>],
+     [<span class="st">&#39;apple&#39;</span>, <span class="st">&#39;pear&#39;</span>, <span class="st">&#39;banana&#39;</span>]]</code></pre></div>
+<p>Here is a visual example of how indexing a list of lists <code>x</code> works:</p>
+<p><a href='https://twitter.com/hadleywickham/status/643381054758363136'>
+<img src="figs/pepper.png" width="500" />
+</a></p>
+<p>Using the previously declared list <code>x</code>, these would be the results of the index operations shown in the image:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> [x[<span class="dv">0</span>]]
+<span class="bu">print</span> x[<span class="dv">0</span>]
+<span class="bu">print</span> x[<span class="dv">0</span>][<span class="dv">0</span>]</code></pre></div>
+<pre class="output"><code>[[&#39;pepper&#39;, &#39;zucchini&#39;, &#39;onion&#39;]]
+[&#39;pepper&#39;, &#39;zucchini&#39;, &#39;onion&#39;]
+&#39;pepper&#39;</code></pre>
+<p>Thanks to <a href="https://twitter.com/hadleywickham/status/643381054758363136">Hadley Wickham</a> for the image above.</p>
+</div>
+</aside>
+<h3 id="tuples">- Tuples</h3>
+<p>Like lists, <strong>tuples</strong> are simply sequences of objects. Tuples, however, are <em>immutable</em> objects. We can only change the values in a tuple by assigning the variable name to a new object.</p>
+<p>Tuples are created by putting values in a sequence, separated by commas. For easier reading, they are usually inside parentheses:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">things <span class="op">=</span> (<span class="st">&#39;toy cars&#39;</span>, <span class="dv">42</span>, <span class="st">&#39;dinosaur&#39;</span>)
+<span class="bu">print</span> <span class="bu">type</span>(things)</code></pre></div>
+<pre class="output"><code>&lt;type &#39;tuple&#39;&gt;</code></pre>
+<p>Because they are sequences, we can use indexing to access individual values in a tuple:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> things[<span class="dv">0</span>]</code></pre></div>
+<pre class="output"><code>toy cars</code></pre>
+<p>However, because they are <em>immutable</em> objects, we cannot use indexing to change the values of a tuple:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">things[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&#39;toy airplanes&#39;</span></code></pre></div>
+<pre class="output"><code>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-151-546e5c83c872&gt; in &lt;module&gt;()
+----&gt; 1 things[0] = &#39;toy airplanes&#39;
+
+TypeError: &#39;tuple&#39; object does not support item assignment</code></pre>
+<h3 id="mapping-types">Mapping types</h3>
+<h3 id="dictionaries">- Dictionaries</h3>
+<p>Because values in sequences are stored a known order, individual values in sequence-type objects can be accessed by their position through integer indices. <strong>Dictionaries</strong> are a type of object where values are not stored in any particular order. Dictionaries are unordered collections of <strong>key:value</strong> pairs. They map (or match) keys, which can be any immutable type (strings, numbers, tuples), to values, which can be of any type (heterogeneous). Individual values in a dictionary are accessed by their keys.</p>
+<p>We create dictionaries with curly brackets and pairs of keys and values. An empty dictionary would simply have no key:value pairs inside the curly brackets:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">person <span class="op">=</span> {<span class="st">&#39;name&#39;</span>:<span class="st">&#39;Jack&#39;</span>, <span class="st">&#39;age&#39;</span>: <span class="dv">32</span>}
+<span class="bu">print</span> person</code></pre></div>
+<pre class="output"><code>{&#39;age&#39;: 32, &#39;name&#39;: &#39;Jack&#39;}</code></pre>
+<p>Notice that the order of the key:value pairs is different in the dictionary definition than in the output! Because values in a dictionary are not stored in a particular order, they take an arbitrary order when the dictionary is displayed. <BR></p>
+<p>We can access and modify individual values in a dictionary with their keys:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">person[<span class="st">&#39;age&#39;</span>] <span class="op">=</span> <span class="dv">33</span>
+<span class="bu">print</span> person</code></pre></div>
+<pre class="output"><code>{&#39;age&#39;: 33, &#39;name&#39;: &#39;Jack&#39;}</code></pre>
+<p>We can also use keys to add values to a previously defined dictionary:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">person[<span class="st">&#39;address&#39;</span>] <span class="op">=</span> <span class="st">&#39;Downtown Boulder&#39;</span>  
+<span class="bu">print</span> person</code></pre></div>
+<pre class="output"><code>{&#39;age&#39;: 33, &#39;name&#39;: &#39;Jack&#39;, &#39;address&#39;: &#39;Downtown Boulder&#39;}</code></pre>
+<p><BR></p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="string-methods"><span class="glyphicon glyphicon-pencil"></span>String methods</h2>
+</div>
+<div class="panel-body">
+<p>Can you explain what this script does?</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">string <span class="op">=</span> <span class="st">&quot;if it&#39;s in caps i&#39;m trying to YELL!&quot;</span>
+
+<span class="bu">print</span> string.find(<span class="st">&#39;caps&#39;</span>)</code></pre></div>
+<ul>
+<li><p>Modify the command so that it finds the substring (‘caps’) even if capitalization is different in the string (ex. ‘CAPS’).</p></li>
+<li><p>What is the output of <code>find</code> if the substring is not in the string?</p></li>
+<li><p>What happens if the substring appears more than once in the string? (ex. ‘in’)</p></li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">loc <span class="op">=</span> string.find(<span class="st">&#39;caps&#39;</span>)
+<span class="bu">print</span> string[loc:]</code></pre></div>
+<pre class="output"><code>caps i&#39;m trying to YELL!</code></pre>
+<p>The method <code>find</code> returns the start index of the substring.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># change capitalization for testing</span>
+string <span class="op">=</span> <span class="st">&quot;if it&#39;s in cAPs i&#39;m trying to YELL!&quot;</span>
+
+<span class="bu">print</span> <span class="st">&#39;If substring not in string:&#39;</span>, string.find(<span class="st">&#39;caps&#39;</span>)
+
+<span class="co"># force string to lowercase</span>
+<span class="bu">print</span> <span class="st">&#39;If find substring:&#39;</span>, string.lower().find(<span class="st">&#39;caps&#39;</span>)
+
+<span class="bu">print</span> <span class="st">&quot;Returns only first occurrence of substring &#39;in&#39;:&quot;</span>, string.lower().find(<span class="st">&#39;in&#39;</span>)</code></pre></div>
+<pre class="output"><code>If substring not in string: -1
+If find substring: 11
+Returns only first occurrence of substring &#39;in&#39;: 8</code></pre>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="numbers-in-strings"><span class="glyphicon glyphicon-pencil"></span>Numbers in strings</h2>
+</div>
+<div class="panel-body">
+<p>You decided to quit research and open a bar. You are using Python to create a sign.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">age <span class="op">=</span> <span class="dv">21</span>   <span class="co"># &lt;--- don&#39;t change this line!</span>
+sign <span class="op">=</span> <span class="st">&#39;You must be &#39;</span> <span class="op">+</span> age <span class="op">+</span> <span class="st">&#39;-years-old to enter this bar&#39;</span>
+<span class="bu">print</span> sign</code></pre></div>
+<pre class="output"><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-28-253b33d26e7e&gt; in &lt;module&gt;()
+     1 age = 21   # &lt;--- don&#39;t change this line!
+----&gt; 2 sign = &#39;You must be &#39; + age + &#39;-years-old to enter this bar&#39;
+     3 print sign
+
+
+TypeError: cannot concatenate &#39;str&#39; and &#39;int&#39; objects</code></pre>
+<p>Fix your code so it prints the text in <code>sign</code> correctly. Don’t change the first line!</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">age <span class="op">=</span> <span class="dv">21</span>
+sign <span class="op">=</span> <span class="st">&#39;You must be &#39;</span> <span class="op">+</span> <span class="bu">str</span>(age) <span class="op">+</span> <span class="st">&#39;-years-old to enter this bar&#39;</span>
+<span class="bu">print</span> sign</code></pre></div>
+<pre class="output"><code>You must be 21-years-old to enter this bar</code></pre>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="cheeeeeeeeese"><span class="glyphicon glyphicon-pencil"></span>Cheeeeeeeeese</h2>
+</div>
+<div class="panel-body">
+<p>What is the difference between these two statements? Why are their outputs different?</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">s1 <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> shopping_list[<span class="op">-</span><span class="dv">1</span>:]
+s2 <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> shopping_list[<span class="op">-</span><span class="dv">1</span>]</code></pre></div>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> s1, <span class="bu">type</span>(s1)
+<span class="bu">print</span> s2, <span class="bu">type</span>(s2)</code></pre></div>
+<pre class="output"><code>[&#39;cheese&#39;, &#39;cheese&#39;, &#39;cheese&#39;] &lt;type &#39;list&#39;&gt;
+cheesecheesecheese &lt;type &#39;str&#39;&gt;</code></pre>
+<p><code>shopping_list[-1]</code> is the last value in the list, which is a string. The second statement is therefore repeating a string three times.</p>
+<p><code>shopping_list[-1:]</code> is a slice of a list, so it is also a list (even if it only has one value). The first statement is therefore repeating a list three times.</p>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="human-readable-numbers"><span class="glyphicon glyphicon-pencil"></span>Human readable numbers</h2>
+</div>
+<div class="panel-body">
+<p>When we write down a large integer, it’s customary to use commas (or periods, depending on the country) to separate the number into groups of three digits. It’s easier for humans to read a large number with separators but Python sees them as something else. What type of object is this? Why does Python read it as this object type?</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_account_balance <span class="op">=</span> <span class="dv">15</span>,<span class="dv">752</span>,<span class="dv">000</span>,<span class="dv">000</span></code></pre></div>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">my_account_balance <span class="op">=</span> <span class="dv">15</span>,<span class="dv">752</span>,<span class="dv">000</span>,<span class="dv">000</span>
+<span class="bu">type</span>(my_account_balance)</code></pre></div>
+<pre class="output"><code>tuple</code></pre>
+<p>You don’t actually need the parentheses to create a tuple. Python reads any sequence of objects separated by commas as a tuple.</p>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="tiny-tuples"><span class="glyphicon glyphicon-pencil"></span>Tiny tuples</h2>
+</div>
+<div class="panel-body">
+<p>Create a tuple that contains only one value. Confirm that it’s really a tuple. You might have to experiment!</p>
+<p>Hint: Start with a tuple with two values and simplify it.</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">lil_tuple <span class="op">=</span> <span class="dv">1</span>,
+<span class="bu">type</span>(lil_tuple)</code></pre></div>
+<pre class="output"><code>tuple</code></pre>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="travel-guide"><span class="glyphicon glyphicon-pencil"></span>Travel guide</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Create an empty dictionary called “states”</li>
+<li>Add 3 items to the dictionary. Map state names (the keys) to their abbreviations (the values) (ex. ‘Wyoming’:‘WY’). Pick easy ones! You can also use states from another country or look <a href="http://www.50states.com/abbreviations.htm">here</a> for help.</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">states <span class="op">=</span> {}
+
+states[<span class="st">&#39;Colorado&#39;</span>] <span class="op">=</span> <span class="st">&#39;CO&#39;</span>
+states[<span class="st">&#39;California&#39;</span>] <span class="op">=</span> <span class="st">&#39;CA&#39;</span>
+states[<span class="st">&#39;Florida&#39;</span>] <span class="op">=</span> <span class="st">&#39;FL&#39;</span></code></pre></div>
+</div>
+</section>
+<ul>
+<li>Use a variable in place of a key to access values in your <code>states</code> dictionary. For example, if I set the variable to “Wyoming”, the value should be “WY”.</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">selected_state <span class="op">=</span> <span class="st">&#39;California&#39;</span>
+
+<span class="bu">print</span> states[selected_state]</code></pre></div>
+<pre class="output"><code>CA</code></pre>
+</div>
+</section>
+<ul>
+<li>Create a dictionary called “cities” that contains 3 key:value pairs. The keys should be the state abbreviation in your <code>states</code> dictionary and the values should be the names of one city in each of those states state (ex. ‘WY’:‘Laramie’). Don’t start with an empty dictionary and add values to it – initialize the dictionary with the all of the key:value pairs already in it.</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">cities <span class="op">=</span> {<span class="st">&#39;CO&#39;</span>:<span class="st">&#39;Denver&#39;</span>, <span class="st">&#39;FL&#39;</span>:<span class="st">&#39;Miami&#39;</span>, <span class="st">&#39;CA&#39;</span>:<span class="st">&#39;San Francisco&#39;</span>}</code></pre></div>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="travel-guide-part-ii-advanced"><span class="glyphicon glyphicon-pencil"></span>Travel guide, part II (Advanced)</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li><p>Write a short script to fill in the blanks in this string for any state in your <code>states</code> dictionary.</p>
+<p>__________ is abbreviated ____ and has cities like ________</p></li>
+<li><p>Refactor (rewrite, improve) your code so you only have to change one word in your script to change states.</p></li>
+</ul>
+<p>Hint: The values in one of your dictionaries are the keys for the other dictionary</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">selected_state <span class="op">=</span> <span class="st">&#39;Colorado&#39;</span>
+
+<span class="bu">print</span> selected_state <span class="op">+</span> <span class="st">&#39; is abbreviated &#39;</span> <span class="op">+</span> states[selected_state] <span class="op">+</span> <span class="st">&#39; and has cities like &#39;</span> <span class="op">+</span> cities[states[selected_state]]</code></pre></div>
+<pre class="output"><code>Colorado is abbreviated CO and has cities like Denver</code></pre>
+</div>
+</section>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://csdms.colorado.edu">CSDMS</a>
+        <a class="label swc-blue-bg" href="https://github.com/mperignon/2016-05-16-csdms/">Source</a>
+        <a class="label swc-blue-bg" href="mailto:perignon@colorado.edu">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/lesson.js"></script>
+  </body>
+</html>

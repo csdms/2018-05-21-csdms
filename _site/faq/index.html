@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2017-01-17 12:03:05 -0700">
+    <meta http-equiv="last-modified" content="2018-05-17 13:38:14 -0600">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="search-domain" value="">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
@@ -21,7 +21,7 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-    <title>Workshop Title: FAQ</title>
+    <title>CSDMS bootcamp: FAQ</title>
   </head>
   <body>
     <div class="container">
@@ -70,20 +70,20 @@
   </div>
 </nav>
 
-<h1 class="maintitle"><a href="/">Workshop Title</a>: FAQ</h1>
+<h1 class="maintitle"><a href="/">CSDMS bootcamp</a>: FAQ</h1>
 
 <h2 id="general">General</h2>
 
 <dl>
   <dt><em>Where can I get help?</em></dt>
-  <dd>Mail us at <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#108;&#101;&#115;&#115;&#111;&#110;&#115;&#064;&#115;&#111;&#102;&#116;&#119;&#097;&#114;&#101;&#045;&#099;&#097;&#114;&#112;&#101;&#110;&#116;&#114;&#121;&#046;&#111;&#114;&#103;">&#108;&#101;&#115;&#115;&#111;&#110;&#115;&#064;&#115;&#111;&#102;&#116;&#119;&#097;&#114;&#101;&#045;&#099;&#097;&#114;&#112;&#101;&#110;&#116;&#114;&#121;&#046;&#111;&#114;&#103;</a>,
+  <dd>Mail us at <a href="mailto:lessons@software-carpentry.org">lessons@software-carpentry.org</a>,
 or join our <a href="https://software-carpentry.org/join/">discussion list</a>
 and ask for help there.</dd>
   <dt><em>What if I can’t wait?</em></dt>
   <dd>Run <code class="highlighter-rouge">make workshop-check</code> to run the workshop homepage checking program on <code class="highlighter-rouge">index.html</code>.</dd>
   <dt><em>Where can I report problems or suggest improvements?</em></dt>
   <dd>Please file an issue against <a href="this repository">https://github.com/swcarpentry/workshop-template</a>
-or <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#108;&#101;&#115;&#115;&#111;&#110;&#115;&#064;&#115;&#111;&#102;&#116;&#119;&#097;&#114;&#101;&#045;&#099;&#097;&#114;&#112;&#101;&#110;&#116;&#114;&#121;&#046;&#111;&#114;&#103;">mail us</a>.</dd>
+or <a href="mailto:lessons@software-carpentry.org">mail us</a>.</dd>
   <dt><em>Why does the workshop repository have to be created by importing rather than forking?</em></dt>
   <dd>Because any particular user can only have one fork of a repository,
 but instructors frequently need to work on several workshops at once.</dd>
@@ -126,9 +126,8 @@ but cause rendering to fail silently on GitHub.</dd>
   <dt><em>Eventbrite registration isn’t showing up on the workshop’s home page.</em></dt>
   <dd>First check that you have something like:
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>eventbrite: 1234567890AB
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eventbrite: 1234567890AB
+</code></pre></div>    </div>
 
     <p>in the YAML header of <code class="highlighter-rouge">index.html</code>.
 If the YAML header is set properly you may be accessing
@@ -136,9 +135,8 @@ If the YAML header is set properly you may be accessing
 Instead,
 please run</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ make serve
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ make serve
+</code></pre></div>    </div>
 
     <p>and look at <code class="highlighter-rouge">http://localhost:4000</code> in your browser
 (or push your changes to GitHub and view your page there).</p>
@@ -147,15 +145,14 @@ please run</p>
   <dd>Your computer is telling you that it doesn’t understand some of the characters you’re using.
 Declare your locale to be <code class="highlighter-rouge">en_US.UTF-8</code> in your shell:
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ export LC_ALL=en_US.UTF-8
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export LC_ALL=en_US.UTF-8
 $ export LANG=en_US.UTF-8
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </dd>
   <dt><em>What do I do if I get a “can’t convert nil into String” error?</em></dt>
   <dd>On some Linux distributions (e.g, Ubuntu 14.04), you may get this error:
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ ./tools/preview
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./tools/preview
 /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require': iconv will be deprecated in the future, use String#encode instead.
 /usr/lib/ruby/1.9.1/time.rb:265:in `_parse': can't convert nil into String (TypeError)
     from /usr/lib/ruby/1.9.1/time.rb:265:in `parse'
@@ -168,32 +165,28 @@ $ export LANG=en_US.UTF-8
     from /usr/lib/ruby/1.9.1/optparse.rb:1432:in `permute!'
     from /usr/lib/ruby/1.9.1/optparse.rb:1453:in `parse!'
     from /usr/bin/jekyll:137:in `&lt;main&gt;'
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>This occurs because you are using an old version of Jekyll located in <code class="highlighter-rouge">/usr/bin</code>.
 Make sure that you have installed Jekyll using:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ gem install jekyll
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gem install jekyll
+</code></pre></div>    </div>
 
     <p>This installs Jekyll in <code class="highlighter-rouge">/usr/local/bin</code>,
 so make sure this directory comes before <code class="highlighter-rouge">/usr/bin</code> in your <code class="highlighter-rouge">PATH</code> environment variable.
 When your path is set correctly,
 you should see:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ which jekyll
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ which jekyll
 /usr/local/bin/jekyll
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>You may also have to install the <code class="highlighter-rouge">nodejs</code> package to disable references to JavaScript,
 which you can do using:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get install nodejs
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install nodejs
+</code></pre></div>    </div>
 
     <p>For more information,
 see <a href="http://michaelchelen.net/81fa/install-jekyll-2-ubuntu-14-04/">http://michaelchelen.net/81fa/install-jekyll-2-ubuntu-14-04/</a>.</p>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Programming with Python</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://csdms.colorado.edu" title="Community Surface Dynamics Modeling System">
+          <img alt="CSDMS banner" src="img/CSDMS_banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Programming with Python</h1></a>
+          <h2 class="subtitle">Handling topographic data</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Explain what a library is, and what libraries are used for</li>
+<li>Load a Python library and use the tools it contains</li>
+<li>Read data from a file into a program</li>
+<li>Assign values to variables</li>
+<li>Extract values and slices of data</li>
+<li>Perform operations on arrays of data</li>
+<li>Display simple graphs</li>
+</ul>
+</div>
+</section>
+<p>The best way to learn how to program is to do something useful and interesting, so this introduction to Python is built around a task that is particularly relevant to the CSDMS community: building numerical models.</p>
+<p>Python is an increasingly popular programming language. It’s good as a first language because it is concise and easy to read, but it is also a great language for more experienced programmers to learn because it is powerful and versitile. While a lot of basic functionality is built directly into a language like Python, a massive collection of tools for every imaginable task exist in libraries (also called packages).</p>
+<p>The most common libraries for scientific programming come bundled with the Anaconda distribution of Python that we are using in this workshop. Check out the <a href="https://pypi.python.org/pypi">Python Package Index</a> to see what else is available.</p>
+<h2 id="loading-data">Loading data</h2>
+<p>The goal of this Python workshop is to build a two-dimensional diffusion model of landscape evolution. The first step is to load an elevation dataset (the initial conditions for our model) and figure out how to manipulate it.</p>
+<p>Take a look at the contents of the file <code>data/topo.asc</code>. For simplicity, we are not using a <em>real</em> ASC file for this tutorial. We’ve removed the header and the projection file to leave only the rectangular array of elevation values and we replaced the commas between values with spaces. <BR></p>
+<p>In order to load the elevation data, we need to import a library called <strong>Numpy</strong>. You use this library to do fancy things with numbers (ie. math), especially when we are handling matrices or arrays. We can load Numpy with the command <code>import</code>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy</code></pre></div>
+<p>Within the Jupyter (iPython) notebook, pressing Shift+Enter runs the commands in the selected cell. Importing a library should not produce visible output.</p>
+<p>Importing a library is like pulling a toolbox out of a storage locker and placing it on your workbench. Python has a set of built-in functions that are always available (the everyday tools on your workbench). Libraries provide additional functionality to Python (the specialized tools in the toolbox that you only sometimes need). <BR></p>
+<p>Once we’ve loaded the library, we can use a function in this library to read the data file:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">numpy.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)</code></pre></div>
+<pre class="output"><code>array([[ 3198.8391,  3198.123 ,  3197.1584, ...,  2583.3293,  2585.4368,
+         2589.1079],
+       [ 3198.3306,  3197.5242,  3196.4102, ...,  2582.6992,  2584.9167,
+         2587.801 ],
+       [ 3197.9968,  3196.9197,  3195.7188, ...,  2581.8328,  2583.8159,
+         2586.0325],
+       ..., 
+       [ 3325.1509,  3334.7822,  3343.3154, ...,  2780.8191,  2769.3235,
+         2762.373 ],
+       [ 3325.0823,  3335.0308,  3345.4963, ...,  2775.3345,  2765.7131,
+         2759.6555],
+       [ 3326.6824,  3336.5305,  3348.1343, ...,  2769.7661,  2762.5242,
+         2756.6877]])</code></pre>
+<p>The expression <code>numpy.loadtxt(...)</code> tells Python to run the function <code>loadtxt</code> from the <code>numpy</code> library. This <strong>dotted notation</strong>, with the syntax <em>thing.component</em>, is used everywhere in Python to refer to parts of things.</p>
+<p>The function call <code>numpy.loadtxt</code> has one <strong>parameter</strong>: the name of the file we want to read. The filename is a character string (or simply <strong>string</strong>) so it is in quotes. <BR></p>
+<p>Because we haven’t told iPython where to put the output of <code>numpy.loadtxt</code>, the Notebook just displays it on the screen. The output is the data we just loaded. By default, only a few rows and columns are shown (with <code>...</code> to omit elements when displaying big arrays).</p>
+<p>Our call to <code>numpy.loadtxt</code> read the file but didn’t save the values. In order to save the data and be able to access it later, we need to <strong>assign</strong> the values to a <strong>variable</strong>. A variable name is just a label that refers to an object in the memory. We can assign a variable name to an object using =. Python’s variables must begin with a letter and are case sensitive. <BR></p>
+<p>Let’s re-run <code>numpy.loadtxt</code> and assign the output to a variable name:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">topo <span class="op">=</span> numpy.loadtxt(<span class="st">&#39;data/topo.asc&#39;</span>)</code></pre></div>
+<p>This command doesn’t produce any visible output. If we want to see the data, we can print the variable’s value with the command <code>print</code>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> topo</code></pre></div>
+<pre class="output"><code>[[ 3198.8391  3198.123   3197.1584 ...,  2583.3293  2585.4368  2589.1079]
+ [ 3198.3306  3197.5242  3196.4102 ...,  2582.6992  2584.9167  2587.801 ]
+ [ 3197.9968  3196.9197  3195.7188 ...,  2581.8328  2583.8159  2586.0325]
+ ..., 
+ [ 3325.1509  3334.7822  3343.3154 ...,  2780.8191  2769.3235  2762.373 ]
+ [ 3325.0823  3335.0308  3345.4963 ...,  2775.3345  2765.7131  2759.6555]
+ [ 3326.6824  3336.5305  3348.1343 ...,  2769.7661  2762.5242  2756.6877]]</code></pre>
+<p><BR></p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="defining-variables"><span class="glyphicon glyphicon-pencil"></span>Defining variables</h2>
+</div>
+<div class="panel-body">
+<p>Track how variable names and objects are connected after each statement in the following program. What are the values of the variables after running each line of code?</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mass <span class="op">=</span> <span class="fl">47.5</span>
+age <span class="op">=</span> <span class="dv">122</span>
+mass <span class="op">=</span> mass <span class="op">*</span> <span class="fl">2.0</span>
+age <span class="op">=</span> age <span class="op">-</span> <span class="dv">20</span></code></pre></div>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<table style="width:300px;background-color:white;>
+<thead>
+<tr class="header">
+<th align="center">Line number</th>
+<th align="center"><code>mass</code></th>
+<th align="center"><code>age</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">47.5</td>
+<td align="center">doesn’t exist</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">47.5</td>
+<td align="center">122</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">95.0</td>
+<td align="center">122</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">95.0</td>
+<td align="center">102</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="tracking-variables"><span class="glyphicon glyphicon-pencil"></span>Tracking variables</h2>
+</div>
+<div class="panel-body">
+<p>What does the following program print?</p>
+<p>Bonus: Who was Grace Hopper?</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">first, second <span class="op">=</span> <span class="st">&#39;Grace&#39;</span>, <span class="st">&#39;Hopper&#39;</span>
+third, fourth <span class="op">=</span> second, first
+<span class="bu">print</span> third, fourth</code></pre></div>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> third, fourth</code></pre></div>
+<pre class="output"><code>Hopper Grace</code></pre>
+<p><a href="https://en.wikipedia.org/wiki/Grace_Hopper" class="uri">https://en.wikipedia.org/wiki/Grace_Hopper</a> <BR></p>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="assignment-statement"><span class="glyphicon glyphicon-pencil"></span>Assignment statement</h2>
+</div>
+<div class="panel-body">
+<p>Why doesn’t this work?</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="dv">17</span> <span class="op">=</span> n</code></pre></div>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<p>The assignment token, ‘=’, should not be confused with the equals sign, in the mathematical sense. The assignment statement binds a name, on the left-hand side of the operator, to a value, on the right-hand side. When reading or writing code, say to yourself “n is assigned 17” or “n gets the value 17”. Don’t say “n equals 17”.</p>
+<p>Also, variable names must start with a letter or an underscore so the number 17 could not be used as a variable name.</p>
+<p>The correct way to assign the value 17 to the variable name <code>n</code> is this:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">n <span class="op">=</span> <span class="dv">17</span></code></pre></div>
+</div>
+</section>
+</div>
+</section>
+<p>Using its variable name, we can see that <strong>type</strong> of object the variable name <code>topo</code> is assigned to. The function <code>type</code> tells us that the variable name <code>topo</code> points to an N-dimensional array created by the Numpy library:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">type</span>(topo)</code></pre></div>
+<pre class="output"><code>numpy.ndarray</code></pre>
+<p>We can also get the shape of the array:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> topo.shape</code></pre></div>
+<pre class="output"><code>(500, 500)</code></pre>
+<p>The array has 500 rows and 500 columns. The file we imported contains elevation data (in meters, 2 meter x 2 meter cells) for an area along the Front Range of Colorado, just south of Boulder. The area that this array covers is 1 km x 1 km. <BR></p>
+<p>The object of type <code>numpy.ndarray</code> that the variable topo is assigned to contains the values of the array as well as some extra information about the array. These are the <strong>members</strong> or <strong>attributes</strong> of the object, and they describe the data in the same way an adjective describes a noun. The command <code>topo.shape</code> calls the shape attribute of the object <code>topo</code>, which contains its dimensions. We use the same dotted notation for the attributes of objects that we use to call functions inside libraries because they have the same part-and-whole relationship. <BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="len-and-other-built-in-functions"><span class="glyphicon glyphicon-pushpin"></span>len() and other built-in functions</h2>
+</div>
+<div class="panel-body">
+<p>The function <code>len()</code> returns the length of the longest axis of a sequence (a numpy array, a list, etc.). Because it is a built-in function, it is always available to the Python interpreter and doesn’t have to be imported. The function <code>type()</code> is another built-in function. You can read about them in the <a href="https://docs.python.org/2/library/functions.html">Python docs</a>. <BR></p>
+</div>
+</aside>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="getting-help"><span class="glyphicon glyphicon-pushpin"></span>Getting help</h2>
+</div>
+<div class="panel-body">
+<p>How did we know what functions Numpy has and how to use them? If you are working in a Jupyter Notebook there is an easy way to find out!</p>
+<p>Type the name of a library or a variable name, add a period, and press tab (e.g. <code>numpy.</code> and then press tab). This will show a list of all functions and attributes that you can use with that object.</p>
+<p>You can also add a question mark after a function name to see the documentation (e.g. <code>numpy.cumprod?</code>). You can also access the docs with the function <code>help()</code> (ex. <code>help(numpy.cumprod)</code>).</p>
+</div>
+</aside>
+<h2 id="plotting">Plotting</h2>
+<p>Rasters are just big two dimensional arrays of values. In the case of DEMs, those values are elevations. It’s very hard to get a good sense of what a landscape looks like by looking directly at a giant array of numbers. This information is better conveyed through plots and graphics.</p>
+<p>Data visualization deserves an entire lecture (or course) of its own but we can explore a few features of Python’s <strong>matplotlib</strong> library here. While there is no “official” plotting library in Python, this package is the de facto standard.</p>
+<p>We start by importing the <strong>pyplot</strong> module from the library matplotlib. Since we don’t need <em>all</em> of the tools available in matplotlib, we use the dotted notation to specify the particular collection we want.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot</code></pre></div>
+<p><BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="some-ipython-magic"><span class="glyphicon glyphicon-pushpin"></span>Some iPython Magic</h2>
+</div>
+<div class="panel-body">
+<p>If you’re using an iPython / Jupyter notebook, you’ll want to execute the following command in order for the plots to appear in the notebook instead of a separate window:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="op">%</span>matplotlib inline</code></pre></div>
+<p>The <code>%</code> indicates that this is an iPython magic function - a function that is only valid within the notebook environment.</p>
+</div>
+</aside>
+<p>We can use the function <strong>imshow</strong> (“image show”) within <code>matplotlib.pyplot</code> to display an array as a 2D image:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">matplotlib.pyplot.imshow(topo)</code></pre></div>
+<div class="figure">
+<img src="figs/f00_output_33_1.png" />
+
+</div>
+<h2 id="indexing">Indexing</h2>
+<p>We can access an individual value in an array by referencing its position. We specify the location of the value using an <strong>integer index</strong> in square brackets:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;elevation at the NE corner of topo:&#39;</span>, topo[<span class="dv">0</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
+<pre class="output"><code>elevation at the NE corner of topo: 3198.8391 meters</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;elevation at an arbitrary point in topo:&#39;</span>, topo[<span class="dv">137</span>,<span class="dv">65</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
+<pre class="output"><code>elevation at an arbitrary point in topo: 3251.1179 meters</code></pre>
+<p>When accessing values in a two dimensional array, the indices are ordered <code>[row,column]</code>. The expression <code>topo[137, 65]</code> should not surprise you too much but <code>topo[0,0]</code> might.</p>
+<p>Programming languages like Fortran and MATLAB start counting at 1 because that’s what (most) humans have done for thousands of years. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because it’s simpler for computers to do. So if we have an M×N array in Python, the indices go from 0 to M-1 on the first axis (rows) and 0 to N-1 on the second (columns). In MATLAB, the same array (or matrix) would have indices that go from 1 to M and 1 to N. <strong>Zero-based indexing</strong> takes a bit of getting used to. One way to remember the rule is that <em>the index is how many steps we have to take from the start to get to the item we want</em>. <BR></p>
+<p>Python also allows for negative indices to refer to the position of elements with respect to the end of each axis. An index of -1 refers to the last item in a sequence, -2 to the second to last, and so on. Since index <code>[0,0]</code> is the upper left corner of an array, index <code>[-1,-1]</code> is the lower right corner of the array:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> topo[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>]</code></pre></div>
+<pre class="output"><code>2756.6877</code></pre>
+<p><BR></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="in-the-corner"><span class="glyphicon glyphicon-pushpin"></span>In the corner</h2>
+</div>
+<div class="panel-body">
+<p>What may also surprise you is that Python displays the array with the element with index [0,0] in the upper left corner rather than the lower left. This is consistent with the way mathematicians draw matrices, but different from Cartesian coordinates. The indices are [row, column] instead of [column, row] for the same reason, which can be confusing when plotting data.</p>
+</div>
+</aside>
+<h2 id="slicing">Slicing</h2>
+<p>The statement <code>topo[0,0]</code> selects a single element in the array <code>topo</code>. We can also use integer indices to <strong>slice</strong> sections of the array with multiple values. For example, we can select a small square on the top left corner of the array like this:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> topo[<span class="dv">0</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">5</span>]</code></pre></div>
+<pre class="output"><code>[[ 3198.8391  3198.123   3197.1584  3196.2017  3193.8813]
+ [ 3198.3306  3197.5242  3196.4102  3194.7559  3191.9763]
+ [ 3197.9968  3196.9197  3195.7188  3193.3855  3190.5371]
+ [ 3198.054   3196.7031  3194.9573  3192.4451  3189.5288]
+ [ 3198.3289  3196.9111  3195.335   3192.7874  3190.0085]]
+</code></pre>
+<p>The slice <code>[0:5,0:5]</code> means “For both the rows and columns, start at index 0 and go along the axis up to, but not including, index 5”. <BR></p>
+<p>We don’t need to include the upper or lower bound of the slice if we want to go all the way to the edge. If we don’t include the lower bound, Python uses 0 by default. If we don’t include the upper bound, the slice runs to the end of the axis:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> topo[:<span class="dv">5</span>, <span class="dv">497</span>:]</code></pre></div>
+<pre class="output"><code>[[ 2583.3293  2585.4368  2589.1079]
+ [ 2582.6992  2584.9167  2587.801 ]
+ [ 2581.8328  2583.8159  2586.0325]
+ [ 2580.9688  2582.8279  2584.7751]
+ [ 2580.2957  2582.1313  2584.1919]]</code></pre>
+<p>If we don’t include either the lower or upper bound of a slice (i.e., if we just use the colon), the slice includes every value along that axis:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> topo[<span class="dv">0</span>:<span class="dv">2</span>,:].shape</code></pre></div>
+<pre class="output"><code>(2, 500)</code></pre>
+<p><BR></p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="elevation-values"><span class="glyphicon glyphicon-pencil"></span>Elevation values</h2>
+</div>
+<div class="panel-body">
+<p>Use indexing to answer the following questions. Check your answers against the visualization of the array:</p>
+<ul>
+<li>Is the NW corner of the region higher than the SW corner? What’s the elevation difference?</li>
+<li>What’s the elevation difference between the NE corner and the SE corner?</li>
+<li>What’s the elevation at the center of the region shown in the array? (Hint: You can use the function <code>len()</code>)</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;NW corner:&#39;</span>, topo[<span class="dv">0</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;SW corner:&#39;</span>, topo[<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;Difference between NW and SW corners:&#39;</span>, topo[<span class="dv">0</span>,<span class="dv">0</span>] <span class="op">-</span> topo[<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;-&#39;</span> <span class="op">*</span> <span class="dv">60</span>
+<span class="bu">print</span> <span class="st">&#39;Difference between NE and SE corners:&#39;</span>, topo[<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> topo[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>], <span class="st">&#39;meters&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;-&#39;</span> <span class="op">*</span> <span class="dv">60</span>
+<span class="bu">print</span> <span class="st">&#39;Elevation at the center:&#39;</span>, topo[<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>, <span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
+<pre class="output"><code>NW corner: 3198.8391 meters
+SW corner: 3326.6824 meters
+Difference between NW and SW corners: -127.8433 meters
+------------------------------------------------------------
+Difference between NE and SE corners: -167.5798 meters
+------------------------------------------------------------
+Elevation at the center: 3372.386 meters</code></pre>
+<p><BR></p>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="slicing-strings"><span class="glyphicon glyphicon-pencil"></span>Slicing strings</h2>
+</div>
+<div class="panel-body">
+<p>Indexing and slicing work the same way for any type of sequence, including Numpy arrays, lists, and strings:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">element <span class="op">=</span> <span class="st">&#39;oxygen&#39;</span>
+<span class="bu">print</span> <span class="st">&#39;first three characters:&#39;</span>, element[<span class="dv">0</span>:<span class="dv">3</span>]
+<span class="bu">print</span> <span class="st">&#39;last three characters:&#39;</span>, element[<span class="dv">3</span>:<span class="dv">6</span>]</code></pre></div>
+<pre class="output"><code>first three characters: oxy
+last three characters: gen</code></pre>
+<ul>
+<li>What is the value of <code>element[:4]</code>? What about <code>element[4:]</code>? Or <code>element[:]</code>?</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;element[:4]:&#39;</span>, element[:<span class="dv">4</span>]
+<span class="bu">print</span> <span class="st">&#39;element[4:]:&#39;</span>, element[<span class="dv">4</span>:]
+<span class="bu">print</span> <span class="st">&#39;element[:]:&#39;</span>, element[:]</code></pre></div>
+<pre class="output"><code>element[:4]: oxyg
+element[4:]: en
+element[:]: oxygen</code></pre>
+</div>
+</section>
+<ul>
+<li>What is <code>element[-1]</code>? What is <code>element[-2]</code>?</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;element[-1]:&#39;</span>, element[<span class="op">-</span><span class="dv">1</span>]
+<span class="bu">print</span> <span class="st">&#39;element[-2]:&#39;</span>, element[<span class="op">-</span><span class="dv">2</span>]</code></pre></div>
+<pre class="output"><code>element[-1]: n
+element[-2]: e</code></pre>
+</div>
+</section>
+<ul>
+<li>Given those answers, explain what <code>element[1:-1]</code> does.</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<p>Creates a substring from index 1 up to (but not including) the last value, effectively removing the first and last letters from ‘oxygen’. <BR></p>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="empty-slices"><span class="glyphicon glyphicon-pencil"></span>Empty slices</h2>
+</div>
+<div class="panel-body">
+<p>The expression <code>element[3:3]</code> produces an <strong>empty string</strong>, i.e., a string that contains no characters. If <code>topo</code> holds our array of elevation data, what does <code>topo[3:3,4:4]</code> produce? What about <code>topo[3:3,:]</code>?</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;topo[3:3,4:4]:&#39;</span>, topo[<span class="dv">3</span>:<span class="dv">3</span>,<span class="dv">4</span>:<span class="dv">4</span>]
+<span class="bu">print</span> <span class="st">&#39;topo[3:3,:]:&#39;</span>, topo[<span class="dv">3</span>:<span class="dv">3</span>,:]</code></pre></div>
+<pre class="output"><code>topo[3:3,4:4]: []
+topo[3:3,:]: []</code></pre>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="concatenating-strings"><span class="glyphicon glyphicon-pencil"></span>Concatenating strings</h2>
+</div>
+<div class="panel-body">
+<p>Create a new variable named <code>text</code> and assign to it the string “The quick brown fox jumped over the lazy dog.” (note the capitalization and punctuation; include the quotes so Python recognizes it as a string).</p>
+<p>Use slicing and the print statement to extract and combine pieces of <code>text</code> to produce these sentences (again, note capitalization and punctuation!):</p>
+<ul>
+<li>the lazy dog.</li>
+<li>fox jumped over dog</li>
+<li>The lazy fox jumped over the quick brown dog.</li>
+</ul>
+<p>Hints:</p>
+<ul>
+<li>You can use the plus sign (+) to concatenate strings. Try it by running <code>print &quot;lazy&quot; + &quot;dog&quot;</code>.</li>
+<li>Remember that you can use negative indices!</li>
+<li>It’s easiest to do this by trial and error. Guess at the bounds of the slice needed to extract the word you want and then adjust.</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">text <span class="op">=</span> <span class="st">&quot;The quick brown fox jumped over the lazy dog.&quot;</span>
+
+<span class="bu">print</span> text[<span class="op">-</span><span class="dv">13</span>:]
+<span class="bu">print</span> text[<span class="dv">16</span>:<span class="dv">32</span>] <span class="op">+</span> text[<span class="op">-</span><span class="dv">4</span>:<span class="op">-</span><span class="dv">1</span>]
+<span class="bu">print</span> text[:<span class="dv">3</span>] <span class="op">+</span> text[<span class="op">-</span><span class="dv">10</span>:<span class="op">-</span><span class="dv">4</span>] <span class="op">+</span> text[<span class="dv">16</span>:<span class="dv">36</span>] <span class="op">+</span> text[<span class="dv">4</span>:<span class="dv">16</span>] <span class="op">+</span> text[<span class="op">-</span><span class="dv">4</span>:]</code></pre></div>
+<pre class="output"><code>the lazy dog.
+fox jumped over dog
+The lazy fox jumped over the quick brown dog.</code></pre>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="displaying-slices"><span class="glyphicon glyphicon-pencil"></span>Displaying slices</h2>
+</div>
+<div class="panel-body">
+<p>Use the function <code>imshow</code> from <code>matplotlib.pyplot</code> to make one figure showing the elevations of the northern half of the region and another plot showing the elevations of the southern half. You’ll need to use separate cells in the Jupyter Notebook for each plot.</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># northern half</span>
+matplotlib.pyplot.imshow(topo[:<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>,:])</code></pre></div>
+<div class="figure">
+<img src="figs/f00_output_61_1.png" />
+
+</div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># southern half</span>
+matplotlib.pyplot.imshow(topo[<span class="bu">len</span>(topo)<span class="op">/</span><span class="dv">2</span>:,:])</code></pre></div>
+<p><img src="figs/f00_output_62_1.png" /> <BR></p>
+</div>
+</section>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="finding-the-center-advanced"><span class="glyphicon glyphicon-pencil"></span>Finding the center (Advanced)</h2>
+</div>
+<div class="panel-body">
+<p>We can get the elevation of the centerpoint of the array <code>topo</code> using these indices: <code>topo[len(topo)/2,len(topo)/2]</code>. The function <code>len()</code> gives the length of the longest axis of the array, so this wouldn’t work if the array were not square (if it had a different number of rows and columns).</p>
+<ul>
+<li><p>Take a (small) slice of the array <code>topo</code> and assign it to a new variable called <code>t</code>. The height of the new array <code>t</code> should be greater than the width and both the height and the width should be even numbers (6 x 4 is a good size).</p></li>
+<li><p>Use indexing to extract the value of the centerpoint of the new array <code>t</code>. Write the indices using variables, not numbers (ie. don’t write <code>t[3,2]</code>)</p></li>
+</ul>
+<p>Hint: The method <code>topo.shape</code> gives the number of rows and columns in <code>topo</code>. Knowing this, get the shape of <code>t</code> and assign it to a variable. Use indexing on that variable to get the number of rows (index 0) and the number of columns (index 1) in <code>t</code>.</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">t <span class="op">=</span> topo[:<span class="dv">6</span>,:<span class="dv">4</span>]
+
+height_width <span class="op">=</span> t.shape
+<span class="bu">print</span> <span class="st">&#39;Shape of t:&#39;</span>, height_width
+
+num_rows <span class="op">=</span> height_width[<span class="dv">0</span>]
+num_cols <span class="op">=</span> height_width[<span class="dv">1</span>]
+
+<span class="bu">print</span> <span class="st">&#39;Value at centerpoint:&#39;</span>, t[num_rows<span class="op">/</span><span class="dv">2</span>, num_cols<span class="op">/</span><span class="dv">2</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
+<pre class="output"><code>Shape of t: (6, 4)
+Value at centerpoint: 3194.9573 meters</code></pre>
+</div>
+</section>
+<ul>
+<li>Make a rough sketch of array <code>t</code>. Identify the cell that you identified as the centerpoint using <code>t.shape</code>. Are you <em>really</em> pointing to the center of your array? How far off is it?</li>
+</ul>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="figure">
+<img src="figs/f00_table6x4.png" />
+
+</div>
+<p>The centerpoint of an array with an even number of rows and columns should fall at the intersection of four cells. Using half the height and width as indices places us half a cell off.</p>
+</div>
+</section>
+</div>
+</section>
+<h2 id="non-continuous-slices">Non-continuous slices</h2>
+<p>So far we’ve seen how to use slicing to take single blocks of successive entries from a sequence. But what if we want to take a subset of entries that aren’t next to each other in the sequence?</p>
+<p>You do this by providing a third argument - the step size - to the index range within the brackets. The example below shows how you can take every third entry in a list:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">primes <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">37</span>]
+subset <span class="op">=</span> primes[<span class="dv">0</span>:<span class="dv">12</span>:<span class="dv">3</span>]
+
+<span class="bu">print</span> <span class="st">&quot;Every third prime:&quot;</span>, subset</code></pre></div>
+<pre class="output"><code>Every third prime: [2, 7, 17, 29]</code></pre>
+<p>Notice that the slice taken begins with the first entry in the range, followed by entries taken at equally-spaced intervals (the steps) thereafter. If you wanted to begin the subset with the third entry, you would need to specify that as the starting point of the sliced range:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">primes <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">37</span>]
+subset <span class="op">=</span> primes[<span class="dv">2</span>:<span class="dv">12</span>:<span class="dv">3</span>]
+
+<span class="bu">print</span> <span class="st">&quot;Every third prime:&quot;</span>, subset</code></pre></div>
+<pre class="output"><code>Every third prime: [5, 13, 23, 37]</code></pre>
+<p><BR></p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="garbled-quotes"><span class="glyphicon glyphicon-pencil"></span>Garbled quotes</h2>
+</div>
+<div class="panel-body">
+<p>Use the step size argument to create a new string that contains only every other character in the string “Your Mother was a Hamster, and your Father smelt of Elderberries!”.</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">text <span class="op">=</span> <span class="st">&quot;Your Mother was a Hamster, and your Father smelt of Elderberries!&quot;</span>
+<span class="bu">print</span> text[::<span class="dv">2</span>]</code></pre></div>
+<pre class="output"><code>Yu ohrwsaHmtr n orFte ml fEdrere!</code></pre>
+</div>
+</section>
+</div>
+</section>
+
+
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="garbled-quotes-part-2-advanced"><span class="glyphicon glyphicon-pencil"></span>Garbled quotes, part 2 (Advanced)</h2>
+</div>
+<div class="panel-body">
+<p>Repeat the challenge above but, this time, create a new string that contains only every other character, starting from the end of the string and moving left.</p>
+<p>Hint: Remember negative indices.</p>
+<section class="challenge panel panel-solution">
+<div class="panel-heading solution">
+<h2 id="solution">Solution </h2><BR>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">text <span class="op">=</span> <span class="st">&quot;Your Mother was a Hamster, and your Father smelt of Elderberries!&quot;</span>
+<span class="bu">print</span> text[<span class="op">-</span><span class="dv">1</span>:<span class="op">-</span><span class="bu">len</span>(text)<span class="op">-</span><span class="dv">1</span>:<span class="op">-</span><span class="dv">2</span>]</code></pre></div>
+<pre class="output"><code>!ererdEf lm etFro n rtmHaswrho uY</code></pre>
+</div>
+</section>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://csdms.colorado.edu">CSDMS</a>
+        <a class="label swc-blue-bg" href="https://github.com/mperignon/2016-05-16-csdms/">Source</a>
+        <a class="label swc-blue-bg" href="mailto:perignon@colorado.edu">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/lesson.js"></script>
+  </body>
+</html>
