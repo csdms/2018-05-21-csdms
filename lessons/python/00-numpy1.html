@@ -220,8 +220,8 @@ third, fourth <span class="op">=</span> second, first
 </div>
 <h2 id="indexing">Indexing</h2>
 <p>We can access an individual value in an array by referencing its position. We specify the location of the value using an <strong>integer index</strong> in square brackets:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;elevation at the NE corner of topo:&#39;</span>, topo[<span class="dv">0</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
-<pre class="output"><code>elevation at the NE corner of topo: 3198.8391 meters</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;elevation at the NW corner of topo:&#39;</span>, topo[<span class="dv">0</span>,<span class="dv">0</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
+<pre class="output"><code>elevation at the NW corner of topo: 3198.8391 meters</code></pre>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> <span class="st">&#39;elevation at an arbitrary point in topo:&#39;</span>, topo[<span class="dv">137</span>,<span class="dv">65</span>], <span class="st">&#39;meters&#39;</span></code></pre></div>
 <pre class="output"><code>elevation at an arbitrary point in topo: 3251.1179 meters</code></pre>
 <p>When accessing values in a two dimensional array, the indices are ordered <code>[row,column]</code>. The expression <code>topo[137, 65]</code> should not surprise you too much but <code>topo[0,0]</code> might.</p>

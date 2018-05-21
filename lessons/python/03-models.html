@@ -144,14 +144,14 @@ n</code></pre>
 <p>In the example above, the loop variable was given the name <code>char</code> as a mnemonic; it is short for ‘character’. ‘Char’ is not a keyword in Python that pulls the characters from words or strings. In fact, if we run the same loop over a list rather than a word, the output will be each member of that list printed in order, not the characters.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">elements <span class="op">=</span> [<span class="st">&#39;oxygen&#39;</span>, <span class="st">&#39;nitrogen&#39;</span>, <span class="st">&#39;argon&#39;</span>]
 <span class="cf">for</span> char <span class="kw">in</span> elements:
-  <span class="bu">print</span>(char)</code></pre></div>
+  <span class="bu">print</span> char</code></pre></div>
 <pre class="output"><code>oxygen
 nitrogen
 argon</code></pre>
 <p>We can choose any name we want for variables. We might just as easily have chosen the name <code>frog</code> for the loop variable, as long as we use the same name when we invoke the variable inside the loop:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">the_great_big_pond <span class="op">=</span> <span class="st">&#39;oxygen&#39;</span>
 <span class="cf">for</span> frog <span class="kw">in</span> the_great_big_pond:
-  <span class="bu">print</span>(frog)</code></pre></div>
+  <span class="bu">print</span> frog</code></pre></div>
 <pre class="output"><code>o
 x
 y
